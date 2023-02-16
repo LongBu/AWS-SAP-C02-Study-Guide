@@ -6,8 +6,11 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 ## Table of Contents
 1. <a href="#introduction">Introduction</a>
 2. <a href="#identity-and-access-management-iam">Identity and Access Management (IAM)</a>
-3. <a href="#acronyms">Acronyms</a>
-
+3. <a href="#ec2">EC2</a>
+4. <a href="#containers">Containers</a>
+5. <a href="#cloudwatch">CloudWatch</a>
+6. <a href="#vpc">VPC</a>
+7. <a href="#acronyms">Acronyms</a>
 
 ## Introduction
 <a href="https://d1.awsstatic.com/training-and-certification/docs-sa-pro/AWS-Certified-Solutions-Architect-Professional_Exam-Guide.pdf">AWS Certified Solutions Architect - Professional (SAP-C02) Exam Guide</a>
@@ -25,6 +28,13 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ###  Identity and Access Management Access Analyzer:
 
+## EC2
+
+## Containers
+
+## CloudWatch
+
+## VPC
 
 ## Acronyms
 
