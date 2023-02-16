@@ -57,4 +57,5 @@ LDAP: software protocol for enabling the location of data about organizations, i
 | LDAP | Lightweight Directory Access Protocol |
 | OU | Organizational Unit |
 | SAML | Security Assertion Markup Language |
+| STS | Security Token Service |
 | SCP | Service Control Policies  |
