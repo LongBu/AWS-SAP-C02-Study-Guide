@@ -34,6 +34,8 @@ Allow vs Deny: If any denial in policy is present, the resource is denied regard
 
 LDAP: software protocol for enabling the location of data about organizations, individuals and other resources in a network.  
 
+Identity federation: a system of trust between two parties for the purpose of authenticating users and conveying information needed to authorize their access to resources.
+
 ###  Identity and Access Management Access Analyzer:
 
 ## EC2
