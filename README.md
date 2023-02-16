@@ -30,7 +30,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 ### Identity and Access Management Policy Evaulation Logic:
 ![IAM Policy Evaulation Logic](https://docs.aws.amazon.com/images/IAM/latest/UserGuide/images/PolicyEvaluationHorizontal111621.png)
 
-Allow vs Deny: If any denial in policy is present, the resource is denied.  The default behavior is to deny resource(s) and resource(s) need allow statements to be allowed.  
+Allow vs Deny: If any denial in policy is present, the resource is denied regardless of allow statement(s).  The default behavior is to deny resource(s) and resource(s) need allow statements to be allowed.  
 
 LDAP: software protocol for enabling the location of data about organizations, individuals and other resources in a network.  
 
