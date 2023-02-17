@@ -1,7 +1,7 @@
 # AWS SAP-CO2 Study Guide
 The following guide is my attempt at helping myself and possibly others to pass the AWS Certified Solutions Architect Professional Exam.  I'd recommend taking Stephane Maarek's course [Ultimate AWS Certified Solutions Architect Professional 2023](https://www.udemy.com/course/aws-solutions-architect-professional/) and the a few practice exams from [AWS Certified Solutions Architect Professional Practice Exam](https://www.udemy.com/course/aws-certified-solutions-architect-professional-aws-practice-exams/) before taking the exam.  
 
-Note: The author makes no promises or guarantees on this guide as this is as stated, a guide used by myself, nothing more.  This is a work in progress.  
+Note: The author makes no promises or guarantees on this guide as this is as stated, a guide used by myself, nothing more.  This is a work in progress and I haven't passed the test, yet.  
 
 ## Table of Contents
 1. <a href="#introduction">Introduction</a>
@@ -37,6 +37,17 @@ LDAP: software protocol for enabling the location of data about organizations, i
 
 Identity federation: a system of trust between two parties for the purpose of authenticating users and conveying information needed to authorize their access to resources.
 
+Amazon Cognito:
+  * Web Identity federation service/identity broker handling interations between application(s)/resource(s) and Web IdPs.
+  * Capable of synchronizing data from multiple devices by means of SNS to send notifications to all devices associated to a given user upon data deltas (IAM policy can be tethered to user ids possibly).
+  * User pool: user based; handling user registration, authentication and account recovery.
+    * Compatible IdPs: Facebook, Amazon, Google, Apple, OpenID Connect providers, SAML
+  * Identity pool: receives authentication token to authorize access to resources directly or through the API GW.
+    * Maps to IAM role(s)
+    * default IAM role(s) for authenticated/guest users
+
+AWS Resource Access Manager (RAM)
+
 ### Organizational Unit (OU)
 
 AWS Account Organizational Unit Migration:
@@ -62,11 +73,14 @@ AWS Account Organizational Unit Migration:
 | Acronym  | Definition |
 | ------------- | ------------- |
 | ADFS | Active Directory Federation Services |
+| API | Application Programming Interface |
 | ARN | Amazon Resource Name |
+| GW | Gateway |
 | IAM |  Identity and Access Management |
 | IdP | Identity Provider |
 | LDAP | Lightweight Directory Access Protocol |
 | OU | Organizational Unit |
 | SAML | Security Assertion Markup Language |
+| SNS | Simple Notification Service|
 | STS | Security Token Service |
 | SCP | Service Control Policies  |
