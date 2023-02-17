@@ -37,6 +37,20 @@ Identity federation: a system of trust between two parties for the purpose of au
 
 User groups can only contain users
 
+S3 Bucket Policies vs Access permissions:
+  * Used to add or deny permissions across some or all S3 objects in a bucket, enabling central management of permissions
+  * Can grant users within an AWS account or other AWS accounts to S3 resources
+  * Can restrict based on request time (Date condition), request sent using SSL (Boolean condition), requester IP Address (Ip address condition) using policy keys
+  * User access to S3 => IAM permissions
+  * Instance (EC2) access => IAM role
+  * Public access to S3 => bucket policy
+
+| Type of Access Control | Account Level Control | User Level Control |
+| ------------- | ------------- | ------------- |
+| IAM Policies | No | Yes |
+| ACLs | Yes | No |
+| Bucket Policies | Yes | Yes |
+
 ### IAM Credentials Report: IAM security tool that lists all your AWS accounts, IAM users and the status of their various credentials; good for auditing permissions at the **account level**
 
 ### IAM Access Advisor: shows the service permissions granted to a user and when those services were last used; can use this information to revise policies at the **user level**
@@ -128,6 +142,7 @@ User groups can only contain users
 
 | Acronym  | Definition |
 | ------------- | ------------- |
+| ACL | Access Control List |
 | ADFS | Active Directory Federation Services |
 | API | Application Programming Interface |
 | ARN | Amazon Resource Name |
