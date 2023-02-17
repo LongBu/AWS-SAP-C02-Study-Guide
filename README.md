@@ -37,7 +37,7 @@ LDAP: software protocol for enabling the location of data about organizations, i
 
 Identity federation: a system of trust between two parties for the purpose of authenticating users and conveying information needed to authorize their access to resources.
 
-Amazon Cognito:
+### Amazon Cognito:
   * Web Identity federation service/identity broker handling interations between application(s)/resource(s) and Web IdPs.
   * Capable of synchronizing data from multiple devices by means of SNS to send notifications to all devices associated to a given user upon data deltas (IAM policy can be tethered to user ids possibly).
   * User pool: user based; handling user registration, authentication and account recovery.
@@ -46,15 +46,35 @@ Amazon Cognito:
     * Maps to IAM role(s)
     * default IAM role(s) for authenticated/guest users
 
-AWS Resource Access Manager (RAM)
+### AWS Resource Access Manager (RAM):
+  * Share AWS resources that you own with other AWS accounts (within OU or any account)
+  * Aids in avoiding resource duplication by sharing thing such as:
+    * VPC subnets (owner can share +1 subnets with other accounts in the same OU):
+      * Allows all resources (EC2, etc.) launched in the same VPC
+      * Must be from the same OU
+      * Can't share SGs and default VPC
+      * Users can manage own resources, but can't modify, view, or delete other's resources
+      * VPC by itself can't be shared
+    * AWS Transit Gateway
+    * Route 53 Resolver Rules
+    * Licence Manager Configurations accross accounts using Private IP(s)
 
-### Organizational Unit (OU)
+## Organizational Unit (OU)
 
-AWS Account Organizational Unit Migration:
+### AWS Account Organizational Unit Migration:
   * Remove the member account from the former organization [need root or IAM access to said member account and master account(s)]
   * Send invite to the member account from the prospective organization
   * Accept the invite from the prospective organization upon the member account
   * Ensure the OrganizationAccountAccessRole is added to the member account
+
+### AWS Control Tower:
+  * Easy way to setup and govern a secure and compliant multi-account AWS environment based on best practices and using AWS OU to create accounts
+  * automates setup of environments in a few clicks
+  * automates ongoing policy managment using guard rails:
+    * SCP: preventative
+    * AWS Config: detective
+  * detects policy violations and remediates them
+  * monitor compliance through dashboards
 
 ###  Identity and Access Management Access Analyzer:
 
@@ -81,6 +101,9 @@ AWS Account Organizational Unit Migration:
 | LDAP | Lightweight Directory Access Protocol |
 | OU | Organizational Unit |
 | SAML | Security Assertion Markup Language |
-| SNS | Simple Notification Service|
+| SG | Security Group |
+| SNS | Simple Notification Service |
+| SQS | Simple Queue Service |
 | STS | Security Token Service |
 | SCP | Service Control Policies  |
+| VPC | Virtual Private Cloud |
