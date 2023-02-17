@@ -149,6 +149,24 @@ S3 Bucket Policies vs Access permissions:
 
 ## Storage
 
+### AWS FSx
+
+### AWS Storage Gateway:
+   * Hybrid cloud storage service that provides on-prem access to virtual cloud storage
+   * Most recently used date cached in gateway
+   * Volume backend up by EBS snapshots
+   * Tape backed up by S3, S3 (Glacier), and other software
+   * S3 access supported: STD, STD IA, One Zone IA, Intelligent tiering
+   * SMB/NTFS access able to integrate with Windows AD
+   * Conducted and connected with AWS by: VM or physical hardware device
+
+| Gateway | Protocol(s) |
+| ------------- | ------------- |
+| S3 (File) | NFS/SMB |
+| FSx | SMB/NTFS |
+| Tape (interface) | iSCSI |
+| Volume (interface) | iSCSI |
+
 ### S3
 
 #### S3 Batch Replication:
@@ -220,6 +238,7 @@ S3 Bucket Policies vs Access permissions:
 | ------------- | ------------- |
 | ACL | Access Control List |
 | ACM | AWS Certificate Manager |
+| AD | Active Directory |
 | ADFS | Active Directory Federation Services |
 | API | Application Programming Interface |
 | ARN | Amazon Resource Name |
