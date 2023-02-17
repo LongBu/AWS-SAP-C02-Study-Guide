@@ -14,7 +14,8 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 8. <a href="#storage">Storage</a>
 9. <a href="#database">Database</a>
 10. <a href="#vpc">VPC</a>
-11. <a href="#acronyms">Acronyms</a>
+11. <a href="#miscellaneous">Miscellaneous</a>
+12. <a href="#acronyms">Acronyms</a>
 
 ## Introduction
 <a href="https://d1.awsstatic.com/training-and-certification/docs-sa-pro/AWS-Certified-Solutions-Architect-Professional_Exam-Guide.pdf">AWS Certified Solutions Architect - Professional (SAP-C02) Exam Guide</a>
@@ -150,6 +151,21 @@ S3 Bucket Policies vs Access permissions:
 
 ### S3
 
+#### S3 Batch Replication:
+  * Provides a way to replicate objects that existed before a replication configuration was in place, objects that have previously been replicated, and those that failed replication
+  * Differs from live replication
+  * Can't use AWS S3 console to configure cross-region replication for existing objects.
+  * By default, replication only supports copying new S3 objects after enabled by AWS S3 console
+  * To enable live replication of existing objects, an AWS support ticket is needed to ensure replication is configured correctly
+  * Can be used to copy large amounts of S3 data between regions or within regions
+
+#### S3 Sync Command:
+  * Uses copy object APIs to copy objects between S3 buckets
+  * Lists source and target buckets to identify objects found in the former and not the latter as well as last modified dates that are different.
+  * On a versioned bucket copies only the current version (previous copies are not copied)
+  * If operation fails, can run the command again without duplicating previously copied objects
+  * Can be used to copy large amounts of S3 data between regions
+
 #### Origin Access Control (OAC):
   * Restricts access to S3 preventing public availablity, ensures access through intended Cloudfront distribution(s) [no direct access]
   * Is Replacing OAI
@@ -166,6 +182,14 @@ S3 Bucket Policies vs Access permissions:
 ## Database
 
 ## VPC
+
+## Miscellaneous
+
+### AWS Wavelength: extend vpc and it's resources via desired subnets to include a wavelength zone, embedding within 5G networks providing ultra low latency
+
+### AWS Data Exchange: service in AWS for customers to find, subscribe to, and use third-party data in the AWS Cloud
+
+### AWS Elastic Transcoder: highly scalable/cost efficient service to convert (or 'transcode') media files (video/audio) to format(s) that will be playable on devices, tablets, desktops, etc. The transacation takes place between a source and destination S3 bucket.  
 
 ## Acronyms
 
@@ -191,4 +215,5 @@ S3 Bucket Policies vs Access permissions:
 | SSM | Systems Manager |
 | STS | Security Token Service |
 | SCP | Service Control Policies  |
+| S3 | Simple Storage Service |
 | VPC | Virtual Private Cloud |
