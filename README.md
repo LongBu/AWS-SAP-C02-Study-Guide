@@ -11,11 +11,11 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 5. <a href="#containers">Containers</a>
 6. <a href="#logging-and-events">Logging and Events</a>
 7. <a href="#configurations-and-security">Configurations and Security</a>
-8. <a href="#storage">Storage</a>
-9. <a href="#database">Database</a>
-10. <a href="#vpc">VPC</a>
-11. <a href="#miscellaneous">Miscellaneous</a>
-12. <a href="#acronyms">Acronyms</a>
+8. <a href="#vpc">VPC</a>
+9. <a href="#storage">Storage</a>
+10. <a href="#database">Database</a>
+12. <a href="#miscellaneous">Miscellaneous</a>
+13. <a href="#acronyms">Acronyms</a>
 
 ## Introduction
 <a href="https://d1.awsstatic.com/training-and-certification/docs-sa-pro/AWS-Certified-Solutions-Architect-Professional_Exam-Guide.pdf">AWS Certified Solutions Architect - Professional (SAP-C02) Exam Guide</a>
@@ -147,6 +147,21 @@ S3 Bucket Policies vs Access permissions:
 
 ### NACL Groups
 
+## VPC
+
+### Launch Configuration (tenancy vs VPC tenancy):
+  * Part of the instance config launching instances distributed across physical hardware
+  * Tenancy (instance placement) default is null and the instance tenancy is controlled by the tenancy attribute of the VPC
+  * Shared (default): multiple AWS accounts may share the same physical hardware
+  * Dedicated Instance (dedicated): single tenant hardware used
+  * Dedicated Host (host): instances run on a physical server with EC2 instance fully dedicated to a given client's use (not available for launch template configuration)
+
+| Launch Configuration Tenancy | VPC tenancy=default | VPC tenancy=dedicated |
+| ------------- | ------------- | ------------- |
+| null | shared | dedicated |
+| default | shared | dedicated |
+| dedicated | dedicated | dedicated |
+
 ## Storage
 
 ### AWS FSx
@@ -198,22 +213,6 @@ S3 Bucket Policies vs Access permissions:
   * Can be used to only allow authenticated access (via Cloudfront configuration), not done via OAI directly
 
 ## Database
-
-## VPC
-
-### Launch Configuration (tenancy vs VPC tenancy):
-  * Part of the instance config launching instances distributed across physical hardware
-  * Tenancy (instance placement) default is null and the instance tenancy is controlled by the tenancy attribute of the VPC
-  * Shared (default): multiple AWS accounts may share the same physical hardware
-  * Dedicated Instance (dedicated): single tenant hardware used
-  * Dedicated Host (host): instances run on a physical server with EC2 instance fully dedicated to a given client's use (not available for launch template configuration)
-
-| Launch Configuration Tenancy | VPC tenancy=default | VPC tenancy=dedicated |
-| ------------- | ------------- | ------------- |
-| null | shared | dedicated |
-| default | shared | dedicated |
-| dedicated | dedicated | dedicated |
-
 
 ## Miscellaneous
 
