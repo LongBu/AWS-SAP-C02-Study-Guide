@@ -14,6 +14,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 8. <a href="#vpc">VPC</a>
 9. <a href="#storage">Storage</a>
 10. <a href="#database">Database</a>
+11. <a href="#analytics">Analytics</a>
 12. <a href="#miscellaneous">Miscellaneous</a>
 13. <a href="#acronyms">Acronyms</a>
 
@@ -160,7 +161,21 @@ S3 Bucket Policies vs Access permissions:
 
 ### Security Groups
 
-### NACL Groups
+### NACL Groups:
+  * Stateless, thus a source port inbound will become the outbound port (or possibly taking the defined port and responding via an ephemeral port)
+  * Great way of allowing/blocking ip addresses at the subnet level
+  * Like a firewall controlling to/from subnet traffic
+  * One NACL per subnet
+  * New Subnet automatically set to default NACL which denies all inbound/outbound traffic
+  * Do not modify default NACL, instead create custom NACL(s)
+  * If accepting internet traffic routed via internet gateway
+  * If accepting vpn or AWS Direct Connect traffic routed via Virtual Private Gateway
+  * NACL rules:
+    * Range from 1-32766, with a higher precedence placed on lower numbers
+    * Allow and Deny rules
+    * First rule match drives acceptance/denial
+    * Last rule match is a catch all (\*) and denies a request in case no rules match
+    * AWS recommends adding rules by an increment of 100
 
 ## VPC
 
@@ -229,6 +244,18 @@ S3 Bucket Policies vs Access permissions:
 
 ## Database
 
+## Analytics
+
+### Amazon Kinesis
+
+### Amazon Kinesis Data Streams
+
+### Amazon Kinesis Data Firehose
+
+### Amazon Kinesis Analytics
+
+### Amazon Managed Streaming for Apache Kafka (MSK)
+
 ## Miscellaneous
 
 ### AWS Wavelength: extend vpc and it's resources via desired subnets to include a wavelength zone, embedding within 5G networks providing ultra low latency
@@ -263,6 +290,7 @@ S3 Bucket Policies vs Access permissions:
 | LDAP | Lightweight Directory Access Protocol |
 | KMS | Key Management Service |
 | ML | Machine Learning |
+| MSK | Managed Streaming Kafka |
 | NLP | Natural Language Processing |
 | OAC | Origin Access Control |
 | OAI | Origin Access Identity |
