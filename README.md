@@ -35,9 +35,13 @@ LDAP: software protocol for enabling the location of data about organizations, i
 
 Identity federation: a system of trust between two parties for the purpose of authenticating users and conveying information needed to authorize their access to resources.
 
+User groups can only contain users
+
 ### IAM Credentials Report: IAM security tool that lists all your AWS accounts, IAM users and the status of their various credentials; good for auditing permissions at the **account level**
 
 ### IAM Access Advisor: shows the service permissions granted to a user and when those services were last used; can use this information to revise policies at the **user level**
+
+### AWS Policy Simulator: used to test and troubleshoot IAM policies that are attached to users, user groups, or resources.  
 
 ###  Identity and Access Management Access Analyzer:
 
