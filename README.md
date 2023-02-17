@@ -157,9 +157,21 @@ S3 Bucket Policies vs Access permissions:
 | Storage Pricing | Free | .05 per advanced parameter per month |
 
 
-### AWS Secrets Manager
+### AWS Secrets Manager:
+  * Helps manage, retrieve and rotate DB credentials, API keys, and other secrets throughout lifecycles
+  * Automatic generation of secrets on rotation (uses a λ)
+  * Encrypted at rest possible (via KMS)
+  * Integrates with RDS
+  * Auditable via CloudTrail, Cloudwatch, and SNS
+  * Multi-Region Secrets - read replicas in sync with Primary Secret
+  * Able to promote read replica secret to standalone secret (eg: multi-region application DB distaster recovery)
+  * SSM parameter store can be utilized if wanting to track versions/values of secrets
 
-### Security Groups
+### Security Groups (SGs):
+  * Stateful connection, allowing inbound traffic to the necessary ports, thus enabling the connection
+  * If adding an Internet Gateway, ensure the SG allows traffic in
+  * SG => EC2 instances level, LBs, EFS, DBs, Elasticache
+  * Allow rules only
 
 ### NACL Groups:
   * Stateless, thus a source port inbound will become the outbound port (or possibly taking the defined port and responding via an ephemeral port)
@@ -284,9 +296,12 @@ S3 Bucket Policies vs Access permissions:
 | API | Application Programming Interface |
 | ARN | Amazon Resource Name |
 | AWS | Amazon Web Services |
+| DB | Database |
+| EFS | Elastic File System |
 | GW | Gateway |
 | IAM |  Identity and Access Management |
 | IdP | Identity Provider |
+| LB | Load Balancer |
 | LDAP | Lightweight Directory Access Protocol |
 | KMS | Key Management Service |
 | ML | Machine Learning |
@@ -296,6 +311,7 @@ S3 Bucket Policies vs Access permissions:
 | OAI | Origin Access Identity |
 | OU | Organizational Unit |
 | PHI | Protected Health Information |
+| RDS | Relational Database |
 | SAML | Security Assertion Markup Language |
 | SG | Security Group |
 | SNS | Simple Notification Service |
