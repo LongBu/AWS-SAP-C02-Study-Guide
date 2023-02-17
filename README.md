@@ -10,10 +10,11 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 4. <a href="#ec2">EC2</a>
 5. <a href="#containers">Containers</a>
 6. <a href="#logging-and-events">Logging and Events</a>
-7. <a href="#storage">Storage</a>
-8. <a href="#database">Database</a>
-9. <a href="#vpc">VPC</a>
-10. <a href="#acronyms">Acronyms</a>
+7. <a href="#configurations-and-security">Configurations and Security</a>
+8. <a href="#storage">Storage</a>
+9. <a href="#database">Database</a>
+10. <a href="#vpc">VPC</a>
+11. <a href="#acronyms">Acronyms</a>
 
 ## Introduction
 <a href="https://d1.awsstatic.com/training-and-certification/docs-sa-pro/AWS-Certified-Solutions-Architect-Professional_Exam-Guide.pdf">AWS Certified Solutions Architect - Professional (SAP-C02) Exam Guide</a>
@@ -113,9 +114,37 @@ S3 Bucket Policies vs Access permissions:
 
 ## EC2
 
+### EC2 SG configurations:
+  * source (inbound rules) or destination (outbound rules) for network traffic specified via the following options:
+    * Single ipv4 (/32 CIDR) or ipv6 (/128 CIDR)
+    * Range of ipv4/ipv6 address (CIDR block notation)
+    * Prefix List ID for the AWS service(s) via Gatway Endpoints, (eg: p1-1a2b3c4d)
+    * Another SG, allowing instances within one SG to access instances within another.  Choosing this option doesn't add rules from the source SG, to the 'linked' SG.  You can specify one of the following:
+      * Current SG
+      * Different SG for the the same VPC
+      * Different SG for a peer VPC in VPC peering connection
+
 ## Containers
 
 ## Logging and Events
+
+## Configurations and Security
+
+### AWS Certificate Manager (ACM):
+  * Service to provision , manage, import, and deploy public and private SSL/TLS certificates for use with AWS services and internally connected resources
+  * Removes time consuming manual process of purchasing, uploading, and renewing SSL/TLS certificates
+  * Manages certificate lifecyle centrally
+  * Private Certificates use is charged a monthly fee
+  * Automatically renews certificates issued by ACM
+
+### Systems Manager (SSM) Parameter Store:
+  * 
+
+### AWS Secrets Manager
+
+### Security Groups
+
+### NACL Groups
 
 ## Storage
 
@@ -143,9 +172,11 @@ S3 Bucket Policies vs Access permissions:
 | Acronym  | Definition |
 | ------------- | ------------- |
 | ACL | Access Control List |
+| ACM | AWS Certificate Manager |
 | ADFS | Active Directory Federation Services |
 | API | Application Programming Interface |
 | ARN | Amazon Resource Name |
+| AWS | Amazon Web Services |
 | GW | Gateway |
 | IAM |  Identity and Access Management |
 | IdP | Identity Provider |
@@ -157,6 +188,7 @@ S3 Bucket Policies vs Access permissions:
 | SG | Security Group |
 | SNS | Simple Notification Service |
 | SQS | Simple Queue Service |
+| SSM | Systems Manager |
 | STS | Security Token Service |
 | SCP | Service Control Policies  |
 | VPC | Virtual Private Cloud |
