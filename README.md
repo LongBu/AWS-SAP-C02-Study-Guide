@@ -139,7 +139,22 @@ S3 Bucket Policies vs Access permissions:
   * Automatically renews certificates issued by ACM
 
 ### Systems Manager (SSM) Parameter Store:
-  * 
+  * Can be used to store secrets
+  * Each time you edit the value of a parameter a new version is created via built-in version tracking and previous version committed historically
+  * Optional seamless encryption with KMS
+  * Serverless, scalable, durable, easy SDK
+  * Security through IAM
+  * Notifications via Eventbridge
+  * Can assign TTL to a parameter to force update(s) or deletion (via Policies)
+
+|  | Standard | Advanced |
+| ------------- | ------------- | ------------- |
+| Total # of parameters per AWS Account-Region | 10,000 | 100,000 |
+| Max Size of Parmater | 4 KB | 8 KB |
+| Parameter Policies | No | Yes |
+| Cost | No | Charges Apply |
+| Storage Pricing | Free | .05 per advanced parameter per month |
+
 
 ### AWS Secrets Manager
 
@@ -246,6 +261,7 @@ S3 Bucket Policies vs Access permissions:
 | IAM |  Identity and Access Management |
 | IdP | Identity Provider |
 | LDAP | Lightweight Directory Access Protocol |
+| KMS | Key Management Service |
 | ML | Machine Learning |
 | NLP | Natural Language Processing |
 | OAC | Origin Access Control |
