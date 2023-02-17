@@ -183,6 +183,20 @@ S3 Bucket Policies vs Access permissions:
 
 ## VPC
 
+### Launch Configuration (tenancy vs VPC tenancy):
+  * Part of the instance config launching instances distributed across physical hardware
+  * Tenancy (instance placement) default is null and the instance tenancy is controlled by the tenancy attribute of the VPC
+  * Shared (default): multiple AWS accounts may share the same physical hardware
+  * Dedicated Instance (dedicated): single tenant hardware used
+  * Dedicated Host (host): instances run on a physical server with EC2 instance fully dedicated to a given client's use (not available for launch template configuration)
+
+| Launch Configuration Tenancy | VPC tenancy=default | VPC tenancy=dedicated |
+| ------------- | ------------- | ------------- |
+| null | shared | dedicated |
+| default | shared | dedicated |
+| dedicated | dedicated | dedicated |
+
+
 ## Miscellaneous
 
 ### AWS Wavelength: extend vpc and it's resources via desired subnets to include a wavelength zone, embedding within 5G networks providing ultra low latency
@@ -190,6 +204,15 @@ S3 Bucket Policies vs Access permissions:
 ### AWS Data Exchange: service in AWS for customers to find, subscribe to, and use third-party data in the AWS Cloud
 
 ### AWS Elastic Transcoder: highly scalable/cost efficient service to convert (or 'transcode') media files (video/audio) to format(s) that will be playable on devices, tablets, desktops, etc. The transacation takes place between a source and destination S3 bucket.  
+
+### Amazon Personalize:
+  * Fully managed ML service to build realtime personalized recommendations applications
+  * Increments in days, not months (no need to train, build ML models)
+  * Service ingests via S3 (read data) and/or Amazon Personalize API (realtime data integration)
+
+### Amazon Comprehend (Medical):
+  * Serverless NLP service harnessing ML to uncover valuable insights and connections in text
+  * Medical version detects PHI via DetectPHI API
 
 ## Acronyms
 
@@ -205,9 +228,12 @@ S3 Bucket Policies vs Access permissions:
 | IAM |  Identity and Access Management |
 | IdP | Identity Provider |
 | LDAP | Lightweight Directory Access Protocol |
+| ML | Machine Learning |
+| NLP | Natural Language Processing |
 | OAC | Origin Access Control |
 | OAI | Origin Access Identity |
 | OU | Organizational Unit |
+| PHI | Protected Health Information |
 | SAML | Security Assertion Markup Language |
 | SG | Security Group |
 | SNS | Simple Notification Service |
