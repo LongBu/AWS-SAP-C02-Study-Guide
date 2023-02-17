@@ -83,6 +83,16 @@ Identity federation: a system of trust between two parties for the purpose of au
   * detects policy violations and remediates them
   * monitor compliance through dashboards
 
+### Service Control Policies (SCP):
+  * Policies for OUs to manage permissions within, helping accounts stay within control setting limits/guard rails
+  * No permissions are granted by SCP, still IAM, but the effective permissions are the intersection of IAM, SCP, and IAM permissions boundaries allowing access
+  * OU must have all features enabled to utilize.
+  * Affects member accounts and attached users and roles within including the root user(s), not management accounts.
+  * Doesn't affect resource based policies directly.
+  * Doesn't affect service linked roles, which enable other AWS services to integrate with AWS OUs.
+  * If disabled at the root account, all SCPs are automatically detached from OU under that root account.  If re-enabled all accounts there under are reverted to full AWS Access (default)
+  * Must have an explicit allow (nothing allowed by default like IAM) which is similar to IAM permissions boundary (if not in boundary => deny)
+
 ## EC2
 
 ## Containers
