@@ -28,14 +28,20 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ## Identity and Access Management (IAM)
 
-### Identity and Access Management Policy Evaulation Logic:
-![IAM Policy Evaulation Logic](https://docs.aws.amazon.com/images/IAM/latest/UserGuide/images/PolicyEvaluationHorizontal111621.png)
-
 Allow vs Deny: If any denial in policy is present, the resource is denied regardless of allow statement(s).  The default behavior is to deny resource(s) and resource(s) need allow statements to be allowed.  
 
 LDAP: software protocol for enabling the location of data about organizations, individuals and other resources in a network.  
 
 Identity federation: a system of trust between two parties for the purpose of authenticating users and conveying information needed to authorize their access to resources.
+
+### IAM Credentials Report: IAM security tool that lists all your AWS accounts, IAM users and the status of their various credentials; good for auditing permissions at the **account level**
+
+### IAM Access Advisor: shows the service permissions granted to a user and when those services were last used; can use this information to revise policies at the **user level**
+
+###  Identity and Access Management Access Analyzer:
+
+### Identity and Access Management Policy Evaulation Logic:
+![IAM Policy Evaulation Logic](https://docs.aws.amazon.com/images/IAM/latest/UserGuide/images/PolicyEvaluationHorizontal111621.png)
 
 ### Amazon Cognito:
   * Web Identity federation service/identity broker handling interations between application(s)/resource(s) and Web IdPs.
@@ -75,8 +81,6 @@ Identity federation: a system of trust between two parties for the purpose of au
     * AWS Config: detective
   * detects policy violations and remediates them
   * monitor compliance through dashboards
-
-###  Identity and Access Management Access Analyzer:
 
 ## EC2
 
