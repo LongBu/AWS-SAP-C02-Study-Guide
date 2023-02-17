@@ -5,13 +5,14 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ## Table of Contents
 1. <a href="#introduction">Introduction</a>
-2. <a href="#identity-and-access-management-iam">Identity and Access Management (IAM)</a>
-3. <a href="#ec2">EC2</a>
-4. <a href="#containers">Containers</a>
-5. <a href="#cloudwatch">CloudWatch</a>
-6. <a href="#database">Database</a>
-7. <a href="#vpc">VPC</a>
-8. <a href="#acronyms">Acronyms</a>
+2. <a href="#organizational-unit-ou">Organizational Unit (OU)</a>
+3. <a href="#identity-and-access-management-iam">Identity and Access Management (IAM)</a>
+4. <a href="#ec2">EC2</a>
+5. <a href="#containers">Containers</a>
+6. <a href="#cloudwatch">CloudWatch</a>
+7. <a href="#database">Database</a>
+8. <a href="#vpc">VPC</a>
+9. <a href="#acronyms">Acronyms</a>
 
 ## Introduction
 <a href="https://d1.awsstatic.com/training-and-certification/docs-sa-pro/AWS-Certified-Solutions-Architect-Professional_Exam-Guide.pdf">AWS Certified Solutions Architect - Professional (SAP-C02) Exam Guide</a>
@@ -35,6 +36,14 @@ Allow vs Deny: If any denial in policy is present, the resource is denied regard
 LDAP: software protocol for enabling the location of data about organizations, individuals and other resources in a network.  
 
 Identity federation: a system of trust between two parties for the purpose of authenticating users and conveying information needed to authorize their access to resources.
+
+### Organizational Unit (OU)
+
+AWS Account Organizational Unit Migration:
+  * Remove the member account from the former organization [need root or IAM access to said member account and master account(s)]
+  * Send invite to the member account from the prospective organization
+  * Accept the invite from the prospective organization upon the member account
+  * Ensure the OrganizationAccountAccessRole is added to the member account
 
 ###  Identity and Access Management Access Analyzer:
 
