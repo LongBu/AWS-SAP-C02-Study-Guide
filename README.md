@@ -116,6 +116,28 @@ S3 Bucket Policies vs Access permissions:
 
 ## EC2
 
+### EC2 On-Demand
+
+### EC2 Savings Plan Instance
+
+### EC2 Reserved Instance
+
+### EC2 Convertible Reserved Instance
+
+### EC2 Capacity Reserved Intance
+
+### EC2 Dedicated Instance
+
+### EC2 Dedicated Host Instance
+
+### EC2 Capacity Reserved Intance
+
+### EC2 Spot Instance
+
+### EC2 Spot Fleets
+
+### EC2 Spot Blocks (aka Spot Duration)
+
 ### EC2 SG configurations:
   * source (inbound rules) or destination (outbound rules) for network traffic specified via the following options:
     * Single ipv4 (/32 CIDR) or ipv6 (/128 CIDR)
