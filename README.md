@@ -9,7 +9,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 3. <a href="#identity-and-access-management-iam">Identity and Access Management (IAM)</a>
 4. <a href="#ec2">EC2</a>
 5. <a href="#containers">Containers</a>
-6. <a href="#cloudwatch">CloudWatch</a>
+6. <a href="#logging-and-events">Logging and Events</a>
 7. <a href="#storage">Storage</a>
 8. <a href="#database">Database</a>
 9. <a href="#vpc">VPC</a>
@@ -115,7 +115,7 @@ S3 Bucket Policies vs Access permissions:
 
 ## Containers
 
-## CloudWatch
+## Logging and Events
 
 ## Storage
 
