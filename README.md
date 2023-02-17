@@ -10,9 +10,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 4. <a href="#ec2">EC2</a>
 5. <a href="#containers">Containers</a>
 6. <a href="#cloudwatch">CloudWatch</a>
-7. <a href="#database">Database</a>
-8. <a href="#vpc">VPC</a>
-9. <a href="#acronyms">Acronyms</a>
+7. <a href="#storage">Storage</a>
+8. <a href="#database">Database</a>
+9. <a href="#vpc">VPC</a>
+10. <a href="#acronyms">Acronyms</a>
 
 ## Introduction
 <a href="https://d1.awsstatic.com/training-and-certification/docs-sa-pro/AWS-Certified-Solutions-Architect-Professional_Exam-Guide.pdf">AWS Certified Solutions Architect - Professional (SAP-C02) Exam Guide</a>
@@ -88,6 +89,23 @@ Identity federation: a system of trust between two parties for the purpose of au
 
 ## CloudWatch
 
+## Storage
+
+### S3
+
+#### Origin Access Control (OAC):
+  * Restricts access to S3 preventing public availablity, ensures access through intended Cloudfront distribution(s) [no direct access]
+  * Is Replacing OAI
+  * Supports all S3 buckets in all regions
+  * Supports AWS KMS (SSE-KMS)
+  * Dynamic requests (PUT, POST, etc.) to S3
+  * Can be used to only allow authenticated access (via Cloudfront configuration), not done via OAC directly
+  
+#### Origin Access Identity (OAI):
+  * Restricts access to S3 preventing public availablity, ensures access through intended Cloudfront distribution(s) [no direct access]
+  * Is being replaced by OAC
+  * Can be used to only allow authenticated access (via Cloudfront configuration), not done via OAI directly
+
 ## Database
 
 ## VPC
@@ -103,6 +121,8 @@ Identity federation: a system of trust between two parties for the purpose of au
 | IAM |  Identity and Access Management |
 | IdP | Identity Provider |
 | LDAP | Lightweight Directory Access Protocol |
+| OAC | Origin Access Control |
+| OAI | Origin Access Identity |
 | OU | Organizational Unit |
 | SAML | Security Assertion Markup Language |
 | SG | Security Group |
