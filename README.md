@@ -116,27 +116,71 @@ S3 Bucket Policies vs Access permissions:
 
 ## EC2
 
-### EC2 On-Demand
+### EC2 On-Demand:
+  * Pay by the second for the instances launched after first minute
+  * Can't be used for existing server-bound software licenses
 
-### EC2 Savings Plan Instance
+### EC2 Savings Plan Instance:
+  * 1 or 3 year terms available
+  * Committment to an amount of usage, long workload
+  * Beyond usage is billed at the On-Demand rate
+  * Locked to a specific instance family/region
+  * Flexible across: instance size, OS, Tenancy (Host, Dedicated, Default)
+  * Can be shared across AWS Organization accounts
 
-### EC2 Reserved Instance
+### EC2 Reserved Instance:
+  * Committed/consistent instance configuration, including instance type and region for a term of 1 or 3 years
+  * Great for cost optimization
+  * Can be shared across AWS Organization accounts
+  * Can't be used for existing server-bound software licenses
 
-### EC2 Convertible Reserved Instance
+### EC2 Convertible Reserved Instance:
+  * One of the reserved instance purchasing options (1 or 3 years)
+  * Good for long workloads with flexible instance type(s)
+  * Can change EC2 type, instance family, OS, scope and tenancy
 
-### EC2 Capacity Reserved Intance
+### EC2 Dedicated Instance:
+  * EC2 instances that run in a VPC on hardware dedicated to customer use
+  * Physically isolated at the hose hardware level from instances belonging to other AWS accounts
+  * May share hardware with other instances from the same AWS account that aren't dedicated instances
+  * Can't be used for existing server-bound software licenses
 
-### EC2 Dedicated Instance
+### EC2 Dedicated Host Instance:
+  * EC2 instances on physical servers dedicated for customer use
+  * Give additional visibility and control over how instances are placed on a physical server over time
+  * Enables the use of existing server-bound software licences and address compliance/regulatory requirements
+  * On-demand option: pay per second ($$$)
+  * Reserved option: 1 or 3 year options with other reserved instances ($ - $$)
 
-### EC2 Dedicated Host Instance
+### EC2 Capacity Reserved Instance:
+  * Reserve On-Demand capacity in a specific AZ for any duration
+  * No time committment (create/cancel anytime); no billing discounts and charged On-Demand rate regardless
+  * Combine with Regional Reserved Instances and Savings Plans to benefit from billing discounts
+  * Suitable for short-term, uninterrupted workloads that need to be in an AZ
 
-### EC2 Capacity Reserved Intance
+### EC2 Spot Instance:
+  * Most cost-efficient EC2 instance, up to 90% off On-Demand rate
+  * Can lose at any time if your max price < the current spot price
+  * Not suitable for critical jobs or DBs
+  * Useful for jobs such as: batch jobs, data analysis, image processing, any distributed workloads, workloads with a flexible start/end time
+  * Can only cancel Spot Requests that are open, active or disabled.  Cancelling a Spot Request doesn't terminate the instances; you must first cancel the Spot Request and then terminate the Spot Instances
+  * Don't use if being up for a specific time frame is necessary
 
-### EC2 Spot Instance
+### EC2 Spot Fleets:
+  * set of Spot Instances and optional On-Demand Instances
+  * Will try to meet target capacity with price constraints defined via possible launch pools, instance type, OS, AZ
+  * Can have multiple launch pools from which the fleet can choose
+  * Stops launching instances when reaching capacity or max cost
+  * Allow automatically to request Spot Instances with the lowest price
+  * Strategies to allocate Spot Instances:
+    * *Lowest Price*: from the pool with lowest price (cost optimization, short workloads)
+    * *Diversified*: distributed across all pools (great for availability, long workloads)
+    * *Capacity Optimized*: pool with the optimal capacity for the number of instances
 
-### EC2 Spot Fleets
-
-### EC2 Spot Blocks (aka Spot Duration)
+### EC2 Spot Blocks (aka Spot Duration):
+  * "block" spot instance during a specified time frame (1 to 6 hours) without interruptions
+  * In rare situations, instance may be reclaimed
+  * Not available to new customers
 
 ### EC2 SG configurations:
   * source (inbound rules) or destination (outbound rules) for network traffic specified via the following options:
