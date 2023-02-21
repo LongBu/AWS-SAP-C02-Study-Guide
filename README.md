@@ -292,8 +292,36 @@ S3 Bucket Policies vs Access permissions:
   * Anything related to MongoDB => DocumentDB
   * Doesn't have an in-memory caching layer => consider DynamoDB (DAX) for a NoSQL approach
 
-#### DynamoDB
+#### DynamoDB:
+  * (Serverless) NoSQL Key-value and document DB that delivers single-digit millisecond performance at any scale.  It's a fully managed, multi-region, multi-master, durable DB with built-in security, backup and restore, and in-memory caching for internet scale applications
+  * Stored on SSD
+  * Stored across 3 geographically distinct data centers
+  * Eventual consitent reads (default) or strongly consistent reads (1 sec or less)
+  * Session storage alternative (TTL)
+  * IAM for security, authorization, and administration
+  * Primay key possibilities could involve creation time
+  * On-Demand (pay per request pricing) => $$$
+  * Provisioned Mode (default) is less expensive where you pay for provisioned RCU/WCU
+  * Backup: optionally lasts 35 days and can be used to recreate the table
+  * Standard and IA Table Classes are available
+  * Max size of an item in DynamoDB Table: 400KB
+  * Can be exported to S3 as DynamoDB JSON or ion format
+  * Can be imported from S3 as CSV, DynamoDB JSON or ion format
 
+### DynamoDB Global Tables:
+  * Makes a DynamoDB table accesible with low latency in multiple regions
+  * Active-Active replication
+  * Applications can read and write to the table in any region
+  * *Must enable DynamoDB Streams* as a pre-requesite
+  * DynamoDB Streams have a 24 hour retention, are to a limited # of consumers, and are processed using λ triggers or DynamoDB Stream Kinesis adapter
+
+### DynamoDB Accelerator (DAX):
+  * Fully managed, highly available, in-memory cache with microsecond latency
+  * Up to 10x performance improvement, without application logic change(s)
+  * 5 minute TTL (default)
+  * Reduces request time from milliseconds to microseconds
+  * Best and easiest option to improve DynamoDB peformance 
+  * If asked about NoSQL with in-memory caching => DAX
 
 ## Analytics
 
@@ -353,9 +381,11 @@ S3 Bucket Policies vs Access permissions:
 | ARN | Amazon Resource Name |
 | AWS | Amazon Web Services |
 | AZ | Availability Zones |
+| DAX | DynamoDB Accelerator |
 | DB | Database |
 | EFS | Elastic File System |
 | GW | Gateway |
+| IA | Infrequently Accessed |
 | IAM |  Identity and Access Management |
 | IdP | Identity Provider |
 | LB | Load Balancer |
