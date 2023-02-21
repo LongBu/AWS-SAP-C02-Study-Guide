@@ -414,6 +414,31 @@ S3 Bucket Policies vs Access permissions:
   * Serverless NLP service harnessing ML to uncover valuable insights and connections in text
   * Medical version detects PHI via DetectPHI API
 
+### Amazon Outposts: Pool of AWS compute and storage resources deployed at a customer site and is essentially part of an AWS region including:
+  * VPC
+  * EC2
+  * ECS/EKS
+  * AWS App Mesh
+  * EBS
+  * S3
+  * Elasticache
+  * EMR
+  * RDS
+
+### Amazon Polly:
+  * Turn text into lifelike speech using deep learning (for talking applications)
+  * Customize pronunciation of words with pronunciation lexicons that are harnessed by the Sythesize Speech Operation
+  * Can map stylized words and/or acronyms to resultant output
+  * Generate more customized output from text marked up with SSML including:
+    * breating, whispering
+    * emphasis on words
+    * phonetic pronunciation
+
+### Amazon Textract:
+  * Extracts text, handwriting and data from any scanned documents (eg: forms, tables, etc.) using ML
+  * Read from any type of document (PDFs, images, etc.)
+  * Good for invoices, financial reports, medical records, insurance claims, taxforms, ids, passports
+
 ### Amazon Transcribe:
   * Automatically convert speech to text
   * Uses Deep Learning - Automatic Speech Recognition (ASR)
@@ -423,6 +448,10 @@ S3 Bucket Policies vs Access permissions:
     * Generate metadata for media assets to create full scaleable architecture
   * Can remove PII using redaction
   * Supports automatic language identification for multi-lingual audio
+
+### Amazon Translate:
+  * Natural and accurate language translation
+  * Allows localization of content (eg applications/websites) for international users, and to easily translate large volumes of text efficiently 
 
 ## Acronyms
 
@@ -463,6 +492,7 @@ S3 Bucket Policies vs Access permissions:
 | SQS | Simple Queue Service |
 | SSL | Secure Sockets Layer |
 | SSM | Systems Manager |
+| SSML | Speech Synthesis Markup Language |
 | STS | Security Token Service |
 | SCP | Service Control Policies  |
 | S3 | Simple Storage Service |
