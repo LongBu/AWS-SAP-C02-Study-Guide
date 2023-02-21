@@ -278,6 +278,23 @@ S3 Bucket Policies vs Access permissions:
 
 ## Database
 
+### Relational
+
+### NoSQL
+
+#### Amazon DocumentDB:
+  * Effectively the AWS "Aurora" version of MongoDB
+  * Used to store query and index JSON data
+  * Similar "deployment concepts" as Aurora
+  * Fully managed, highly available with replication across 3 AZs
+  * Storage automatically grows in increments of 10 GB, up to 64 TB
+  * Automatically scales to workloads with millions of requests per secon
+  * Anything related to MongoDB => DocumentDB
+  * Doesn't have an in-memory caching layer => consider DynamoDB (DAX) for a NoSQL approach
+
+#### DynamoDB
+
+
 ## Analytics
 
 ### Amazon Kinesis
@@ -289,6 +306,13 @@ S3 Bucket Policies vs Access permissions:
 ### Amazon Kinesis Analytics
 
 ### Amazon Managed Streaming for Apache Kafka (MSK)
+
+### Amazon Sagemaker:
+  * Fully managed service for development/data science to build ML models
+  * Typically, difficult to do all the process in one place and provision server(s)
+    * label data
+    * train and tunde model(s)
+    * serve api traffic against the model(s)
 
 ## Miscellaneous
 
@@ -307,6 +331,16 @@ S3 Bucket Policies vs Access permissions:
   * Serverless NLP service harnessing ML to uncover valuable insights and connections in text
   * Medical version detects PHI via DetectPHI API
 
+### Amazon Transcribe:
+  * Automatically convert speech to text
+  * Uses Deep Learning - Automatic Speech Recognition (ASR)
+  * Use cases:
+    * Transcribe customer calls
+    * Automate close capitioning/subtitles
+    * Generate metadata for media assets to create full scaleable architecture
+  * Can remove PII using redaction
+  * Supports automatic language identification for multi-lingual audio
+
 ## Acronyms
 
 | Acronym  | Definition |
@@ -318,6 +352,7 @@ S3 Bucket Policies vs Access permissions:
 | API | Application Programming Interface |
 | ARN | Amazon Resource Name |
 | AWS | Amazon Web Services |
+| AZ | Availability Zones |
 | DB | Database |
 | EFS | Elastic File System |
 | GW | Gateway |
@@ -333,6 +368,7 @@ S3 Bucket Policies vs Access permissions:
 | OAI | Origin Access Identity |
 | OU | Organizational Unit |
 | PHI | Protected Health Information |
+| PII | Personally Identifiable Information |
 | RDS | Relational Database |
 | SAML | Security Assertion Markup Language |
 | SG | Security Group |
