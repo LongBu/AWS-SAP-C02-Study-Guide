@@ -286,7 +286,7 @@ S3 Bucket Policies vs Access permissions:
   * Effectively the AWS "Aurora" version of MongoDB
   * Used to store query and index JSON data
   * Similar "deployment concepts" as Aurora
-  * Fully managed, highly available with replication across 3 AZs
+  * Fully managed, HA with replication across 3 AZs
   * Storage automatically grows in increments of 10 GB, up to 64 TB
   * Automatically scales to workloads with millions of requests per secon
   * Anything related to MongoDB => DocumentDB
@@ -325,15 +325,70 @@ S3 Bucket Policies vs Access permissions:
 
 ## Analytics
 
-### Amazon Kinesis
+### Amazon Kinesis:
+  * Platform to send stream data making it easy to load and analyze as well as provide the ability to build your own custom applications for your business needs
+  * Output can be classic or enhanced fan-out consumers
+  * Accessed via VPC
+  * IAM access => Identity-based (used by users and/or groups)
+  * Types:
+    * Kinesis Data Streams
+    * Kinesis Data Firehose
+    * Kinesis Analytics
+    * Kinesis Video Streams (capture, process and store video streams)
 
-### Amazon Kinesis Data Streams
+### Amazon Kinesis Data Streams:
+  * On-demand capacity mode or Provisioned mode (if throughput exceeded exception => add shard[s])
+  * Can have up to 5 parallel consumers
+  * Can store between 24 hours and 365 days in shard(s) to be consumed/processed/replayed by another service and stored elsewhere
+  * Use fan-out if lag is encountered by stream consumers
+  * Shards can be split or merged
+  * 1 MB message size limit
+  * TLS in flight or KMS at-rest encryption
+  * *Can't subscribe to SNS*
+  * *Can't write directly to S3*
+  * Can output to:
+    * Kinesis Data Firehose
+    * Kinesis Data Analytics
+    * Containers
+    * λ
+    * AWS Glue
 
-### Amazon Kinesis Data Firehose
+### Amazon Kinesis Data Firehose:
+  * Fully Managed (serverless) service, no administration, automatic scaling
+  * Can use λ to filter/transform data prior to output (Better to use if filter/tranform with a λ to S3 over Kinesis Data Streams)
+  * Near real time: 60 seconds latency minimum for non-full batches
+  * Minimum 1 MB of data at a time
+  * Pay only for the data going through
+  * Can subscribe to SNS
+  * No data persistence and must bre immediately consumed/processed
+  * Sent to (S3 as a backup or failed case[s]):
+    * S3
+    * Amazon Redshift (copy through S3)
+    * Amazon Elastic Search
+    * 3rd party partners (datadog/splunk/etc.)
+    * Custom destination (http[s] endpoint)
 
-### Amazon Kinesis Analytics
+### Amazon Kinesis Analytics:
+  * Fully Managed (serverless)
+  * Can use either Kinesis Data Streams or Kinesis Data Firehose to analyze data in kinesis
+  * For SQL Applications: Input/Output: Kinesis Data Streams or Kinesis Data Firehose to analyze data
+  * For Apache Flink (on a cluster): 
+    * Input: Kinesis Data Stream or Amazon MSK
+    * Output: Sink (S3/Kinesis Data Firehose)
 
-### Amazon Managed Streaming for Apache Kafka (MSK)
+### Amazon Managed Streaming for Apache Kafka (MSK):
+  * Alternative to Amazon Kinesis
+  * Fully managed Apache Kafka on AWS
+  * Allows creation, updates, or cluster deletion
+  * Creates and manages Kafka broker nodes and zookeeper rules
+  * Deploy Clusters in VPC multi-AZ (up to 3 for HA)
+  * Automatic reconvery from common Apache Kafka failures
+  * Storage on EBS as long as needed (added $)
+  * MSK Serverless: run without managing capcity, automatically provisioning resources and scaling compute and storage 
+  * 1 MB default message size (can be configured to be larger)
+  * Kafka topics with partitions (like shards); can only add partitions to a topic
+  * Output is plaintext, TLS in-flight or KMS at-rest encryption
+  * Consumers: Kinesis Data Analytics for Apache Flink, AWS Glue, Streaming ETL Jobs powered by Apache Spark Streaming, λ, EC2/ECS/EKS
 
 ### Amazon Sagemaker:
   * Fully managed service for development/data science to build ML models
@@ -384,7 +439,9 @@ S3 Bucket Policies vs Access permissions:
 | DAX | DynamoDB Accelerator |
 | DB | Database |
 | EFS | Elastic File System |
+| ETL | Extract, Translate, Load |
 | GW | Gateway |
+| HA | High Availability |
 | IA | Infrequently Accessed |
 | IAM |  Identity and Access Management |
 | IdP | Identity Provider |
@@ -404,8 +461,11 @@ S3 Bucket Policies vs Access permissions:
 | SG | Security Group |
 | SNS | Simple Notification Service |
 | SQS | Simple Queue Service |
+| SSL | Secure Sockets Layer |
 | SSM | Systems Manager |
 | STS | Security Token Service |
 | SCP | Service Control Policies  |
 | S3 | Simple Storage Service |
+| TLS | Transport Layer Security |
+| TTL | Time to live |
 | VPC | Virtual Private Cloud |
