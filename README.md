@@ -222,6 +222,23 @@ S3 Bucket Policies vs Access permissions:
     * Maximal HA
     * Critical Application where each instance must be isolated from failure from each other
 
+### EC2 User Data:
+  * Used to perform common automated, dynamic, configuration tasks and even run scripts after and instance starts
+  * When an EC2 launches, you can pass 2 types of user data, shell script(s) and cloud-init directives .  This can be passed into the launch wizard as plain text or a file
+  * *By default, shell scripts entered as user data are executed with root priveleges (no sudeo command necessary)*
+  * If non-root users are to have file access, modify the permissions accordingly via shell scripting
+  * *By default, user data runs only during the boot cycle when the EC2 is first launched*
+  * Alternatively, configuation(s) can be updated to ensure user data scripts and cloud init directives can run every time an EC2 instance is restarted
+
+### EC2 Hibernate:
+  * In-memory state is preserved
+  * Instance boot time is much faster (OS is not stopped/restarted)
+  * Memory state is written to a file in root EBS
+  * Root EBS must be encrypted
+  * Can't use hibernate beyond 60 days
+  * Available for the following EC2 Options: On-Demand, Reserved, and Spot Intances
+  * Use cases: long-running processing, saving memory state, services that take a long time to initialize
+
 ## Containers
 
 ## Logging and Events
@@ -642,6 +659,7 @@ S3 Bucket Policies vs Access permissions:
 | CMS | Content Management System |
 | DAX | DynamoDB Accelerator |
 | DB | Database |
+| EBS | Elastic Block Store |
 | ECMP | Equal cost multi-path routing |
 | EFS | Elastic File System |
 | ETL | Extract, Translate, Load |
