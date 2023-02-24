@@ -116,11 +116,13 @@ S3 Bucket Policies vs Access permissions:
 
 ## EC2
 
-### EC2 On-Demand:
+### Instance Purchasing Options:
+
+#### EC2 On-Demand Instance:
   * Pay by the second for the instances launched after first minute
   * Can't be used for existing server-bound software licenses
 
-### EC2 Savings Plan Instance:
+#### EC2 Savings Plan Instance:
   * 1 or 3 year terms available
   * Committment to an amount of usage, long workload
   * Beyond usage is billed at the On-Demand rate
@@ -128,37 +130,37 @@ S3 Bucket Policies vs Access permissions:
   * Flexible across: instance size, OS, Tenancy (Host, Dedicated, Default)
   * Can be shared across AWS Organization accounts
 
-### EC2 Reserved Instance:
+#### EC2 Reserved Instance:
   * Committed/consistent instance configuration, including instance type and region for a term of 1 or 3 years
   * Great for cost optimization
   * Can be shared across AWS Organization accounts
   * Can't be used for existing server-bound software licenses
 
-### EC2 Convertible Reserved Instance:
+#### EC2 Convertible Reserved Instance:
   * One of the reserved instance purchasing options (1 or 3 years)
   * Good for long workloads with flexible instance type(s)
   * Can change EC2 type, instance family, OS, scope and tenancy
 
-### EC2 Dedicated Instance:
+#### EC2 Dedicated Instance:
   * EC2 instances that run in a VPC on hardware dedicated to customer use
   * Physically isolated at the hose hardware level from instances belonging to other AWS accounts
   * May share hardware with other instances from the same AWS account that aren't dedicated instances
   * Can't be used for existing server-bound software licenses
 
-### EC2 Dedicated Host Instance:
+#### EC2 Dedicated Host Instance:
   * EC2 instances on physical servers dedicated for customer use
   * Give additional visibility and control over how instances are placed on a physical server over time
   * Enables the use of existing server-bound software licences and address compliance/regulatory requirements
   * On-demand option: pay per second ($$$)
   * Reserved option: 1 or 3 year options with other reserved instances ($ - $$)
 
-### EC2 Capacity Reserved Instance:
+#### EC2 Capacity Reserved Instance:
   * Reserve On-Demand capacity in a specific AZ for any duration
   * No time committment (create/cancel anytime); no billing discounts and charged On-Demand rate regardless
   * Combine with Regional Reserved Instances and Savings Plans to benefit from billing discounts
   * Suitable for short-term, uninterrupted workloads that need to be in an AZ
 
-### EC2 Spot Instance:
+#### EC2 Spot Instance:
   * Most cost-efficient EC2 instance, up to 90% off On-Demand rate
   * Can lose at any time if your max price < the current spot price
   * Not suitable for critical jobs or DBs
@@ -166,7 +168,7 @@ S3 Bucket Policies vs Access permissions:
   * Can only cancel Spot Requests that are open, active or disabled.  Cancelling a Spot Request doesn't terminate the instances; you must first cancel the Spot Request and then terminate the Spot Instances
   * Don't use if being up for a specific time frame is necessary
 
-### EC2 Spot Fleets:
+#### EC2 Spot Fleets:
   * set of Spot Instances and optional On-Demand Instances
   * Will try to meet target capacity with price constraints defined via possible launch pools, instance type, OS, AZ
   * Can have multiple launch pools from which the fleet can choose
@@ -177,20 +179,48 @@ S3 Bucket Policies vs Access permissions:
     * *Diversified*: distributed across all pools (great for availability, long workloads)
     * *Capacity Optimized*: pool with the optimal capacity for the number of instances
 
-### EC2 Spot Blocks (aka Spot Duration):
+#### EC2 Spot Blocks (aka Spot Duration):
   * "block" spot instance during a specified time frame (1 to 6 hours) without interruptions
   * In rare situations, instance may be reclaimed
   * Not available to new customers
 
-### EC2 SG configurations:
+#### EC2 SG configurations:
   * source (inbound rules) or destination (outbound rules) for network traffic specified via the following options:
     * Single ipv4 (/32 CIDR) or ipv6 (/128 CIDR)
     * Range of ipv4/ipv6 address (CIDR block notation)
     * Prefix List ID for the AWS service(s) via Gatway Endpoints, (eg: p1-1a2b3c4d)
     * Another SG, allowing instances within one SG to access instances within another.  Choosing this option doesn't add rules from the source SG, to the 'linked' SG.  You can specify one of the following:
-      * Current SG
-      * Different SG for the the same VPC
-      * Different SG for a peer VPC in VPC peering connection
+     * Current SG
+     * Different SG for the the same VPC
+     * Different SG for a peer VPC in VPC peering connection
+
+### EC2 Placement Groups
+
+#### Cluster Placement Group:
+  * Clusters instances into a low-latency group in a single AZ
+  * Great network speeds (10 GBps bandwidth between instances with enhanced networking enabled; recommended)
+  * If the rack fails, all instances fail at once
+  * Use cases:
+    * Big data job that needs to complete fast
+    * Application that needs extremely low latency and high network throughput
+
+#### Partition Placement Group:
+  * Spreads instances across many different partitions (which rely on different sets of racks) within an AZ
+  * Scales to 100s of instances per group
+  * Up to 7 partitions per AZ and can span multiple AZs in the same region
+    * Instances in a partition don't share racks with the instances in other partitions
+    * Individual partition failure can affect many EC2, but won't affect other partitions
+    * EC2 instances get access to the partition meta data
+  * Use cases: HDFS, HBase, Cassandra, Kafka, Hadoop (distributed and replicated workloads)
+
+#### Spread Placement Group:
+  * Spreads instances across underlying hardware (max 7 instances per group per AZ)
+  * Can span across AZs
+  * Reduced risk of simultaneous failure
+  * EC2 instances on different physical hardware
+  * Use cases:
+    * Maximal HA
+    * Critical Application where each instance must be isolated from failure from each other
 
 ## Containers
 
@@ -272,7 +302,47 @@ S3 Bucket Policies vs Access permissions:
 
 ## Storage
 
-### AWS FSx
+### AWS FSx:
+  * Launch 3rd party high performance file system(s) on AWS
+  * Can be accessed via FSx File Gateway for on-prem needs via VPN and/or Direct Connect
+  * Fully managed
+  * Accessible via ENI within Multi-AZ
+  * Types include:
+    * FSx for Windows FileServer
+    * FSx for Lustre
+    * FSx for Net App ONTAP (NFS, SMB, iSCSI protocols); offering:
+     * Works with most OSs
+     * ONTAP or NAS
+     * Storage shrinks or grows
+     * Compression, dedupe, snapshot replication
+     * Point in time cloning
+    * FSx for Open ZFS; offering:
+     * Works with most OSs
+     * Snapshots, compression
+     * Point in time cloning
+
+### Amazon FSx for Windows:
+  * Fully managed Windows file system share drive
+  * Supports SMB and Windows NTFS
+  * Microsoft Active Directory integration, ACLs, user quotas
+  * Can be mounted on Linux EC2 instances
+  * Scale up to 10s of GBps, millions IOPs, 100s of PB of data
+  * Storage Options:
+   * SSD - latency sensitive workloads (DB, data analytics)
+   * HDD - broad spectrum of workloads (home directories, CMS)
+  * On-prem accessible (VPN and/or Direct Connect)
+  * Can be configured to be Multi-AZ
+  * Data is backed up daily to S3
+  * Amazon FSx File Gateway allows native access to FSx for Windows from on-prem, local cache for frequently accessed data via Gateway
+
+### Amazon FSx for Lustre ("Linux" "Cluster"):
+  * High performance, parallel, distributed file system designed for Applications that require fast storage to keep up with your compute such as ML, high peformance computing, video processing, Electronic Design Automation, or financial modeling
+  * Integrates with linked S3 bucket(s), making it easy to process S3 objects as files and allows you to write changed data back to S3
+  * Provides ability to both process 'hot data' in parallel/distributed fashion as well as easily store 'cold data' to S3
+  * Storage options include SSD or HDD
+  * Can be used from on-prem servers (VPN and/or Direct Connect)
+  * Scratch File System can be used for temporary or burst storage use
+  * Persistent File System can be used for storage / replicated with AZ
 
 ### AWS Storage Gateway:
    * Hybrid cloud storage service that provides on-prem access to virtual cloud storage
@@ -509,10 +579,12 @@ S3 Bucket Policies vs Access permissions:
 | ARN | Amazon Resource Name |
 | AWS | Amazon Web Services |
 | AZ | Availability Zones |
+| CMS | Content Management System |
 | DAX | DynamoDB Accelerator |
 | DB | Database |
 | EFS | Elastic File System |
 | ETL | Extract, Translate, Load |
+| ENI | Elastic Network Interface |
 | GW | Gateway |
 | HA | High Availability |
 | IA | Infrequently Accessed |
@@ -526,6 +598,7 @@ S3 Bucket Policies vs Access permissions:
 | NLP | Natural Language Processing |
 | OAC | Origin Access Control |
 | OAI | Origin Access Identity |
+| OS | Operating System |
 | OU | Organizational Unit |
 | PHI | Protected Health Information |
 | PII | Personally Identifiable Information |
