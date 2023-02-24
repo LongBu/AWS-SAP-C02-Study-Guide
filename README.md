@@ -300,6 +300,23 @@ S3 Bucket Policies vs Access permissions:
 | default | shared | dedicated |
 | dedicated | dedicated | dedicated |
 
+### Direct Connect Gateways: Enables connections to many VPCs in different AWS regions
+
+#### Vitual Private Gateway:
+  * VPN Connector on the AWS side of the VPN connection
+  * Created and attached to the VPC from which you want to create site-to-site-VPN
+  * Necessary for setting up AWS Direct Connect
+
+### AWS Transit Gateway (Shared services VPC):
+  * Allows transitive peering between thousands of VPCs and on-premises data centers
+  * Works on a hub-and-spoke model
+  * Works primarily on a regional basis, though accessible acorss multiple regions
+  * Can be used across multiple AWS accounts using AWS RAM
+  * Can use route tables to limit VPCs communication between one another
+  * Works with Direct Connect as well as VPN connections
+  * Supports IP multicast (not supported by any other AWS service)
+  * Site-to-site VPN ECMP: creates multiple connections to increase bandwidth of connection to AWS
+
 ## Storage
 
 ### AWS FSx:
@@ -625,6 +642,7 @@ S3 Bucket Policies vs Access permissions:
 | CMS | Content Management System |
 | DAX | DynamoDB Accelerator |
 | DB | Database |
+| ECMP | Equal cost multi-path routing |
 | EFS | Elastic File System |
 | ETL | Extract, Translate, Load |
 | ENI | Elastic Network Interface |
@@ -645,6 +663,7 @@ S3 Bucket Policies vs Access permissions:
 | OU | Organizational Unit |
 | PHI | Protected Health Information |
 | PII | Personally Identifiable Information |
+| RAM | AWS Resource Access Manager |
 | RDS | Relational Database |
 | SAML | Security Assertion Markup Language |
 | SES | Simple Email Service |
@@ -659,4 +678,6 @@ S3 Bucket Policies vs Access permissions:
 | S3 | Simple Storage Service |
 | TLS | Transport Layer Security |
 | TTL | Time to live |
+| VGW | Virtual Private Gateway |
 | VPC | Virtual Private Cloud |
+| VPN | Virutal Private Network |
