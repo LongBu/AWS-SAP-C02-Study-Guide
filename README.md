@@ -567,6 +567,48 @@ S3 Bucket Policies vs Access permissions:
   * Natural and accurate language translation
   * Allows localization of content (eg applications/websites) for international users, and to easily translate large volumes of text efficiently 
 
+### Amazon Kendra:
+  * Intelligent enterprise document search service powered by ML that allows users to search across different content repositories with built in connectors.  Learns from user interaction/feedback for incremental learning.
+  * Can return precise answer or pointers to document(s)
+  * Allows discovery of information spanning all connected data allocated in AWS (given permission) and any 3rd party connected data (salesforce, servicenow, DBs, Microsoft One Drive, etc.)
+  * Can use other services in AWS to preprocess content to text that is searchable/indexable
+
+### Amazon Forecast:
+  * Fully managed service using ML to deliver highly accurate forecasts (time series data)
+  * 50% more accurate than looking at the data itself
+  * Reduces forecasting time from months to hours
+  * Use cases: Product Demand Planning, Financial Planning, Resource Planning
+  * Data => S3 => Amazon Forecast => Model => Predictions
+
+### Amazon Pinpoint:
+  * Scalable 2-way (outbound/inbound) marketing communications service
+  * Supports email, SMS, push, voice, in-app messaging
+  * Ability to segment and personalize messages with the right content to customers
+  * Possiblilty to receive replies
+  * Scales to billions of messages per day
+  * Use cases: run campaigns by sending marketing, bulk transactional SMS messages
+  * Alternative to SNS or SES
+  * In SNS and SES, you manage each messages audience, content and delivery schedule
+  * In pinpoint, you create message templates, delivery schedules, highly targeted segments and full campaigns
+  * Stream events (eg: text delivered) to SNS, Kinesis Firehose, Cloudwatch, etc.
+
+### Amazon Rekognition:
+  * Find objects, people, text, scenes in images and videos using ML
+  * Facial analysis and search to perform user verification, people counting
+  * Create a DB of "familiar faces" or compare against celebrities
+  * Use cases: 
+   * Labeling
+   * Text detection
+   * Face detection and analysis (gender, emotions, age range, etc.)
+   * Face search and verification
+   * Celebrity recognition
+   * Pathing (eg: for sports game analysis)
+   * Content Moderation (inappropriate, unwanted, or offensive images/videos)
+    * Social media/broadcast media/advertising/e-commerce
+    * Confidence level of content flags/gates (threshold configuration based)
+    * Flag sensitive content for manual review in A2I
+    * Help comply with regulations
+
 ## Acronyms
 
 | Acronym  | Definition |
@@ -576,6 +618,7 @@ S3 Bucket Policies vs Access permissions:
 | AD | Active Directory |
 | ADFS | Active Directory Federation Services |
 | API | Application Programming Interface |
+| A2I | Amazon Augmented AI |
 | ARN | Amazon Resource Name |
 | AWS | Amazon Web Services |
 | AZ | Availability Zones |
@@ -604,6 +647,7 @@ S3 Bucket Policies vs Access permissions:
 | PII | Personally Identifiable Information |
 | RDS | Relational Database |
 | SAML | Security Assertion Markup Language |
+| SES | Simple Email Service |
 | SG | Security Group |
 | SNS | Simple Notification Service |
 | SQS | Simple Queue Service |
