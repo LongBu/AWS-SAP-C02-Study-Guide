@@ -15,8 +15,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 9. <a href="#storage">Storage</a>
 10. <a href="#database">Database</a>
 11. <a href="#analytics">Analytics</a>
-12. <a href="#miscellaneous">Miscellaneous</a>
-13. <a href="#acronyms">Acronyms</a>
+12. <a href="#infrastructure-as-code-iac">Infrastructure as Code (IAC)</a>
+13. <a href="#optimization">Optimization</a>
+14. <a href="#miscellaneous">Miscellaneous</a>
+15. <a href="#acronyms">Acronyms</a>
 
 ## Introduction
 <a href="https://d1.awsstatic.com/training-and-certification/docs-sa-pro/AWS-Certified-Solutions-Architect-Professional_Exam-Guide.pdf">AWS Certified Solutions Architect - Professional (SAP-C02) Exam Guide</a>
@@ -241,6 +243,17 @@ S3 Bucket Policies vs Access permissions:
 
 ## Containers
 
+
+### Amazon Elastic Container Registry (ECR):
+  * private/public container storage alternative to docker hub
+  * container =>image
+  * Backed by S3
+  * Access controlled by IAM
+  * Harnessed by ECS, EKS, Fargate
+  * Supports vulnerability scans, versioning, image tags, image lifecycle
+  
+### Amazon Managed Service for Prometheus: serverless monitoring service harnessing PROMQL to monitor and alert on container environments upon ingestion/storage
+
 ## Logging and Events
 
 ## Configurations and Security
@@ -317,6 +330,20 @@ S3 Bucket Policies vs Access permissions:
 | default | shared | dedicated |
 | dedicated | dedicated | dedicated |
 
+### Amazon VPC console wizard configurations:
+  * VPC with public/private subnets (NA)
+  * VPC with public/private subnets and AWS Site-to-Site VPN access
+  * VPC with a single public subnet
+  * VPC with a private subnet only and AWS Site-to-Site VPN access
+  
+### VPC Traffic Mirroring:
+  * Allows you to capture/inspect network traffic in VPC
+  * Route the traffic to security appliance(s) you manage
+  * Capture the traffic: -From (source) ENIs -To (Target) an ENI or NLB
+  * Capture all packets or packets of interest (optionally truncating packets)
+  * Source and target can be the same or different VPCs (VPC peering)
+  
+
 ### Direct Connect Gateways: Enables connections to many VPCs in different AWS regions
 
 #### Vitual Private Gateway:
@@ -333,12 +360,17 @@ S3 Bucket Policies vs Access permissions:
   * Works with Direct Connect as well as VPN connections
   * Supports IP multicast (not supported by any other AWS service)
   * Site-to-site VPN ECMP: creates multiple connections to increase bandwidth of connection to AWS
+  
+### Egress-only Internet Gateway:
+  * Similar to NAT Gateway, but for ipv6 only
+  * Allows instances in VPC outbound connections over ipv6 while preventing the internet to initiate an ipv6 connection to your instance(s)
+  * Must update route tables
 
 ## Storage
 
 ### AWS FSx:
   * Launch 3rd party high performance file system(s) on AWS
-  * Can be accessed via FSx File Gateway for on-prem needs via VPN and/or Direct Connect
+  * Can be accessed via FSx File Gateway for on-premises needs via VPN and/or Direct Connect
   * Fully managed
   * Accessible via ENI within Multi-AZ
   * Types include:
@@ -364,22 +396,22 @@ S3 Bucket Policies vs Access permissions:
   * Storage Options:
    * SSD - latency sensitive workloads (DB, data analytics)
    * HDD - broad spectrum of workloads (home directories, CMS)
-  * On-prem accessible (VPN and/or Direct Connect)
+  * On-premises accessible (VPN and/or Direct Connect)
   * Can be configured to be Multi-AZ
   * Data is backed up daily to S3
-  * Amazon FSx File Gateway allows native access to FSx for Windows from on-prem, local cache for frequently accessed data via Gateway
+  * Amazon FSx File Gateway allows native access to FSx for Windows from on-premises, local cache for frequently accessed data via Gateway
 
 ### Amazon FSx for Lustre ("Linux" "Cluster"):
   * High performance, parallel, distributed file system designed for Applications that require fast storage to keep up with your compute such as ML, high peformance computing, video processing, Electronic Design Automation, or financial modeling
   * Integrates with linked S3 bucket(s), making it easy to process S3 objects as files and allows you to write changed data back to S3
   * Provides ability to both process 'hot data' in parallel/distributed fashion as well as easily store 'cold data' to S3
   * Storage options include SSD or HDD
-  * Can be used from on-prem servers (VPN and/or Direct Connect)
+  * Can be used from on-premises servers (VPN and/or Direct Connect)
   * Scratch File System can be used for temporary or burst storage use
   * Persistent File System can be used for storage / replicated with AZ
 
 ### AWS Storage Gateway:
-   * Hybrid cloud storage service that provides on-prem access to virtual cloud storage
+   * Hybrid cloud storage service that provides on-premises access to virtual cloud storage
    * Most recently used date cached in gateway
    * Volume backend up by EBS snapshots
    * Tape backed up by S3, S3 (Glacier), and other software
@@ -428,6 +460,16 @@ S3 Bucket Policies vs Access permissions:
 
 ### Relational
 
+#### RDS Autoscaling:
+  * Supports all RDS
+  * Max storage threshold is the threshold you set for the auto scaling the DB instance
+  * If workload is unpredictable, it is good to enable RDS auto scaling
+  * Aurora migration involves significant system administration effort to migrate from RDS mysql to aurora and if auto-scaling is all that is necessary, it is the better/easier option
+  * Autoscales if: 
+   * Free space < 10% allocated space
+   * 6 hours have passed since last modifications
+   * low-storage lasts at least 5 minutes
+
 ### NoSQL
 
 #### Amazon DocumentDB:
@@ -456,14 +498,14 @@ S3 Bucket Policies vs Access permissions:
   * Can be exported to S3 as DynamoDB JSON or ion format
   * Can be imported from S3 as CSV, DynamoDB JSON or ion format
 
-### DynamoDB Global Tables:
+#### DynamoDB Global Tables:
   * Makes a DynamoDB table accesible with low latency in multiple regions
   * Active-Active replication
   * Applications can read and write to the table in any region
   * *Must enable DynamoDB Streams* as a pre-requesite
   * DynamoDB Streams have a 24 hour retention, are to a limited # of consumers, and are processed using λ triggers or DynamoDB Stream Kinesis adapter
 
-### DynamoDB Accelerator (DAX):
+#### DynamoDB Accelerator (DAX):
   * Fully managed, highly available, in-memory cache with microsecond latency
   * Up to 10x performance improvement, without application logic change(s)
   * 5 minute TTL (default)
@@ -544,8 +586,32 @@ S3 Bucket Policies vs Access permissions:
     * label data
     * train and tunde model(s)
     * serve api traffic against the model(s)
+    
+## Infrastructure as Code (IAC)
+
+### AWS CodeDeploy:
+  * Fully managed deployment service to automate software deployments on compute service (EC2/Fargate/λ/on-premises)
+  * Code/Architecture agnostic
+  * Specify file(s)/folder(s) to copy and script(s) to run
+
+### AWS Proton:
+  * Service harnessing infrastructure as code or template for the sake of deploying, provisioning, monitoring and updating bye developers
+  * Cloud Formation at a lower level
+
+## Optimization
+
+### AWS Compute Optimizer:
+  * Recommends optimal AWS Compute resources (λ, EC2, EBS) for workloads to reduce costs and improve performance by using ML to analyze historical utilization metrics
+  * Helps you choose optimal EC2 types, including those part of Autoscaling group based on utilization
 
 ## Miscellaneous
+
+### AWS Amplify:
+  * Complete Solution allowing front end/mobile developers to easily build, ship and host full-stack applications on AWS harnessing various AWS services as use cases evolve
+  * Can use Flutter, React Native, Native languages, Web=>React, Vue, Angular, Ionic
+  * Pre-built UI components
+  * Figma => code => bind to data sources
+  * Git configurable
 
 ### AWS Wavelength: extend vpc and it's resources via desired subnets to include a wavelength zone, embedding within 5G networks providing ultra low latency
 
@@ -661,12 +727,15 @@ S3 Bucket Policies vs Access permissions:
 | DB | Database |
 | EBS | Elastic Block Store |
 | ECMP | Equal cost multi-path routing |
+| ECR | Elastic Container Registry |
 | EFS | Elastic File System |
+| EKS | Elastic Kubernetes Service |
 | ETL | Extract, Translate, Load |
 | ENI | Elastic Network Interface |
 | GW | Gateway |
 | HA | High Availability |
 | IA | Infrequently Accessed |
+| IAC | Infrastructure as Code |
 | IAM |  Identity and Access Management |
 | IdP | Identity Provider |
 | LB | Load Balancer |
