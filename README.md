@@ -32,6 +32,33 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 | Domain 4: Accelerate Workload Migration and Modernization | 20% |
 | **Total** | **100%** |
 
+## Organizational Unit (OU)
+
+### AWS Account Organizational Unit Migration:
+  * Remove the member account from the former organization [need root or IAM access to said member account and master account(s)]
+  * Send invite to the member account from the prospective organization
+  * Accept the invite from the prospective organization upon the member account
+  * Ensure the OrganizationAccountAccessRole is added to the member account
+
+### AWS Control Tower:
+  * Easy way to setup and govern a secure and compliant multi-account AWS environment based on best practices and using AWS OU to create accounts
+  * automates setup of environments in a few clicks
+  * automates ongoing policy managment using guard rails:
+    * SCP: preventative
+    * AWS Config: detective
+  * detects policy violations and remediates them
+  * monitor compliance through dashboards
+
+### Service Control Policies (SCP):
+  * Policies for OUs to manage permissions within, helping accounts stay within control setting limits/guard rails
+  * No permissions are granted by SCP, still IAM, but the effective permissions are the intersection of IAM, SCP, and IAM permissions boundaries allowing access
+  * OU must have all features enabled to utilize.
+  * Affects member accounts and attached users and roles within including the root user(s), not management accounts.
+  * Doesn't affect resource based policies directly.
+  * Doesn't affect service linked roles, which enable other AWS services to integrate with AWS OUs.
+  * If disabled at the root account, all SCPs are automatically detached from OU under that root account.  If re-enabled all accounts there under are reverted to full AWS Access (default)
+  * Must have an explicit allow (nothing allowed by default like IAM) which is similar to IAM permissions boundary (if not in boundary => deny)
+
 ## Identity and Access Management (IAM)
 
 Allow vs Deny: If any denial in policy is present, the resource is denied regardless of allow statement(s).  The default behavior is to deny resource(s) and resource(s) need allow statements to be allowed.  
@@ -88,33 +115,6 @@ S3 Bucket Policies vs Access permissions:
     * AWS Transit Gateway
     * Route 53 Resolver Rules
     * Licence Manager Configurations accross accounts using Private IP(s)
-
-## Organizational Unit (OU)
-
-### AWS Account Organizational Unit Migration:
-  * Remove the member account from the former organization [need root or IAM access to said member account and master account(s)]
-  * Send invite to the member account from the prospective organization
-  * Accept the invite from the prospective organization upon the member account
-  * Ensure the OrganizationAccountAccessRole is added to the member account
-
-### AWS Control Tower:
-  * Easy way to setup and govern a secure and compliant multi-account AWS environment based on best practices and using AWS OU to create accounts
-  * automates setup of environments in a few clicks
-  * automates ongoing policy managment using guard rails:
-    * SCP: preventative
-    * AWS Config: detective
-  * detects policy violations and remediates them
-  * monitor compliance through dashboards
-
-### Service Control Policies (SCP):
-  * Policies for OUs to manage permissions within, helping accounts stay within control setting limits/guard rails
-  * No permissions are granted by SCP, still IAM, but the effective permissions are the intersection of IAM, SCP, and IAM permissions boundaries allowing access
-  * OU must have all features enabled to utilize.
-  * Affects member accounts and attached users and roles within including the root user(s), not management accounts.
-  * Doesn't affect resource based policies directly.
-  * Doesn't affect service linked roles, which enable other AWS services to integrate with AWS OUs.
-  * If disabled at the root account, all SCPs are automatically detached from OU under that root account.  If re-enabled all accounts there under are reverted to full AWS Access (default)
-  * Must have an explicit allow (nothing allowed by default like IAM) which is similar to IAM permissions boundary (if not in boundary => deny)
 
 ## EC2
 
@@ -255,6 +255,26 @@ S3 Bucket Policies vs Access permissions:
 ### Amazon Managed Service for Prometheus: serverless monitoring service harnessing PROMQL to monitor and alert on container environments upon ingestion/storage
 
 ## Logging and Events
+
+### AWS CloudTrail:
+  * Service that monitors and records account activity across AWS infrastructure (history of events/API calls)
+  * Provides governance, compliance and audit for your AWS account:
+   * Enabled by default
+   * Trail can be applied to all regions (default) or a single region
+
+### CloudTrail Events:
+  * Able to be separated into read/write events
+  * Management events (default on)
+  * Data events (default off due to volume, though can be turned on to trigger/invoke)
+  
+### CloudTrail Insights:
+  * Used to detect unusual activity in account (if enabled):
+   * Inaccurate resource provisioning
+   * Hitting service limits
+   * Bursts of AWS IAM actions
+   * Gaps in periodic maintenance
+   * Analyzes normal manangement events to create a baseline to then continuosly analyze write events to detect unusual patterns (S3/CloudTrail console/EventBridge events)
+   * Cloudtrail Events are stored for 90 days, though can be sent to S3 and analyzed by Athena
 
 ## Configurations and Security
 
