@@ -119,6 +119,55 @@ S3 Bucket Policies vs Access permissions:
 
 ## Networking
 
+### Load Balancers
+
+#### Application Load Balancer (ALB):
+  * Best suited for load balancing HTTP(s) traffic, operating @layer 7 (websockets)
+  * HTTP traffic following the load balancer doesn't need encrpytion => port 80
+  * Has a static DNS name (not ip) => uses private ip of associated ENI for requests forwarded to web server
+  * Reserved ALB cookie names: AWSALBAPP, AWSALBTG, AWSALB
+  * Can load multiple SSL certificates on one listener that specifies the hostname via SNI
+  * Redirects HTTP=>HTTPS
+  * Target groups => EC2 (autoscale), ECS, λ, private ip address
+  * Health checks are at the target group level
+  * Routing based on url, hostname, query string paramters, or headers
+  * X-Forwarded-For header for client ip
+  * Sticky sessions available, via cookie (AWSALB)
+  * Custom Cookie name must be specified for each target group (all cookies < 4KB)
+  * Cross zone LB is free and disabled by default
+  * Integrates with Cognito User Pools
+
+#### Elastic Load Balancer (ELB):
+  * Legacy load balancer that can load balance http(s) applications and use layer-7 specific features, such as X-Forwarded and sticky sessions
+  * Can also use strict Layer 4 load balancing for applications that rely purely on TCP protocol
+  * HTTP traffic following the load balancer doesn't need encrpytion => port 80
+  * Has a static DNS name (not ip) => uses private ip of associated ENI for requests forwarded to web server
+  * Health checks are TCP or HTTP
+  * Sticky sessions available via cookie (AWS ELB) [all cookies < 4KB]
+  * Cross zone LB is free and disabled by default
+  * SNI not available, supports only one certificate
+
+#### Gateway Load Balancer:
+  * Used to scale, deploy, and manage a fleet of 3rd party network virtual appliances in AWS (eg: Firewalls, Intrusion Detection and Prevention System[s], Deep Packet Inspection System[s], payload manipulation)
+  * Operates @layer 3 (Network layer) ip packets
+  * Combines *Transparent Network Gateway* - single entry/exit for all traffic and *Load Balancer* -distributes traffic to virtual appliances
+  * Use Geneve protocol on port 6081
+  * Target groups: EC2, private ip address(es)
+  * Cross zone LB is $ per use and disabled by default
+
+#### Network Load Balancer (NLB):
+  * Best suited for load balancing of TCP/UDP traffic where extreme performance is required, operating @layer 4
+  * Capable of handling millions of requests per second, while mantaining ultra-low latency
+  * Has one static, public ip address per AZ (can attach elastic IP to this)
+  * Can load multiple SSL certificates on one listener that specifies the hostname via SNI
+  * Health checks are TCP or HTTP(S)
+  * Target groups: EC2, private ip address(es), ALB
+  * X-Forwarded-For header for client ip
+  * Cross zone LB is $ per use and disabled by default
+  * If targets specified via instance id => primary private ip specified in primary network interface
+  * If targets specified via ip(s) => route traffic to instance via private ip from one or more network interfaces, allowing multiple applications to use the same point
+  * Doesn't support SG(s), based on target configurations, ip of the client, or the *private ip address(es) of the NLB must be allowed on the web server's SG*
+
 ### Amazon CloudFront
   * Serverless service used to scale, save network bandwidth, and deliver entire website(s), including dynamic, static, streaming, and interactive content using a global network of edge locations, sending requests to nearest edge location through such options as:
    * Web distribution - websites (no architecture change)
@@ -799,6 +848,7 @@ S3 Bucket Policies vs Access permissions:
 | ACM | AWS Certificate Manager |
 | AD | Active Directory |
 | ADFS | Active Directory Federation Services |
+| ALB | Application Load Balancer | 
 | API | Application Programming Interface |
 | A2I | Amazon Augmented AI |
 | ARN | Amazon Resource Name |
@@ -814,6 +864,7 @@ S3 Bucket Policies vs Access permissions:
 | ECR | Elastic Container Registry |
 | EFS | Elastic File System |
 | EKS | Elastic Kubernetes Service |
+| ELB | (Classic) Elastic Load Balancer |
 | ETL | Extract, Translate, Load |
 | ENI | Elastic Network Interface |
 | GW | Gateway |
