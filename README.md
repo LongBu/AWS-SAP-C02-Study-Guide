@@ -7,18 +7,19 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 1. <a href="#introduction">Introduction</a>
 2. <a href="#organizational-unit-ou">Organizational Unit (OU)</a>
 3. <a href="#identity-and-access-management-iam">Identity and Access Management (IAM)</a>
-4. <a href="#ec2">EC2</a>
-5. <a href="#containers">Containers</a>
-6. <a href="#logging-and-events">Logging and Events</a>
-7. <a href="#configurations-and-security">Configurations and Security</a>
-8. <a href="#vpc">VPC</a>
-9. <a href="#storage">Storage</a>
-10. <a href="#database">Database</a>
-11. <a href="#analytics">Analytics</a>
-12. <a href="#infrastructure-as-code-iac">Infrastructure as Code (IAC)</a>
-13. <a href="#optimization">Optimization</a>
-14. <a href="#miscellaneous">Miscellaneous</a>
-15. <a href="#acronyms">Acronyms</a>
+4. <a href="#networking">Networking</a>
+5. <a href="#ec2">EC2</a>
+6. <a href="#containers">Containers</a>
+7. <a href="#logging-and-events">Logging and Events</a>
+8. <a href="#configurations-and-security">Configurations and Security</a>
+9. <a href="#vpc">VPC</a>
+10. <a href="#storage">Storage</a>
+11. <a href="#database">Database</a>
+12. <a href="#analytics">Analytics</a>
+13. <a href="#infrastructure-as-code-iac">Infrastructure as Code (IAC)</a>
+14. <a href="#optimization">Optimization</a>
+15. <a href="#miscellaneous">Miscellaneous</a>
+16. <a href="#acronyms">Acronyms</a>
 
 ## Introduction
 <a href="https://d1.awsstatic.com/training-and-certification/docs-sa-pro/AWS-Certified-Solutions-Architect-Professional_Exam-Guide.pdf">AWS Certified Solutions Architect - Professional (SAP-C02) Exam Guide</a>
@@ -115,6 +116,59 @@ S3 Bucket Policies vs Access permissions:
     * AWS Transit Gateway
     * Route 53 Resolver Rules
     * Licence Manager Configurations accross accounts using Private IP(s)
+
+## Networking
+
+### Amazon CloudFront
+  * Serverless service used to scale, save network bandwidth, and deliver entire website(s), including dynamic, static, streaming, and interactive content using a global network of edge locations, sending requests to nearest edge location through such options as:
+   * Web distribution - websites (no architecture change)
+   * RTMP - used for media streaming
+   * Edge Location (λ@edge) where content is cached.  Separate from an AWS Region/AZ.  Can be written to as well
+   * Origin-origin of all files CDN distributes (S3 bucket, EC2, ELB, or Route 53)
+   * Distribution - name given to CDN consisting of a collection of Edge Locations
+  * Can route to multiple origins based on content type (dynamic => ELB, static => S3)
+  * Options for securing content: https, geo restriction, signed url/cookie, field level encryption, AWS WAF
+  * Can't be associated with SGs
+  * Objects can be cached for TTL
+  * Can clear cached objects, but you will be charged
+  * Price classes: 
+   * All Regions - best performance - $$$
+   * 200 - $$
+   * 100 - $ only least expensive regions
+  * Supports primary/secondary origins for HA/failover (specific http responses)
+  * Supports field level encryption (not KMS) @edge to protecte sensitive data
+  * Serverless, cheaper to scale
+
+### CloudFront Signed URLs/Cookies:
+  * Use signed URLs/cookies when you want to secure content to authorized users
+  * Signed URL is for 1 individual file 
+  * Signed Cookie is for multiple files (sitewide)
+  * If origin is EC2, use CloudFront Signed URLs/Cookies
+  * If origin is S3, use S3 Signed URL (same IAM access as creator's IAM)
+  * Policies:
+   * Limited life time
+   * IP ranges
+   * Trusted signers (which AWS accounts can create signed URLs)
+
+### AWS PrivateLink:
+  * Service allowing you to open your service in VPC to another VPC (using privatelink)
+  * Allows exposure of VPC service to tens, hundres, or thousands of other VPCs
+  * Doesn't require VPC peering; no route tables, NAT, IGWs, etc.
+  * Requires a NLB on the service VPC and an ENI on the customer VPC
+  * If issue(s): Check DNS setting Resolution in VPC and/or check the the Route Tables
+
+### AWS Direct Connect
+  * Service that makes it easy to establish a dedicated network connection from on-premises to AWS VPC.  
+  * Using Direct Connect, you can establish private connectivity between AWS VPC and your datacenter/co-location environment, which can reduce network costs, increase bandwidth throughput, and provide a more consistent network experience than internet based connections
+  * Can access private/public AWS resources
+  * Useful for high throughput workloads (eg: lots of network traffic)
+  * Good if you need a stable and reliable secure connection
+  * Takes at least a month+ to setup
+  * Supports IPV4/6
+  * Can use Direct Connect Gateway if Direct Connect available between one VPC already
+  * AWS Direct Connect + VPN => encrypted
+  * Dedicated: 1 GBps to 10 GBps
+  * Hosted: 50 MBps, 500 MBps, up to 10 GBps
 
 ## EC2
 
@@ -223,6 +277,8 @@ S3 Bucket Policies vs Access permissions:
   * Use cases:
     * Maximal HA
     * Critical Application where each instance must be isolated from failure from each other
+
+### EC2 Instance Recovery: same private IP, public IP, elastic IP, metadata, placement group, instance ID after failure
 
 ### EC2 User Data:
   * Used to perform common automated, dynamic, configuration tasks and even run scripts after and instance starts
@@ -609,6 +665,12 @@ S3 Bucket Policies vs Access permissions:
     
 ## Infrastructure as Code (IAC)
 
+### AWS CloudFormation:
+  * Service to allow modeling, provisioning, and managing AWS and 3rd party resources via IAC at the fine graine level via template
+  * Writting in JSON or YAML
+  * Template can't be used to deploy the same template across AWS accounts and regions
+  * Can use CloudFormation Stack Designer to visualize the stack components and their relationships
+
 ### AWS CodeDeploy:
   * Fully managed deployment service to automate software deployments on compute service (EC2/Fargate/λ/on-premises)
   * Code/Architecture agnostic
@@ -742,9 +804,11 @@ S3 Bucket Policies vs Access permissions:
 | ARN | Amazon Resource Name |
 | AWS | Amazon Web Services |
 | AZ | Availability Zones |
+| CDN | Content Delivery Network |
 | CMS | Content Management System |
 | DAX | DynamoDB Accelerator |
 | DB | Database |
+| DNS | Domain Name System |
 | EBS | Elastic Block Store |
 | ECMP | Equal cost multi-path routing |
 | ECR | Elastic Container Registry |
@@ -758,11 +822,13 @@ S3 Bucket Policies vs Access permissions:
 | IAC | Infrastructure as Code |
 | IAM |  Identity and Access Management |
 | IdP | Identity Provider |
+| IGW | Internet Gateway |
 | LB | Load Balancer |
 | LDAP | Lightweight Directory Access Protocol |
 | KMS | Key Management Service |
 | ML | Machine Learning |
 | MSK | Managed Streaming Kafka |
+| NAT | Network Address Translation |
 | NLP | Natural Language Processing |
 | OAC | Origin Access Control |
 | OAI | Origin Access Identity |
@@ -775,6 +841,7 @@ S3 Bucket Policies vs Access permissions:
 | SAML | Security Assertion Markup Language |
 | SES | Simple Email Service |
 | SG | Security Group |
+| SNI | Server Name Indication |
 | SNS | Simple Notification Service |
 | SQS | Simple Queue Service |
 | SSL | Secure Sockets Layer |
