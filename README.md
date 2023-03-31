@@ -478,10 +478,65 @@ S3 Bucket Policies vs Access permissions:
    * Dashboards/reports/alerts
    * Can also analyze CloudTrail logs (for suspicious activity)
 
+### AWS WAF
+  * *Can protect: Cloudfront, API Gateway, ALB, Appsync, Cognito User Pool
+  * Web application firewall that monitors HTTP/HTTPS requests forwarded to Cloudfront, ALB, or API Gateway and lets you control access to content (via Web ACL rules)
+    * Web ACL rules can be associated with Cloudfront, but not an S3 Bucket policy
+    * Web ACL rules can't be associated with a NACL
+    * Web ACL are regional except for Cloudfront
+  * Rules can involve:
+    * Up to 10000 IP rules
+    * Ip rate based rules
+    * Level 7 (HTTP/HTTPS)
+    * IP address request origin
+    * Country request origin (geo-match)
+    * Values in request header(s)
+    * String in request (match or regexp)
+    * Length of request
+    * SQL presence (SQL injection)
+    * Script presence (XSS)
+ 
 ### AWS Shield: 
   * DDOS protection service that safeguards application running on AWS (layer 3/4)
   * Free for all AWS customers
   * AWS Shield Advanced costs $, but more sophisticated services concerning: ELB, EC2, CloudFront, Global Accelerator, Route 53
+
+### AWS Firewall Manager:
+  * A service to manage rules in all accounts of an AWS organization (firewall related rules)
+  * Common set of security rules:
+    * WAF rules (ALB, API Gateways, CloudFront)
+    * AWS Shield Advanced (ALB, CLB, Elastic IP, CloudFront)
+    * SGs for EC2 and ENI resources in VPC
+    * Amazon Network Firewall (VPC Level)
+    * Amazon Route 53 Resolver DNS Firewall
+    * Policies are created at the region level
+  * Rules are applied to new resources as they are created (good for compliance) across all and future accounts in Organization
+
+### AWS Network Firewall:
+  * Protect your entire Amazon VPC with a firewall from *layer 3 to layer 7 protection*
+  * Traffic filtering: Allow, drop, alert to rule matches
+  * Can be centrally managed cross-account/VPC by AWS Firewall Manager
+  * Can inspect:
+    * To/From traffic
+    * Outbound to/Inbound from the internet
+    * VPC to VPC traffic
+    * To, From Direct Connect and Site to Site VPN
+  * Internally, AWS Network Firewall uses the AWS Gateway Load Balancer
+  * Supports 1000s of rules
+  * IP and port blocking
+  * Protocol (eg: block SMB outbound traffic)
+  * Stateful domain list rule groups (eg: allow outbound traffic to *.mysite.com or 3rd party software repository)
+  * Regex pattern matching
+  * Active flow inspection to protect against network threats with Intrusion prevention capabilities
+  * Sends logs of rule matches to S3, Cloudwatch logs, Kinesis Data Firehose
+
+### WAF vs Firewall Manager vs Shield:
+  * All used together for comprehensive protection
+  * Define your Web ACL rules in WAF
+  * For granular protection of your resources, WAF alone is the correct choice
+  * If you want to use AWS WAF across accounts, accelerate WAF configuration, automate the protection of new resources, use Firewall Manager with AWS WAF
+  * Shield Advanced adds additional features on top of AWS WAF such as dedicated support from the Shield Response Team (SRT) and advanced reporting
+  * If prone to frequent DDOS=>Shield Advanced
 
 ### Security Groups (SGs):
   * Stateful connection, allowing inbound traffic to the necessary ports, thus enabling the connection
@@ -931,6 +986,35 @@ EFS:
   * Kafka topics with partitions (like shards); can only add partitions to a topic
   * Output is plaintext, TLS in-flight or KMS at-rest encryption
   * Consumers: Kinesis Data Analytics for Apache Flink, AWS Glue, Streaming ETL Jobs powered by Apache Spark Streaming, λ, EC2/ECS/EKS
+
+### AWS Glue:
+  * Managed ETL service (fully serverless) used to prepare/transform data for analysis
+  * Can be event driven (eg: λ triggered by S3 put object) to call Glue ETL
+  * Glue Data catalog uses an AWS Glue Data Crawler scanning DBs/S3/data to write associated metadata utilized by Glue ETL, or data discovery on Athena, Redshift Spectrum or EMR
+  * Glue Job bookmarks prevent reprocessing old data
+  * Glue Databrew-clean/normalize data using pre-built transformation
+  * Glue Studio-new GUI to create, run, and monitor ETL jobs in Glue
+  * Glue Streaming ETL (built on Apache Spark Structured Streaming)-compatible with Kinesis Data Streaming, Kafka, MSK
+  * Glue Elastic Views:
+    * Combine and replicate data across multiple data stores using SQL (View)
+    * No custom code, Glue monitors for changes in the source data, serverless
+    * Leverages a "virtual table" (materialized view)
+
+### EMR:
+  * Service to create Hadoop clusters (Big Data) to analyze/process lots of data using (many) instances
+  * Supports Apache Spark, HBase, Presto, Flink, etc.
+  * Takes care of provisioning and configuration
+  * Autoscaling and integrated with Spot Instances
+  * Use cases: Data processing, ML, Web Indexing, BigData
+  * Node types: 
+    * Master Node: manage the cluster, coordinate, manage health-long running process
+    * Core Node: run tasks and store data-long running process
+    * Task Node (optional): only to run tasks-usually Spot Instances
+  * Can have long-running cluster or transient (temporary) cluster
+  * Purchasing options: 
+    * On-demand: reliable, predictable, won't be terminated
+    * Reserved: cost savings (EMR will use if available)
+    * Spot instances: cheaper, can be terminated, less reliable
 
 ### Amazon Sagemaker:
   * Fully managed service for development/data science to build ML models
