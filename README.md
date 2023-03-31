@@ -417,6 +417,25 @@ S3 Bucket Policies vs Access permissions:
   * Multi-Region Secrets - read replicas in sync with Primary Secret
   * Able to promote read replica secret to standalone secret (eg: multi-region application DB distaster recovery)
   * SSM parameter store can be utilized if wanting to track versions/values of secrets
+  
+### Amazon GuardDuty:
+  * Threat detection service that continuously monitors AWS accounts and workloads for malicious activity to deliver detailed security findings for visibility and remediation
+  * Helps against the following:
+    * Can protect against CryptoCurrency attacks (has a dedicated "finding" for it)
+    * Anomaly detection via ML
+    * Malware scanning
+    * AWS accounts
+    * EC2
+    * EKS
+    * S3
+    * EBS (malware scan[s])
+  * Scans these data sources:
+    * CloudTrail Events log
+    * CloudTrail S3 data event logs
+    * VPC Flow logs
+    * DNS query logs
+    * EKS audit logs
+  * Disabling will delete all data, while suspending will stop analysis, but not delete
 
 ### Security Groups (SGs):
   * Stateful connection, allowing inbound traffic to the necessary ports, thus enabling the connection
@@ -719,6 +738,12 @@ S3 Bucket Policies vs Access permissions:
   * Writting in JSON or YAML
   * Template can't be used to deploy the same template across AWS accounts and regions
   * Can use CloudFormation Stack Designer to visualize the stack components and their relationships
+  
+### AWS CloudFormation StackSets:
+  * Extends the functionality of stacks by enabling you to create, update, or delete stacks across multiple accounts and regions with a single operation
+  * Done via Cloudformation template
+  * Using an admin account of an 'AWS Org', you define and manage AWS Cloudformation template, using the template as the basis for provisioning stacks into selected target accounts of an AWS Org across specified regions
+  * Don't confuse with Cloudformation stacks which is a set of resources created and managed as a single unit from a Cloud formation template and can't be used across accounts or regions
 
 ### AWS CodeDeploy:
   * Fully managed deployment service to automate software deployments on compute service (EC2/Fargate/λ/on-premises)
@@ -793,6 +818,15 @@ S3 Bucket Policies vs Access permissions:
     * Generate metadata for media assets to create full scaleable architecture
   * Can remove PII using redaction
   * Supports automatic language identification for multi-lingual audio
+  
+### Amazon Lex: ASR to convert speech to text
+  * Natural language understanding to recognize parts of speech/text
+  * Helps to build chatbots, call center bots
+
+### Amazon Connect: Receives calls, creates contact flows, cloud-based virtual contact center
+  * Can integrate with other CRM systems or AWS
+  * No upfront payments, 80% cheaper than traditional contact center solutions
+  * Phone call => Connect =>Streaming data=>Lex=>trigger=>λ=>action
 
 ### Amazon Translate:
   * Natural and accurate language translation
