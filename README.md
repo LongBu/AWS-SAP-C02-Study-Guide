@@ -348,7 +348,6 @@ S3 Bucket Policies vs Access permissions:
 
 ## Containers
 
-
 ### Amazon Elastic Container Registry (ECR):
   * private/public container storage alternative to docker hub
   * container =>image
@@ -356,7 +355,43 @@ S3 Bucket Policies vs Access permissions:
   * Access controlled by IAM
   * Harnessed by ECS, EKS, Fargate
   * Supports vulnerability scans, versioning, image tags, image lifecycle
+
+### Amazon ECS:
+  * Has to launch types: Amazon EC2 and Fargate
+  * Fargate has to use either EFS volume, FSx for Windows, docker volumes, or bind mount (file or dir)
+  * EC2 has to harness an EFS volume amounts instances, not EBS
+  * ECS Autoscaling=>target tracking metrics:
+    * ECSSVCAVECPU
+    * AveCPU use
+    * ECSSVCAVEMEM-average memory use
+    * ALBRequestCountPerTarget-number of requests per target in ALB target group
+  * Can be scaled in/out per EventBridge invoked rules/schedule
+  * IAM roles: 
+    * EC2 Instance Profile (EC2 only)-used by ECS agent, makes API calls to ECS service, send container image from ECR, reference sensitive data in Secrets Manager or SSM Parameter Store
+    * ECS Task Role-allows each task to have a specific role, use different roles for different ECS services you run, task role is defined in the task definition
+
+### Amazon EKS:
+  * Managed node groups: 
+    * Create/Manage nodes (EC2) 
+    * Nodes are part of ASG managed by EKS
+    * Supports On-Demand or Spot Instances
+  * Self managed nodes:
+    * Nodes created by you, registered to the EKS cluster and managed by an ASG
+    * Can use prebuilt AMI-Amazon EKS Optimized AMI
+    * Supports On-Demand and Spot Instances
+  * Need to specify storage class on EKS cluster, leveraging Container Storage Interface (CSI) compliant driver: EBS, EFS (Fargate), FSx for Lustre/for NetApp ON TAP
+  * Doesn't support λ, does support Fargate, Managed Node Groups, and Self-Managed Nodes
   
+### AWS Fargate:
+  * Severless backend harnessing ECS/EKS/ECR
+  * VPCU
+  * Memory
+  * AWS runs ECS Tasks for you based on CPU/RAM needed, so to scale, increase the number of tasks
+  * Storage resources (20 GB free)
+  * No time limit like λ (15 minutes)
+  * λ can hit a max concurrency problems, or sometimes can't horizontally scale and might throttle, through with error code 429
+  * Harnessed EFS, doesn't support mounting EBS volumes
+
 ### Amazon Managed Service for Prometheus: serverless monitoring service harnessing PROMQL to monitor and alert on container environments upon ingestion/storage
 
 ## Logging and Events
@@ -749,6 +784,25 @@ EFS:
   * Enforce IAM authorization for DB and securely store credentials in AWS Secrets Manager
   * RDS Prosy is never publicly accessible (must be accessed via VPC)
 
+#### Aurora:
+  * MySQL or Postgres
+  * Better performance than RDS version
+  * Lower price
+  * At rest encryption via KMS
+  * 2 copies in each AZ, with a minimum of 3 AZ => 6 copies
+  * Shareable snapshots with other accounts
+  * Replicas: MySQL, Postgres, or Aurora
+  * Replicas can autoscale
+  * Cross region replication (< 1 second) support available 
+    * Aurora Global: multi region (up to 5)
+    * Aurora Cloning: copy of production (faster than a snapshot)
+  * Aurora multimaster (for write failover/high write availability)
+  * Aurora serverless for cost effective option (pay per second) for infrequent, intermittent or unpredictable workloads
+  * Automated backups
+  * Automated failover with Aurora replicas 
+    * Fail over tiers: lowest ranking number first, then greatest size
+  * Aurora ML: ML using SageMaker and Comprehend on Aurora
+
 #### Amazon Redshift:
   * fully managed, scalable cloud data warehouse, columnar instead of row based (no Multi-AZ, based on Postgres, No OLTP, but OLAP)
   * Can be server less or use cluster(s)
@@ -1037,11 +1091,15 @@ EFS:
 | AD | Active Directory |
 | ADFS | Active Directory Federation Services |
 | ALB | Application Load Balancer | 
+| AOF | Append Only File |
 | API | Application Programming Interface |
 | A2I | Amazon Augmented AI |
 | ARN | Amazon Resource Name |
+| ASG | Autoscaling group |
+| ASR | Automatic Speech Recognition |
 | AWS | Amazon Web Services |
 | AZ | Availability Zones |
+| CDC | Change Data Capture |
 | CDN | Content Delivery Network |
 | CMS | Content Management System |
 | DAX | DynamoDB Accelerator |
@@ -1050,13 +1108,21 @@ EFS:
 | EBS | Elastic Block Store |
 | ECMP | Equal cost multi-path routing |
 | ECR | Elastic Container Registry |
+| ECS | Elastic Container Service |
+| EFA | Elastic Fabric Adapter |
 | EFS | Elastic File System |
 | EKS | Elastic Kubernetes Service |
 | ELB | (Classic) Elastic Load Balancer |
-| ETL | Extract, Translate, Load |
+| EMR | Elastic Map Reduce |
+| ENA | Elastic Network Adapter |
 | ENI | Elastic Network Interface |
+| ETL | Extract, Translate, Load |
+| FTPS | File Transfer Protocol over SSL |
 | GW | Gateway |
+| GLB | Gateway Load Balancer |
 | HA | High Availability |
+| HC | Health Check |
+| HSM | Hardware Security Module |
 | IA | Infrequently Accessed |
 | IAC | Infrastructure as Code |
 | IAM |  Identity and Access Management |
@@ -1066,23 +1132,29 @@ EFS:
 | LDAP | Lightweight Directory Access Protocol |
 | KMS | Key Management Service |
 | ML | Machine Learning |
+| MPI | Message Parsing Interface |
 | MSK | Managed Streaming Kafka |
 | NAT | Network Address Translation |
 | NLP | Natural Language Processing |
 | OAC | Origin Access Control |
 | OAI | Origin Access Identity |
+| OLAP | Online Analytical Processing |
 | OS | Operating System |
 | OU | Organizational Unit |
 | PHI | Protected Health Information |
 | PII | Personally Identifiable Information |
+| PPS | Packets Per Second |
 | RAM | AWS Resource Access Manager |
 | RDS | Relational Database |
 | SAML | Security Assertion Markup Language |
+| SASL | Simple Authentication and Security Layer |
 | SES | Simple Email Service |
+| SFTP | Secure File Transfer Protocol |
 | SG | Security Group |
 | SNI | Server Name Indication |
 | SNS | Simple Notification Service |
 | SQS | Simple Queue Service |
+| SRT | Shield Response Team |
 | SSL | Secure Sockets Layer |
 | SSM | Systems Manager |
 | SSML | Speech Synthesis Markup Language |
@@ -1092,5 +1164,6 @@ EFS:
 | TLS | Transport Layer Security |
 | TTL | Time to live |
 | VGW | Virtual Private Gateway |
+| VM | Virtual Machine |
 | VPC | Virtual Private Cloud |
 | VPN | Virutal Private Network |
