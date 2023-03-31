@@ -437,6 +437,12 @@ S3 Bucket Policies vs Access permissions:
     * EKS audit logs
   * Disabling will delete all data, while suspending will stop analysis, but not delete
 
+### Amazon Macie:
+  * Security service using ML/NLP to discover, classify, and protect sensitive data stored in S3, such as:
+   * PII
+   * Dashboards/reports/alerts
+   * Can also analyze CloudTrail logs (for suspicious activity)
+
 ### Security Groups (SGs):
   * Stateful connection, allowing inbound traffic to the necessary ports, thus enabling the connection
   * If adding an Internet Gateway, ensure the SG allows traffic in
@@ -499,6 +505,12 @@ S3 Bucket Policies vs Access permissions:
   * Uses customer managed EC2(s) VPN instances in a dedicated transit VPC resources with an IGW
   * Data transfer charged for traffic traversing this VPC an again from the transit VPC to on-premises network or different AWS regions
   * Consider AWS Transit Gateway (shared services VPC) as a cheaper and less maintenance alternative
+
+### VPC Peering: 
+  * Privately connects 2 VPCs on AWS's network, behaving as if the same network (works in different AWS accounts/regions)
+  * Must not a have overlapping CIDRs
+  * Not transitive (must be established for each VPC to communicate)
+  * Must update route tables in each VPCs subnets to ensure communication between each's EC2 instance
 
 ### AWS Transit Gateway (Shared services VPC):
   * Allows transitive peering between thousands of VPCs and on-premises data centers
@@ -680,6 +692,37 @@ S3 Bucket Policies vs Access permissions:
    * Free space < 10% allocated space
    * 6 hours have passed since last modifications
    * low-storage lasts at least 5 minutes
+
+#### Amazon RDS Proxy:
+  * Fully managed DB proxy for RDS and Aurora
+  * Good to use with λ under high load to avoid too many connections
+  * Allows applications to pool and share DB connections with an established DB
+  * Improves DB efficiency by reducing stress on DB resources (eg: CPU, RAM) and minimize open connections ( and timeouts)
+  * Serverless, autoscaling, HA, multi-AZ
+  * Reduced RDS and Aurora failover time by up to 66%
+  * Supports RDS (MySql, Postgres, Mariadb) and aurora (MySql/Postgres)
+  * No code changes required for most applications
+  * Enforce IAM authorization for DB and securely store credentials in AWS Secrets Manager
+  * RDS Prosy is never publicly accessible (must be accessed via VPC)
+
+#### Amazon Redshift:
+  * fully managed, scalable cloud data warehouse, columnar instead of row based (no Multi-AZ, based on Postgres, No OLTP, but OLAP)
+  * Can be server less or use cluster(s)
+  * Uses SQL to analyze structured and semi-structured data across data warehouses, operational DBs, and data lakes
+  * Integrates with quicksight or Tableau
+  * Leader node for query planning, results aggregation
+  * Compute node for performing queries to be sent back to the leader
+  * Provisioning node sizes in advance
+  * Enhanced VPC Routing
+  * Forces all COPY and UNLOAD traffic moving between your cluster and data repositories through your VPCs, otherwise over the internet routing, including to other AWS servicesq
+  * Can configure to automatically copy snapshots to other Regions
+  * Large inserts are better (S3 copy, firehose)
+
+#### Amazon Redshift Spectrum:
+  * Resides on dedicated Amazon Redshift servers independent of your cluster
+  * Can efficiently query and retrieve structured and semistructured data from files in S3 into Redshift Cluster tables (points at S3) without loading data in Redshift tables
+  * Pushes many compute intensive tasks such as predicate filtering and aggregation, down to the Redshift Spectrum layer
+  * Redshift Spectrum queries use much less of the formal cluster's processing capacity than other queries
 
 ### NoSQL
 
