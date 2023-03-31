@@ -495,6 +495,11 @@ S3 Bucket Policies vs Access permissions:
   * Created and attached to the VPC from which you want to create site-to-site-VPN
   * Necessary for setting up AWS Direct Connect
 
+### Transit VPC:
+  * Uses customer managed EC2(s) VPN instances in a dedicated transit VPC resources with an IGW
+  * Data transfer charged for traffic traversing this VPC an again from the transit VPC to on-premises network or different AWS regions
+  * Consider AWS Transit Gateway (shared services VPC) as a cheaper and less maintenance alternative
+
 ### AWS Transit Gateway (Shared services VPC):
   * Allows transitive peering between thousands of VPCs and on-premises data centers
   * Works on a hub-and-spoke model
@@ -504,6 +509,68 @@ S3 Bucket Policies vs Access permissions:
   * Works with Direct Connect as well as VPN connections
   * Supports IP multicast (not supported by any other AWS service)
   * Site-to-site VPN ECMP: creates multiple connections to increase bandwidth of connection to AWS
+
+### Internet Gateway (IGW):
+  * Allows resources (EC2, etc.) in a VPC to connect to the internet (IPV4/6) via route table
+  * Scales horizontally, is HA and redundant
+  * One VPC per IGW
+  * VPC route tables need to be edited to allow internet access
+  * Can't be used directly in a private subnet without NAT instance or gateway in a public subnet
+  * If subnet hooked via route table up to the IGW => public
+  * Acts as (NAT) for instances that are assigned public IPV4 address(es)
+  * Must be created separately from a VPC
+
+### NAT Gateway:
+  * Used in a *public subnet* in a VPC, enabling instances in a *private subnet* to initiate outbound IPV4 traffic to the internet/other AWS services, but prevents inbound traffic to instances from the internet
+  * Fully managed by AWS
+  * Tied to AZ/subnet(s), eg: can't span multiple AZ, multiple NGW are necessary for fault tolerance/failover
+  * Uses an Elastic IP
+  * Requires IGW (Private subnet => NATGW => IGW)
+  * No SG
+  * Can't be used by EC2 in the same subnet
+
+### NAT Instance:
+  * Used in a *public subnet* in a VPC, enables instances in a *private subnet* to initiate outbound IPV4 to the internet/other AWS services, but prevents inbound traffic to instances from the internet
+  * Can be used as a bastion host/server
+  * Allows port forwarding
+  * Managed by user (software, patches, etc.)
+  * Tied to AZ/subnet(s), eg: can't span multiple AZ
+  * Must disable EC2 setting: Source/Destination check
+  * Must have an Elastic IP
+  * Route tables need configuration to route traffic from private subnets to the NAT instance
+  * Must manage SG and rules: 
+    * *Inbound*-HTTP(S) from private subnets, allow SSH from the home network
+    * *Outbound*-HTTP(S) to the internet
+
+### VPC Endpoint:
+  * Every AWS service is publicly exposed (public url)
+  * VPC Endpoints (using AWS PrivateLink) allows connections to AWS service(s) using a private network instead of public internet
+  * Redundant and scales horizontally
+  * Removes the need for IGW, NATGW, etc. to access AWS service(s)
+  * In case of issues: 
+    * Check DNS setting resolution in VPC 
+    * Check Route tables
+  * Types of Endpoints:
+    * Interface Endpoints: provisions an ENI (private ip) as an entry point (must attach a SG); supports most AWS services; powered by Private Link
+    * Gateway Endpoints: provisions a gateway and must be used as a target in Route table; supports both *S3 and DynamoDB*
+  * Gateway Endpoints are preferred most of the time over Interface Endpoints as the former is free and the latter costs $
+  * Interface endpoint is preferred if access is required from on-premises (site-to-site VPN or Direct Connect), a different VPC or a different region
+
+### VPC Flow Logs:
+  * Capture information about IP traffic going into your interfaces, such as Subnet Flow Logs or ENI Flow Logs
+  * Helps to monitor/troubleshoot connectivity issues
+  * Can go to S3 or Cloudwatch Logs
+  * Capture network information from AWS managed interfaces, too: ELB, RDS, Elasticache, Redshift, Workspaces, NATGW, Transit Gateway
+  * Query via Athena on S3 or Cloudwatch Log Insights (good for troubleshooting SG and NACL issues)
+
+### Bastion Host/Server
+  * An EC2 used to SSH into private EC2 instances
+  * Is the public subnet which is connected to all other private subnets
+  * SG must be tightened
+  * Should only have port 22 on the public CIDR available
+  * NAT instances can be used as a bastion server/host
+  * SG should only allow inbound from the internet on port 22
+  * SG of instances must allow SG of the Bastion Host or the private ip of the Bastion host access
   
 ### Egress-only Internet Gateway:
   * Similar to NAT Gateway, but for ipv6 only
