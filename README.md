@@ -443,6 +443,11 @@ S3 Bucket Policies vs Access permissions:
    * Dashboards/reports/alerts
    * Can also analyze CloudTrail logs (for suspicious activity)
 
+### AWS Shield: 
+  * DDOS protection service that safeguards application running on AWS (layer 3/4)
+  * Free for all AWS customers
+  * AWS Shield Advanced costs $, but more sophisticated services concerning: ELB, EC2, CloudFront, Global Accelerator, Route 53
+
 ### Security Groups (SGs):
   * Stateful connection, allowing inbound traffic to the necessary ports, thus enabling the connection
   * If adding an Internet Gateway, ensure the SG allows traffic in
@@ -501,6 +506,13 @@ S3 Bucket Policies vs Access permissions:
   * Created and attached to the VPC from which you want to create site-to-site-VPN
   * Necessary for setting up AWS Direct Connect
 
+#### AWS VPN (AWS Site-to-Site VPN):
+  * Establish on-ongoing VPN connection between on-premises data center (customer gateway) and Amazon VPC (VGW)
+  * Utilizes IPSec (encrypted tunnel) to establish encrypted network connectivity between your internet and Amazon VPC over the internet
+  * Connection can be configured in minutes and is a good solution if you have an immediate need, have low to modest bandwidth requirements and can tolerate the inherent variability of Internet-based connectivity
+  * Need to configure VGW and Customer Gateway
+  * Ensure Route Propagation enabled for VGW in the route table associated with your subnets
+  * If ping needed (EC2) from on-premises, add ICMP protocol on the inbound SGs
 ### Transit VPC:
   * Uses customer managed EC2(s) VPN instances in a dedicated transit VPC resources with an IGW
   * Data transfer charged for traffic traversing this VPC an again from the transit VPC to on-premises network or different AWS regions
@@ -590,6 +602,38 @@ S3 Bucket Policies vs Access permissions:
   * Must update route tables
 
 ## Storage
+
+EBS:
+  * Volumes exist on EBS => virtual hard disk
+  * Snapshots exist on S3 (point in time copy of disk)
+  * Snapshots are incremental-only the blocks that have changed since the last snapshot are move to S3
+  * First snapshot might take more time
+  * Best to stop root EBS device to take snapshots, though you don't have to
+  * Provisioned IOPS (PIOPS [io1/io2])=> DB workloads/multi-attach
+  * Multi-attach (EC2 =>rd/wr)=>attach the same EBS to multiple EC2 in the same AZ; up to 16 (all in the same AZ)
+  * Can change volume size and storage type on the fly
+  * Always in the same region as EC2
+  * To move EC2 volume=>snapshot=>AMI=>copy to destination Region/AZ=>launch AMI
+  * EBS snapshot archive (up to 75% cheaper to store, though 24-72 hours to restore)
+
+EFS: 
+  * Linux based only
+  * Can mount on many EC2(s)
+  * Use SG control access
+  * Connected via ENI
+  * 10GB+ throughput
+  * *Performance mode* (set at creation time): 
+    * General purpose (default); latency-sensitive; use cases (web server, CMS); 
+    * Max I/O-higher latency, throughput, highly parallel (big data, media processing)
+  * *Throughput mode*: 
+    * Bursting (1 TB = 50 MiB/s and burst of up to 100 MiB/s)
+    * Provisioned-set your throughput regardless of storage size (eg 1 GiB/s for 1 TB storage)
+  * *Storage Classes*, Storage Tiers (lifecycle management=>move file after N days):
+    * Standard: for frequently accessed files
+    * Infrequent access (EFS-IA): cost to retrieve files, lower price to store
+  * *Availability and durability*: 
+    * Standard: multi-AZ, great for production
+    * One Zone: great for development, backup enabled by default, compatible with IA (EFS One Zone-IA)
 
 ### AWS FSx:
   * Launch 3rd party high performance file system(s) on AWS
