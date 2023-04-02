@@ -479,7 +479,7 @@ S3 Bucket Policies vs Access permissions:
    * Can also analyze CloudTrail logs (for suspicious activity)
 
 ### AWS WAF
-  * *Can protect: Cloudfront, API Gateway, ALB, Appsync, Cognito User Pool
+  * *Can protect: Cloudfront, API Gateway, ALB, Appsync, Cognito User Pool*
   * Web application firewall that monitors HTTP/HTTPS requests forwarded to Cloudfront, ALB, or API Gateway and lets you control access to content (via Web ACL rules)
     * Web ACL rules can be associated with Cloudfront, but not an S3 Bucket policy
     * Web ACL rules can't be associated with a NACL
