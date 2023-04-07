@@ -1051,6 +1051,46 @@ EFS:
 ### AWS Compute Optimizer:
   * Recommends optimal AWS Compute resources (λ, EC2, EBS) for workloads to reduce costs and improve performance by using ML to analyze historical utilization metrics
   * Helps you choose optimal EC2 types, including those part of Autoscaling group based on utilization
+  
+### AWS Trusted Advisor:
+  * High level AWS account assessment analysis to provide recommendations utilizing the following metrics:
+   * *Cost Optimization*: 
+     * Low utilization EC2 instances, idea load balancers, under utilized EBS volumes
+     * Reserved instances and Savings Plan optimization
+   * *Performance*: 
+     * High Utilization EC2 instances, Cloudfront CDN optimizations
+     * EC2 to EBS throughput optimizations, Alias records recommendations
+   * *Security*:
+     * MFA enabled on Root Account, IAM Key rotation, exposed access keys
+     * S3 permissions for public access, SGs with unrestricted ports
+   * *Fault Tolerance*: 
+     * EBS snapshot age, AZ load balance
+     * ASG Multi-AZ, RDS Multi-AZ, ELB configuration
+   * *Service Limits*: checks reserved instances 30 days before/after
+  * Core Checks and recommendations=>all customers
+  * Can enable weekly email notification from console
+  * Full Trusted Advisor-available for Business and Enterprise plans: 
+    * Ability to set Cloudwatch Alarms when reaching limits
+    * Programmatic Access using AWS Support API
+
+### AWS Cost Explorer:
+  * Service to help identify under-utilized EC2 instances that may be downsized on an instance basis within the same instance family, and also understand the potential impact on your AWS bill by taking into account your Reserved instances and Savings Plan
+  * Visualize, understand and manage your AWS costs and usage over time
+  * Create custom reports that analyze cost and usage data
+  * Analyze your data at a high level: total costs and usage across all accounts
+  * Or analyze monthly, hourly, resource level granularity
+  * Choose an optimal Savings Plan (to lower your bill)
+  * Forecast usage up to 12 months based on previous usage
+  
+### AWS Well-Architected Framework/Tool:
+  * Pillars:
+    * Operational excellence-run/monitor system/assets=>increase business value through RA/mitigation
+    * Security-protect=>increase business value through RA/mitigation
+    * Reliability-recover, dynamically allocate, mitigate despite misconfiguration/problem(s)
+    * Performance efficiency-meet system requirements and maintenance through changes
+    * Cost optimization-deliver at lowest price point
+    * Sustainability-minimize environmental impact
+  * Tool scans workloads for these criteria
 
 ## Miscellaneous
 
@@ -1228,6 +1268,7 @@ EFS:
 | PHI | Protected Health Information |
 | PII | Personally Identifiable Information |
 | PPS | Packets Per Second |
+| RA | Risk Assessment |
 | RAM | AWS Resource Access Manager |
 | RDS | Relational Database |
 | SAML | Security Assertion Markup Language |
