@@ -851,6 +851,22 @@ EFS:
 
 ### Relational
 
+#### AWS RDS:
+  * Autoscaling when running out of storage
+  * Max read replicas: 5
+  * Read replicas are not equal to a DB
+  * Read replicas cross region/AZ incur $
+  * IAM Auth
+  * Integrates with Secrets Manager
+  * Supports MySQL, MariaDB, Postgres, oracle, aurora, MySQL
+  * Fully customized => MS SQL Server or RDS Custom for Oracle => can use ssh or SSM session manager; full admin access to OS/DB
+  * At rest encryption via KMS
+  * Use SSL for data in transit to ensure secure access
+  * Use permission boundary to control the maximum permissions employees can grant to the IAM principals (eg: to avoid dropped/deleted tables)
+  * Multi-AZ: 
+    * Can be set at creation or live
+    * Synchronous replication, at least 2 AZs in region, while Read replicas => asynchronous replication can be in an AZ, cross-AZ or cross Region
+
 #### RDS Autoscaling:
   * Supports all RDS
   * Max storage threshold is the threshold you set for the auto scaling the DB instance
@@ -879,6 +895,7 @@ EFS:
   * Lower price
   * At rest encryption via KMS
   * 2 copies in each AZ, with a minimum of 3 AZ => 6 copies
+  * max read replica: 15 (autoscales)
   * Shareable snapshots with other accounts
   * Replicas: MySQL, Postgres, or Aurora
   * Replicas can autoscale
@@ -912,6 +929,12 @@ EFS:
   * Redshift Spectrum queries use much less of the formal cluster's processing capacity than other queries
 
 ### NoSQL
+
+#### Amazon Keyspaces (for Apache Cassandra):
+  * Scalable, highly available, server less, and managed Apache Cassandra compatible (NoSQL) DB service offering consistent single digit millisecond server-side read/write performance, while also providing HA and data durability
+  * Uses the Cassandra Query Language (CQL)
+  * All writes are replicated 3x across multiple AWS AZ for durability and availability
+  * Tables can scale up and down with virtually unlimited throughput and storage.  There is no limit on the size of a table or the number of rows you can store in a table. 
 
 #### Amazon DocumentDB:
   * Effectively the AWS "Aurora" version of MongoDB
