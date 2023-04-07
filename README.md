@@ -219,6 +219,40 @@ S3 Bucket Policies vs Access permissions:
   * Dedicated: 1 GBps to 10 GBps
   * Hosted: 50 MBps, 500 MBps, up to 10 GBps
 
+### CIDR:
+  * VPCs per region: 5
+  * Subnets per VPC: 200
+  * If EC2 can't launch in subnet examine IPV4 CIDR (even if IPV6 used)
+  * Used in SG rules
+  * IPV4 can't be disabled in VPC
+  * Octets (1st 2nd 3rd 4th)
+    * /32 => no octet change
+    * /24 => last octet change
+    * /16 => last 2 octets change
+    * /8 => last 3 octets change
+    * /0 =>all octets can change
+  * Example subnet masks:
+    * /32 => 2^0 => 1 IP       => 192.168.0.0
+    * /31 => 2^1 => 2 IPs      => 192.168.0.0 => 192.168.0.1
+    * /30 => 2^2 => 4 IPs      => 192.168.0.0 => 192.168.0.3
+    * /29 => 2^3 => 8 IPs      => 192.168.0.0 => 192.168.0.7
+    * /28 => 2^4 => 16 IPs     => 192.168.0.0 => 192.168.0.15
+    * /27 => 2^5 => 32 IPs     => 192.168.0.0 => 192.168.0.31
+    * /26 => 2^6 => 64 IPs     => 192.168.0.0 => 192.168.0.63
+    * /25 => 2^7 => 128 IPs    => 192.168.0.0 => 192.168.0.127
+    * /24 => 2^8 => 256 IPs    => 192.168.0.0 => 192.168.0.255
+    * /16 => 2^16 => 65536 IPs => 192.168.0.0 => 192.168.255.255
+    * /0 => All IPs            => 0.0.0.0 => 255.255.255.255
+
+### VPC CIDR unavailable IPs in subnets:
+  * AWS reserves 5 addresses (first 4 and last 1) in each subnet that can't be used
+  * Example 10.0.0.0/24:
+    * 10.0.0.0=>network address
+    * 10.0.0.1=>reserved by AWS for the VPC router
+    * 10.0.0.2=>AWS for mapping Amazon provided DNS
+    * 10.0.0.3=>AWS for future use
+    * 10.0.0.255=>Network broadcast address.  AWS doesn't support broadcast in VPC, therefore this is reserved
+
 ## EC2
 
 ### Instance Purchasing Options:
@@ -1225,6 +1259,7 @@ EFS:
 | AZ | Availability Zones |
 | CDC | Change Data Capture |
 | CDN | Content Delivery Network |
+| CIDR | Classless Inter-Domain Routing |
 | CMS | Content Management System |
 | DAX | DynamoDB Accelerator |
 | DB | Database |
