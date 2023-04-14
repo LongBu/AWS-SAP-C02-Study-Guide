@@ -168,6 +168,70 @@ S3 Bucket Policies vs Access permissions:
   * If targets specified via ip(s) => route traffic to instance via private ip from one or more network interfaces, allowing multiple applications to use the same point
   * Doesn't support SG(s), based on target configurations, ip of the client, or the *private ip address(es) of the NLB must be allowed on the web server's SG*
 
+### AWS Global Accelerator:
+  * Network service that helps improve availability and performance of the application(s) to global users
+  * Provides (2) Anycast/static ip addresses providing a fixed entry point (no client cache issues=>static ip) at edge locations (from/to) to your application(s) and eliminates complexity of managing specific ip addresses for different regions and AZs.
+  * Always routes user traffic, leveraging the internal AWS network, to the optimal, lowest latency endpoint based on performance, reacting instantly to HC changes, user's location, and policies configured.
+  * Failover < 1 minute for unhealthy application(s)=>great for disaster recovery
+  * Good fit for non-HTTP use cases such as sports/gaming (UDP), IOT (MQTT), or VOIP
+  * Works with Elastic IP, EC2, ALB, NLB, public or private
+  * Can control traffic using traffic dials within an endpoint group 
+
+### Amazon Route 53:
+  * AWS service for DNS routing/Domain registration
+  * More Route 53 traffic, more $
+  * ELB can't throttle
+  * ELB doesn't have predefined ipv4 addresses (resolve using DNS name)
+  * Alias (host name to the AWS resource)=> better choice mostly (not 3rd party websites)
+  * CNAME (hostname to hostname)=>can't use the root domain utilizing this
+  * Common DNS types:
+    * SOA records
+    * NS records
+    * A records
+    * MX records
+    * PTR records
+  * TTL is mandatory for all records except alias
+  * Routing Types:
+    * Simple
+    * Multi value=> kind of like simple
+    * Weighted
+    * Latency
+    * Geolocation (note this doesn't really help with latency)
+    * Geoproximity (traffic flow only)
+  * Can't mitigate DNS caching
+  * External certificates are registered with 3rd party NS registrar
+  * HC=> used for failover (ALB=>http(s) HCs)
+  * Route 53 HC(s) only for public resources, VPC must make a CloudWatch metric/alarm for HC to monitor
+  * Alias can't reference EC2 DNS name
+
+### Route 53 Resolver:
+  * Able to connect to AWS infrastructure and/or infrastructure outside AWS
+  * AWS side:
+    * By default, Route 53 Resolver automatically answers DNS queries for local VPC domain names with EC2 instances
+    * You can integrate DNS resolution between Route 53 resolver and DNS resolvers on your on-premises network by configuring forwarding rules
+    * *DNS revolvers on the on-premises network can forward DNS queries to Route 53 Resolver **via an inbound endpoint ONLY**, not an outbound endpoint, to resolve AWS services to infrastructure
+  * On-premises:
+    * *Route 53 Resolver can conditionally forward queries to resolvers on the on-premises network via an **outbound endpoint ONLY**, not an inbound endpoint to resolve to on-premises infrastructure*
+    * To conditionally forward queries, you need to create Resolver rules that specify the domain names for the DNS queries that you want to forward and the IPs of the DNS resolvers on the on-premises network that you want to forward the queries to
+
+### Route 53 Records:
+  * Each record contains:
+    * Domain/subdomain name (eg: example.com)
+    * Record type (eg: A or AAAA)
+    * Value (eg: 12.34.56.89)
+    * Routing Policy: how to respond to queries
+    * TTL: amount of time the record is cached at DNS Resolvers
+  * Top level Domain (TLD) =>.com, .org, etc.
+  * Second Level Domain (SLD)=>google.com
+  * Record Types: 
+    * A-maps to ipv4
+    * AAAA-maps to ipv6
+    * CNAME (must be A or AAAA record)
+    * NS-Name servers for the *Hosted Zone*, which is a container for records that control route traffic to domain(s)/subdomain(s)
+  * Public hosted zones=>traffic on the internet
+  * Private hosted zones=>traffic to VPC(s)
+  * Targets: ELB, Cloudfront, API Gateway, Elastic Beanstalk environment, S3 Website(s), VPC interface endpoints, Global Accelerator, Route 53 record in the same hosted zone
+
 ### Amazon CloudFront
   * Serverless service used to scale, save network bandwidth, and deliver entire website(s), including dynamic, static, streaming, and interactive content using a global network of edge locations, sending requests to nearest edge location through such options as:
    * Web distribution - websites (no architecture change)
