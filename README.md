@@ -119,6 +119,25 @@ S3 Bucket Policies vs Access permissions:
 
 ## Networking
 
+### API Gateway:
+  * Essentially a front door to AWS resources (λ/EC2/Dynamodb/etc.)
+  * Can cache for increased performance
+  * Able to throttle
+  * Low cost
+  * Scales
+  * Can enable/disable CORS
+  * Handle security (Authentication [*Integrates with Cognito User Pools*]/Authorization[IAM-intnernal AWS]) 
+  * Create API keys
+  * Swagger/Open API import to define APIs
+  * Custom Domain name HTTPS security integration with AWS ACM
+    * If Edge-Optimized=>certificate in US-East-1
+    * If Regional=>certificate in API Gateway region
+    * Must setup CNAME or A-Alias record in Route 53
+  * Endpoints:
+    * Edge-Optimized: Cloudfront Edge Locations (API GW 1 region)
+    * Regional: clients/API GW in same region
+    * Private: VPC accessible via VPC endpoint with resource policy
+
 ### Load Balancers
 
 #### Application Load Balancer (ALB):
