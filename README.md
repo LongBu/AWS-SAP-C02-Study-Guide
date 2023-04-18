@@ -1264,6 +1264,15 @@ S3 Bucket Policies vs Access permissions:
 
 ## Miscellaneous
 
+### AWS Transfer Family
+  * Fully managed service for file transfers into/out of Amazon S3 or EFS using FTP
+  * Supported Protocols: AWS Transfer for FTP, FTPS, SFTP
+  * Managed infrastructure, scalable, reliable, HA (multi-AZ)
+  * Pay per provisioned endpoint per hour and data transfers in GB
+  * Store and manage user's credentials within the service
+  * Integrate with existing authentication systems (Microsoft AD, LDAP, Okta, Cognito)
+  * Usage: sharing files, public datasets, CRM, ERP, etc.
+
 ### AWS Amplify:
   * Complete Solution allowing front end/mobile developers to easily build, ship and host full-stack applications on AWS harnessing various AWS services as use cases evolve
   * Can use Flutter, React Native, Native languages, Web=>React, Vue, Angular, Ionic
