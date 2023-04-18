@@ -817,7 +817,7 @@ S3 Bucket Policies vs Access permissions:
 
 ## Storage
 
-EBS:
+### EBS:
   * Volumes exist on EBS => virtual hard disk
   * Snapshots exist on S3 (point in time copy of disk)
   * Snapshots are incremental-only the blocks that have changed since the last snapshot are move to S3
@@ -830,7 +830,18 @@ EBS:
   * To move EC2 volume=>snapshot=>AMI=>copy to destination Region/AZ=>launch AMI
   * EBS snapshot archive (up to 75% cheaper to store, though 24-72 hours to restore)
 
-EFS: 
+### AMI Type (EBS vs Instance Store):
+  * Instance Store based volumes provide high random I/O performance
+  * Instance Store=>Ephemeral Storage
+  * Instance Store can't be stopped.  If the host fails data is lost
+  * EBS backed instances can be stopped and you won't lose data
+  * Can reboot both
+  * By default, both Root Volumes will be deleted on termination.  However, EBS volumes, you can tell AWS to keep the root device volume
+  * *Throughput optimized HDD and Cold HDD* can't be used as boot volumes
+  * Boot volumes: gp2, gp3, io1, io2, and magnetic (std)
+  * EBS volumes are specific to AZ, though can be migrated to other AZ via snapshots
+
+### EFS: 
   * Linux based only
   * Can mount on many EC2(s)
   * Use SG control access
