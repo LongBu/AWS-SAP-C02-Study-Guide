@@ -1218,6 +1218,29 @@ S3 Bucket Policies vs Access permissions:
 
 ## Optimization
 
+### AWS Elasticache
+  * Good to improve latency and throughput for read heavy applications or compute intensive workloads
+  * Good for storing sessions of instances
+  * Good for performance improvement of DB(s), though use of involves heavy application code changes
+  * Must provision EC2 instance type(s)
+  * IAM auth no supported
+  * Redis versus Mem Cached:
+    * Redis:
+      * backup and restore features
+      * read replicas to scale reads/HA
+      * data durability using AOF persistence
+      * multi AZ with failover 
+      * Redis sorted sets are good for leaderboards
+      * Redis Auth tokens enable Redis to require a token (password) before allowing clients to execute commands, thus improving security (SSL/Inflight encryption)
+      * Fast in-memory data store providing sub-millisecond latency, Hippa compliant, replication, HA, and cluster sharding
+    * Mem Cached:
+      * Multinode partitioning of data (sharing)
+      * No replication (HA)
+      * Non persistence
+      * No backup/restore
+      * Multithreaded
+      * Supports SASL auth
+
 ### AWS Compute Optimizer:
   * Recommends optimal AWS Compute resources (λ, EC2, EBS) for workloads to reduce costs and improve performance by using ML to analyze historical utilization metrics
   * Helps you choose optimal EC2 types, including those part of Autoscaling group based on utilization
