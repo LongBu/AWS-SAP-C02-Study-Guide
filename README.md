@@ -1221,6 +1221,19 @@ EFS:
   * Pre-built UI components
   * Figma => code => bind to data sources
   * Git configurable
+  
+ ### AWS Batch:
+  * Fully managed batch processing at any scale using dynamically launched *EC2 instances (spot)*
+  * Job with a start and an end (not continuous)
+  * Can run 100,000s of computing batch jobs
+  * You submit/schedule batch jobs and AWS Batch handles it
+  * Provisions right amount of compute/memory
+  * Batch jobs are defined as *docker images and run on ECS*
+  * Helpful for cost optimization and focusing less on infrastructure
+  * No time limit
+  * Any run time packaged in docker image
+  * Rely on EBS/instance store for disk space
+  * Advantage over λ=>time limit, limited runtimes, limited disk space
 
 ### AWS Wavelength: extend vpc and it's resources via desired subnets to include a wavelength zone, embedding within 5G networks providing ultra low latency
 
