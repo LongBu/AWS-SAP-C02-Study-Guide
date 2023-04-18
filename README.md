@@ -168,6 +168,13 @@ S3 Bucket Policies vs Access permissions:
   * If targets specified via ip(s) => route traffic to instance via private ip from one or more network interfaces, allowing multiple applications to use the same point
   * Doesn't support SG(s), based on target configurations, ip of the client, or the *private ip address(es) of the NLB must be allowed on the web server's SG*
 
+#### Connection Draining (ELB)/Deregistration Delay (ALB and NLB):
+  * Time to complete "inflight request(s)" while instance is unhealthy/de-registering
+  * Stops sending new request(s) to EC2 instance which is de-regisitering
+  * Between 1 to 3600 seconds (default: 300 seconds)
+  * Can be disabled (set to 0 seconds)
+  * Set to low value if requests are short
+
 ### AWS Global Accelerator:
   * Network service that helps improve availability and performance of the application(s) to global users
   * Provides (2) Anycast/static ip addresses providing a fixed entry point (no client cache issues=>static ip) at edge locations (from/to) to your application(s) and eliminates complexity of managing specific ip addresses for different regions and AZs.
