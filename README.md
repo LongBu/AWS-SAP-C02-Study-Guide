@@ -841,6 +841,18 @@ S3 Bucket Policies vs Access permissions:
   * Boot volumes: gp2, gp3, io1, io2, and magnetic (std)
   * EBS volumes are specific to AZ, though can be migrated to other AZ via snapshots
 
+### AMI Encrypted vs Unencrypted:
+  * When AMI copied to another region, automatically creates a snapshot in destination region
+  * Snapshots of encrypted volumes are encrypted
+  * Volumes from encrypted snapshots are encrypted
+  * Can only share unencrypted snapshots (shared with other AWS accounts or made public)
+  * Can encrypt root device volumes upon creation of EC2 instance
+  * To create an encrypted volume that wasn't encrypted:
+    * Create unencrypted snapshot of root device volume
+    * Create a copy and select the encrypt option
+    * Create AMI from snapshot
+    * Use the encrypted AMI to launch an encrypted instance
+
 ### EFS: 
   * Linux based only
   * Can mount on many EC2(s)
