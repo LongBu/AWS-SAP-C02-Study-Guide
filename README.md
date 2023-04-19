@@ -469,6 +469,18 @@ S3 Bucket Policies vs Access permissions:
   * Can't use hibernate beyond 60 days
   * Available for the following EC2 Options: On-Demand, Reserved, and Spot Intances
   * Use cases: long-running processing, saving memory state, services that take a long time to initialize
+  
+### Elastic Fabric Adapter:
+  * Improve ENA *for HPC*, only works for Linux
+  * Enabled with *AWS Parallel Cluster*
+  * Great for inter-node communications, tightly coupled workloads
+  * Leverage MPI standard
+  * Bypasses the underlying Linux OS to provide low-latency, reliable transport
+
+### EC2 Enhanced Networking:
+  * Higher bandwidth, higher PPS, lower latency
+  * Option 1: ENA up to 100GBps
+  * Option 2: Intel 82599VF up to 10 GBps (legacy)
 
 ## Containers
 
@@ -814,6 +826,12 @@ S3 Bucket Policies vs Access permissions:
   * Similar to NAT Gateway, but for ipv6 only
   * Allows instances in VPC outbound connections over ipv6 while preventing the internet to initiate an ipv6 connection to your instance(s)
   * Must update route tables
+
+### AWS CloudHSM:
+  * Dedicated HSM AWS service used to meet corporate, contractual, regulatory, compliance requirements
+  * Allows secure generation, storage, and management of cryptographic keys used for encryption in a way that the keys are only accessible to you via access to a temper resistant hardware device
+  * Used only within a VPC
+  * used for DB/data warehouse decryption/encryption
 
 ## Storage
 
@@ -1192,6 +1210,18 @@ S3 Bucket Policies vs Access permissions:
     * label data
     * train and tunde model(s)
     * serve api traffic against the model(s)
+    
+### Amazon Athena:
+  * Serverless query service enabling analysis and querying of data in S3 using standard SQL, while allowing more advanced queries (joins permitted)
+  * Compress data for smaller retrieval
+  * Use target files (> 128 MB) to minimize overhead
+  * $5.00 per TB scanned
+  * Commonly used with Amazon Quicksight
+  * Federated query allows SQL queries across relational, object, non-relational, custom (AWS or on-premisis) using Data Source Connectors that run on λ with results being returned and stored in S3
+
+### S3/Glacier Select:
+  * Simple SQL queries (no joins)
+  * Glacier Select input is a csv file with an S3 Select Statement
     
 ## Infrastructure as Code (IAC)
 
