@@ -481,6 +481,46 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Higher bandwidth, higher PPS, lower latency
   * Option 1: ENA up to 100GBps
   * Option 2: Intel 82599VF up to 10 GBps (legacy)
+  
+### AWS Scaling Policies:
+  * Dynamic Scaling:
+    * *Target-Tracking* scaling: most simple/easy to setup (eg: I wan the average ASG CPU to stay around 40%)
+    * *Simple/Step* scaling:
+      * When Cloudwatch is triggered (example CPU > 70%), then add 2 units
+     * When Cloudwatch is triggered (example CPU < 30%), then remove 1 unit
+  * Scheduled Actions:
+    * Anticipate a scaling based on known usage patterns (eg: increase the minimum capacity to 10 at 5PM on Fridays)
+  * Predictive Scaling: continuously forecast load and schedule scaling ahead
+  * Scaling Cool down: following in/out, no further in/out (default 300 seconds)
+  * Good metrics: CPU utilization, Request Count Per Target, Average Network In/Out, any custom Cloudwatch metric
+
+### Amazon EC2 Auto Scaling:
+  * Enables users to automatically launch/terminate strictly EC2 instances based on configuration parameters, such as when a specific metric exceeds a threshold (via CloudWatch) or during a certain scheduled period of time to scale appropriately
+  * Schedule action sets the min, max, or desired sizes to what is specified by the scheduled action. Min and max set a range of indeterminate instances, while desired specifies what is needed at a said time
+  *  Relies on predictive scaling, which uses ML to determine the right amount of resource capacity necessary to maintain a target utilization for EC2 instances
+  * Target tracking or simple tracking can't be used to effect scaling actions at a designated time
+  * *Launch configuration* can't be use combination of spot and on-demand instances
+  * *Launch templates* can mix instances
+  * Can't modify launch configurations once created
+  * Do not pay to use the service, but do pay for the underlying resources and services used by it.  
+
+### AWS Auto Scaling:
+  * Centralized service to manage configuration fro a wide range of scalable resources, such as EC2 instances/spot fleets/Auto Scaling groups, ECS, DynamoDB global secondary indexes or tables (RCU/WCU) or RDS (Aurora) read replicas based on utilization targets or metrics and thresholds for applications hosted on AWS
+  * Introduced scaling plans which manage resource utilization to target utilization such as CPU at 50%, which could add/remove capacity to achieve
+  * Can configure a unified scaling polity per application, via eg: Cloudformation stack or a set of resource tags.  From this means, scalable resources that support the application can be added to the scaling plan, and define the utilization targets based on which of the resources should scale.  Can prioritize availability, cost optimization or a combination of both.  
+  * Do not pay to use the service, but do pay for the underlying resources and services used by it.  
+
+### ASG not terminating EC2 instances
+  * Doesn't terminate instance(s) that came into service based on EC2 status check and ELB health checks until grace period expires
+  * Doesn't immediately terminate instances with an impaired status or instances that fail to report data for status checks, which for the latter usually happens when there is insufficient data for the status check metric in Amazon Cloudwatch
+  * By default, EC2 Autoscaling doesn't use ELB health checks when the group's health check configuration is set to EC2.  This results in the EC2 Autoscaling not terminating instances that fail ELB health checks.  If an instance status is out of service on the ELB console, but is healthy on the Amazon EC2 Autoscaling console, confirm that the health check type is set to ELB
+
+### Amazon EC2 Autoscaling Termination: the following list is in decreasing precedence
+  * Determine which AZ has the most instances and at least one instance that isn't protected from scale in
+  * Determine which instances to terminate so as to align the remaining instances to the allocation strategy for the on-demand/spot instances it is terminating (template)
+  * Determine if the instance uses the oldest launch template or config (config is terminated first before template if there is a mix of the two)
+    * Template/config => choose the instance(s) using the old version
+  * If multiple unprotected instances are to terminate, determine which instances are closest to the next billing hour (note linux/ubuntu instances are billed by the second)
 
 ## Containers
 
