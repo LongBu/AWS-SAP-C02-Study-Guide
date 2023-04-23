@@ -62,15 +62,15 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ## Identity and Access Management (IAM)
 
-Allow vs Deny: If any denial in policy is present, the resource is denied regardless of allow statement(s).  The default behavior is to deny resource(s) and resource(s) need allow statements to be allowed.  
+### Allow vs Deny: If any denial in policy is present, the resource is denied regardless of allow statement(s).  The default behavior is to deny resource(s) and resource(s) need allow statements to be allowed.  
 
-LDAP: software protocol for enabling the location of data about organizations, individuals and other resources in a network.  
+### LDAP: software protocol for enabling the location of data about organizations, individuals and other resources in a network.  
 
-Identity federation: a system of trust between two parties for the purpose of authenticating users and conveying information needed to authorize their access to resources.
+### Identity federation: a system of trust between two parties for the purpose of authenticating users and conveying information needed to authorize their access to resources.
 
-User groups can only contain users
+### User groups can only contain users
 
-S3 Bucket Policies vs Access permissions:
+### S3 Bucket Policies vs Access permissions:
   * Used to add or deny permissions across some or all S3 objects in a bucket, enabling central management of permissions
   * Can grant users within an AWS account or other AWS accounts to S3 resources
   * Can restrict based on request time (Date condition), request sent using SSL (Boolean condition), requester IP Address (Ip address condition) using policy keys
@@ -1222,6 +1222,15 @@ S3 Bucket Policies vs Access permissions:
 ### S3/Glacier Select:
   * Simple SQL queries (no joins)
   * Glacier Select input is a csv file with an S3 Select Statement
+  
+### Amazon Quicksight:
+  * BI/analytics sereverless ML service used to build interactive visualizations, perform ad-hoc analysis without paying for integrations of data and leaving the data uncanned for exploration
+  * Integrates with RDS 
+  * In memory computation using Spice Engine
+  * Column-Level security (CLS)
+  * Can share analysis (if published) or the dashboard (read only) with users or groups
+
+### Amazon Managed Grafana - Managed service of data visualizations to analyze, monitor, set alarms on metrics, logs and traces across multiple data sources.  These features can be integrate into shareable dashboards
     
 ## Infrastructure as Code (IAC)
 
