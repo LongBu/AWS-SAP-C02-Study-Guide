@@ -315,6 +315,20 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
    * Limited life time
    * IP ranges
    * Trusted signers (which AWS accounts can create signed URLs)
+   
+### AWS Global Accelerator vs Cloudfront:
+  * They both use AWS global network and edge locations around the world
+  * Both services integrate with AWS Shield
+  * Cloudfront: 
+    * Improves performance for both cacheable content
+    * Dynamic content (api acceleration and dynamic site delivery)
+    * Content served at edge
+  * Global Accelerator:
+    * Improve performance of applications using TCP/UDP
+    * Proxying packets at edge to applications running in one or more AWS Regions
+    * Good fit for non-HTTP cases (eg: Gaming [UDP], IOT (MQTT), VOIP)
+    * Good for HTTP use cases requiring static IP addresses
+    * Good for HTTP use cases requiring deterministic, fast regional failover 
 
 ### AWS PrivateLink:
   * Service allowing you to open your service in VPC to another VPC (using privatelink)
