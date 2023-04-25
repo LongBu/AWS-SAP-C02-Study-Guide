@@ -139,6 +139,19 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
     * Private: VPC accessible via VPC endpoint with resource policy
 
 ### Load Balancers
+  * Sticky Sessions (disable if you want traffic to flow to all instances [eg: good for read only at the instance level]:
+    * CLB=> session tied to EC2 instance
+    * ALB=> tied to Target Group Level
+  * Can check HC of instances
+  * Cross Zone Load Balancing enables a balance of traffic to be routed externally to another AZ, equally distributing across all instances
+  * Fixed hostname
+  * Can have path route patterns that dictate where traffic goes (AZ-inst[s])
+    * CLB: HTTP(S), TCP, SSL (secure TCP)
+    * ALB: HTTP(S), web sockets
+    * NLB: TCP, TLS (secure TCP), UDP
+    * GLB: layer 3 (IP Protocol)
+  * Use X-Forwarded-For header to see IPv4 address (V2)
+  * 504 Error means gateway timed out, application not responding within idle timeout period (attributed to DB or Web Server)
 
 #### Application Load Balancer (ALB):
   * Best suited for load balancing HTTP(s) traffic, operating @layer 7 (websockets)
@@ -156,7 +169,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Cross zone LB is free and disabled by default
   * Integrates with Cognito User Pools
 
-#### Elastic Load Balancer (ELB):
+#### Elastic Load Balancer (ELB/CLB):
   * Legacy load balancer that can load balance http(s) applications and use layer-7 specific features, such as X-Forwarded and sticky sessions
   * Can also use strict Layer 4 load balancing for applications that rely purely on TCP protocol
   * HTTP traffic following the load balancer doesn't need encrpytion => port 80
@@ -193,6 +206,20 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Between 1 to 3600 seconds (default: 300 seconds)
   * Can be disabled (set to 0 seconds)
   * Set to low value if requests are short
+  
+### Health Checks
+  * Only pass when HTTP endpoint response: 2xx/3xx
+  * Route 53 health check => Automated DNS Failover:
+    * Works with weighted routing, latency-based, geolocation, multivalue routing policies
+    * Doesn't work with simple routing policy
+    * HC that monitors an endpoint (application, server, other AWS resource)
+    * HC that monitors other health check(s) or combination of them (Calculated HC)
+      * Can use use OR, AND, NOT
+      * Can monitor up to 256 Child HC(s)
+      * Specify how many must pass to make parent HC pass
+  * HC that monitor Cloudwatch Alarms from Cloudwatch metrics (helpful for VPC private resources as VPC inaccessible endpoint to HC)
+  * HC can pass/fail based on text of the first 5120 bytes of response
+  * Configure router/firewall to allow incoming Route 53 HC requests
 
 ### AWS Global Accelerator:
   * Network service that helps improve availability and performance of the application(s) to global users
@@ -1147,6 +1174,28 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Reduces request time from milliseconds to microseconds
   * Best and easiest option to improve DynamoDB peformance 
   * If asked about NoSQL with in-memory caching => DAX
+  
+### AWS DB Migration Service (AWS DMS):
+  * Service to transition supported sources to relation DB, data warehouses, streaming platforms, and other data stores in AWS without new code (or any?)
+  * Sources: 
+    * On-premises and EC2 DBs: Oracle, MS SQL Server, MySQL, MariaDB, postgres, mongoDB, SAP, DB2
+    * Azure: Azure SQL DB
+    * Amazon RDS: all including Aurora
+    * S3
+  * Targets
+    * On-premises and EC2 DBs: Oracle, MS SQL Server, MySQL, MariaDB, postgres, SAP
+    * Amazon RDS: all including Aurora
+    * Amazon Redshift
+    * DynamoDB
+    * S3
+    * Elastic Search service
+    * Kinesis Data Streams
+    * DocumentDB
+  * Homogenous migration: Oracle => Oracle
+  * Heteregenous: Oracle => Aurora
+  * EC2 server runs replication software, as well as continuous data replication using Change Data Capture (CDC) [for new deltas] and DMS 
+  * Can pre-create target tables manually or use AWS Schema Conversion Tool (SCT) [runs on the same server] to create some/all of the target tables, indices, views, etc. (only necessary for heterogeneous case)
+
 
 ## Analytics
 
@@ -1520,6 +1569,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 | CDC | Change Data Capture |
 | CDN | Content Delivery Network |
 | CIDR | Classless Inter-Domain Routing |
+| CLB | Classic Load Balancer |
 | CMS | Content Management System |
 | DAX | DynamoDB Accelerator |
 | DB | Database |
