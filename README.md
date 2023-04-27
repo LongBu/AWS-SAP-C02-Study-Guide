@@ -1442,6 +1442,25 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ## Miscellaneous
 
+### Amazon MQ:
+  * Managed message broker service harnessing Apache Active MQ and Rabbit MQ allowing messaging abstracted away from application as a service
+  * Doesn't scale as much as SQS/SNS
+  * Runs on servers , can run in multi-AZ without failover
+  * Has both features (~SQS) and topic features (~SNS)
+
+### Amazon Appflow:
+  * Service to securely transfer data between applications (eg: salesforce, slack, service now, etc.) and AWS services like S3, redshift, or even non-AWS such as Snowflake and salesforce
+  * Can be scheduled, event driven, or on demand triggers
+  * Auto encrypted over public internet or privately via AWS PrivateLink
+  * Can go over private internet with applications that integrate with PrivateLink
+  * Can integrate filtration and validations
+
+### AWS Datasync:
+  * A schedulable online data movement and discovery service that simplifies and accelerates *data migration* to AWS or *moving data* between on-premises storage, edge locations, other clouds and AWS storage (AWS to AWS, too)
+  * Deployed VM AWS Datasync Agent used to convey data to the DataSync service over the internet or AWS Direct Connect.  Agent is unnecessary for AWS to AWS
+  * Directly within AWS =>S3/EFS/FSx for Windows File Server/FSx for Lustre/FSx open zfs/FSx for NetAp ONTAP
+  * File permissions and metadata are preserved
+
 ### AWS Transfer Family
   * Fully managed service for file transfers into/out of Amazon S3 or EFS using FTP
   * Supported Protocols: AWS Transfer for FTP, FTPS, SFTP
