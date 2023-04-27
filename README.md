@@ -16,7 +16,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 10. <a href="#storage">Storage</a>
 11. <a href="#database">Database</a>
 12. <a href="#analytics">Analytics</a>
-13. <a href="#infrastructure-as-code-iac-platform-as-a-service-paas">Infrastructure as Code (IAC) / Platform as a Service (PAAS)</a>
+13. <a href="infrastructure-as-code-iac--platform-as-a-service-paas">Infrastructure as Code (IAC) / Platform as a Service (PAAS)</a>
 14. <a href="#optimization">Optimization</a>
 15. <a href="#miscellaneous">Miscellaneous</a>
 16. <a href="#acronyms">Acronyms</a>
