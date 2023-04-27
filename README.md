@@ -16,7 +16,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 10. <a href="#storage">Storage</a>
 11. <a href="#database">Database</a>
 12. <a href="#analytics">Analytics</a>
-13. <a href="#infrastructure-as-code-iac">Infrastructure as Code (IAC)</a>
+13. <a href="#infrastructure-as-code-iac-platform-as-a-service-paas">Infrastructure as Code (IAC) / Platform as a Service (PAAS)</a>
 14. <a href="#optimization">Optimization</a>
 15. <a href="#miscellaneous">Miscellaneous</a>
 16. <a href="#acronyms">Acronyms</a>
@@ -1335,7 +1335,20 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ### Amazon Managed Grafana - Managed service of data visualizations to analyze, monitor, set alarms on metrics, logs and traces across multiple data sources.  These features can be integrate into shareable dashboards
     
-## Infrastructure as Code (IAC)
+## Infrastructure as Code (IAC) / Platform as a Service (PAAS)
+
+### AWS App Runner:
+  * Full managed service that makes it easy to deploy web applications/apis at scale, requiring no infrastructure
+  * Start with merely your code and/or container(s) to thereafter build and deploy
+  * VPC access support
+  * Automatic scaling, HA, LB, encryption
+  * Connect to DBs, cache and message queue services
+  * Use cases: Web applications, APIs, micro services, rapid production deployments
+
+### Amazon Elastic Beanstalk:
+  * Service to deploy applications as platform as a service (PAAS)
+  * Automatically handles capacity provisioning load balancing, auto scaling and application health monitoring
+  * Can manage OS, type of instances, DB(s), +/- AZ(s), HTTPS (for security) on load balancer, direct server log access without logging into application servers
 
 ### AWS CloudFormation:
   * Service to allow modeling, provisioning, and managing AWS and 3rd party resources via IAC at the fine graine level via template
@@ -1624,6 +1637,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 | OLAP | Online Analytical Processing |
 | OS | Operating System |
 | OU | Organizational Unit |
+| PAAS | Platform as a Service |
 | PHI | Protected Health Information |
 | PII | Personally Identifiable Information |
 | PPS | Packets Per Second |
