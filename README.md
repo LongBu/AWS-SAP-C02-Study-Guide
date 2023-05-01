@@ -1029,6 +1029,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 | Tape (interface) | iSCSI |
 | Volume (interface) | iSCSI |
 
+### Instance/DB snapshots:
+  * Stored in S3 bucket belonging to the same AWS region where instance is located
+  * You do not have direct access to the snapshots in S3, though you can share them
+
 ### S3
 
 #### S3 Batch Replication:
@@ -1441,6 +1445,22 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Tool scans workloads for these criteria
 
 ## Miscellaneous
+
+### Cloudwatch vs Cloudtrail vs AWS Config:
+  * Cloudwatch:
+    * Cloudwatch Contributor Insight=>helps analyze (VPC) logs
+    * Performance monitoring and dashboards (metrics, CPU, network, etc.)
+    * Events and Alerting
+    * Log aggregation and analysis
+    * Cloudwatch metric=>kinesis data firehose to S3 or 3rd parties in near real time
+  * CloudTrail: 
+    * Record API calls made within Account by everyone
+    * Can define trails for specific resources
+    * Global service
+  * AWS Config: 
+    * Record configuration changes
+    * Evaluate resources against compliance rules
+    * Get timeline of changes and compliance
 
 ### Amazon MQ:
   * Managed message broker service harnessing Apache Active MQ and Rabbit MQ allowing messaging abstracted away from application as a service
