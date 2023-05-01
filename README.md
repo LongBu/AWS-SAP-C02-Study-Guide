@@ -305,6 +305,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Supports field level encryption (not KMS) @edge to protecte sensitive data
   * Serverless, cheaper to scale
 
+### Unicast IP vs Anycast IP:
+  * Unicast: one server holds one IP
+  * Anycast: all servers hold the same ip and the client is routed to the nearest one
+
 ### CloudFront Signed URLs/Cookies:
   * Use signed URLs/cookies when you want to secure content to authorized users
   * Signed URL is for 1 individual file 
@@ -1445,6 +1449,14 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Tool scans workloads for these criteria
 
 ## Miscellaneous
+
+### AWS AppSync:
+  * Serverless grapnel and Pub/Sub API that simplifies application development through a single endpoint to securely query, update, or publish data
+  * Pub/Sub API => web socket from AWS published trigger(s)
+
+### AWS Step Functions:
+  * A visual workflow service that helps developers use AWS services with λ to build distributed applications, automate processes, orchestrate micro services, or create data (ML) pipelines
+  * JSON used to declare state machines under the hood
 
 ### Cloudwatch vs Cloudtrail vs AWS Config:
   * Cloudwatch:
