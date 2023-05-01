@@ -1632,13 +1632,18 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 | ASR | Automatic Speech Recognition |
 | AWS | Amazon Web Services |
 | AZ | Availability Zones |
+| BI | Business Intelligence |
 | CDC | Change Data Capture |
 | CDN | Content Delivery Network |
 | CIDR | Classless Inter-Domain Routing |
 | CLB | Classic Load Balancer |
+| CLS | Column Level Security |
 | CMS | Content Management System |
+| CORS | Cross-Origin Resource Sharing |
 | DAX | DynamoDB Accelerator |
 | DB | Database |
+| DDOS | Distributed Denial-of-Service |
+| DMS | AWS DB Migration Service |
 | DNS | Domain Name System |
 | EBS | Elastic Block Store |
 | ECMP | Equal cost multi-path routing |
@@ -1661,8 +1666,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 | IA | Infrequently Accessed |
 | IAC | Infrastructure as Code |
 | IAM |  Identity and Access Management |
+| ICMP | Internet Control Message Protocol |
 | IdP | Identity Provider |
 | IGW | Internet Gateway |
+| IOT | Internet of Things |
 | LB | Load Balancer |
 | LDAP | Lightweight Directory Access Protocol |
 | KMS | Key Management Service |
@@ -1674,6 +1681,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 | OAC | Origin Access Control |
 | OAI | Origin Access Identity |
 | OLAP | Online Analytical Processing |
+| OLTP | Online Transaction Processing |
 | OS | Operating System |
 | OU | Organizational Unit |
 | PAAS | Platform as a Service |
@@ -1685,6 +1693,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 | RDS | Relational Database |
 | SAML | Security Assertion Markup Language |
 | SASL | Simple Authentication and Security Layer |
+| SCT | AWS Schema Conversion Tool  AWS Schema Conversion Tool |
 | SES | Simple Email Service |
 | SFTP | Secure File Transfer Protocol |
 | SG | Security Group |
@@ -1692,6 +1701,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 | SNS | Simple Notification Service |
 | SQS | Simple Queue Service |
 | SRT | Shield Response Team |
+| SSH | Secure Shell |
 | SSL | Secure Sockets Layer |
 | SSM | Systems Manager |
 | SSML | Speech Synthesis Markup Language |
