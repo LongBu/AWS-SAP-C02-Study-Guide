@@ -1148,6 +1148,18 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Pushes many compute intensive tasks such as predicate filtering and aggregation, down to the Redshift Spectrum layer
   * Redshift Spectrum queries use much less of the formal cluster's processing capacity than other queries
 
+#### Amazon Timestream:
+  * Fast, scalable, server less time series DB service for IOT/applications storing recently data in memory and less recent in cost optimized storage tier (based on policy)
+  * Allows seamless queries between memory and storage
+  * Scales up/down to adjust capacity and performance
+
+#### Amazon Quantum LedgerDB (QLDB):
+  * Fully managed, serverless, HA service recording *financial transactions* (replication across 3 AZs)
+  * Used to review history of all changes made to your application data over time
+  * Immutable system: no entry can be removed or modified; cryptographically verifiable (sort of like git hashes per commit)
+  * 2-3x better performance over common ledger blockchain
+  * Difference with Amazon Managed Blockchain: no decentralized component, in accordance with financial regulation rules
+
 ### NoSQL
 
 #### Amazon Keyspaces (for Apache Cassandra):
@@ -1196,6 +1208,19 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Reduces request time from milliseconds to microseconds
   * Best and easiest option to improve DynamoDB peformance 
   * If asked about NoSQL with in-memory caching => DAX
+
+### Amazon Neptune:
+  * Fully managed graph DB
+  * Clustering boosts performance
+  * Use cases: Great for knowledge graphs (eg: wikipedia)
+  * High relationship data, fraud detection, recommendation engines, social networking
+  * Reliability:  HA across 3 AZs with up to 15 read replicas (across multi-AZ) clustering
+  * Build and run applications working with highly connected data-optimized for complex and hard queries
+  * Can store up to billions of relationships and query the graph with millisecond latency
+  * Point-in-time recovery, continuous backups to S3
+  * Support for KMS encryption at rest and HTTPS
+  * Security: IAM, VPC, KMS, SSL (similar to RDS) and IAM Authentication
+  * Cost: pay per node provisioned (similar to RDS)
   
 ### AWS DB Migration Service (AWS DMS):
   * Service to transition supported sources to relation DB, data warehouses, streaming platforms, and other data stores in AWS without new code (or any?)
