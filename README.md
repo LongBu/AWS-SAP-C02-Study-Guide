@@ -862,6 +862,21 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Supports IP multicast (not supported by any other AWS service)
   * Site-to-site VPN ECMP: creates multiple connections to increase bandwidth of connection to AWS
 
+### AWS VPN CloudHub: 
+  * If you have multiple sites, each site with own VPN connection, can use AWS VPN CloudHub to connect sites together over public internet, though all traffic between the customer gateway and the AWS VPN CloudHub is encrypted
+  * To setup connect VPN to VGW, setup dynamic routing and configure route tables
+  * Low cost hub and spoke model for primary and secondary network connectivity between different locations (VPN only)
+```mermaid
+flowchart TD
+    A{VPC-VGW}
+    A --> B[Customer N via Customer Gateway]
+    A --> C[Customer N + 1 via Customer Gateway]
+    A --> D[Customer N + 2 via Customer Gateway]
+    B --> A
+    C --> A
+    D --> A
+```
+
 ### Internet Gateway (IGW):
   * Allows resources (EC2, etc.) in a VPC to connect to the internet (IPV4/6) via route table
   * Scales horizontally, is HA and redundant
