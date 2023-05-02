@@ -1492,6 +1492,33 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ## Miscellaneous
 
+### Amazon OpenSearch Service (Amazon ElasticSearch Service)
+  * Service to search any field, even partial matches at petabyte scale
+  * Common to use as a complement to another DB (conduct search in the service, but retrieve data based on indices from an actual DB)
+  * Requires a cluster of instances (can also be Multi-AZ)
+  * Doesn't support SQL (own query language)
+  * Comes with Opensearch dashboards (visualization)
+  * Built in integrations: Kinesis Firehose, AWS IOT, λ, Cloudwatch logs for data ingest
+  * Security through Cognito and IAM, KMS encryption, SSL and VPC
+  * Can help efficiently store and analyze logs (amongst cluster)
+  * Patterns:
+ ```mermaid
+sequenceDiagram
+    participant Kinesis data streams
+    participant Kinesis data firehose (near real time)
+    participant OpenSearch
+    Kinesis data streams->>Kinesis data firehose (near real time): 
+    Kinesis data firehose (near real time)->>OpenSearch: 
+    Kinesis data firehose (near real time)->>Kinesis data firehose (near real time): data tranformation via λ
+```
+```mermaid
+sequenceDiagram
+    participant Kinesis data streams
+    participant λ (real time)
+    participant OpenSearch
+    Kinesis data streams->>λ (real time): 
+    λ (real time)->>OpenSearch: 
+```
 ### AWS AppSync:
   * Serverless grapnel and Pub/Sub API that simplifies application development through a single endpoint to securely query, update, or publish data
   * Pub/Sub API => web socket from AWS published trigger(s)
