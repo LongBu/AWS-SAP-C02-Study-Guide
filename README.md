@@ -603,6 +603,23 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Need to specify storage class on EKS cluster, leveraging Container Storage Interface (CSI) compliant driver: EBS, EFS (Fargate), FSx for Lustre/for NetApp ON TAP
   * Doesn't support λ, does support Fargate, Managed Node Groups, and Self-Managed Nodes
   
+### λ:
+  * Serverless backend capable of supporting container image (must implement λ Runime API)
+  * Free tier => 1,000,000 requests and 400,000 GBs compute time
+  * Pay .20 per 1,000,000 requests after free threshold
+  * Pay per duration of memory (in increments of 1 ms) after free threshold ($1.00 for 600,000 GBs)
+  * Up to 10 GB of RAM, minimum 128 MB
+  * More RAM improves CPU and network capabilities
+  * Environment variables (< 4KB)
+  * Does not have out-of-the box caching
+  * Regionally based
+  * Disk capacity in function container (/tmp) 512 MB to 10 GB
+  * Can use /tmp to load other files at startup
+  * Concurrency executions: 1000, but can be increased
+  * Deployment size: uncompressed 250 MB, compressed 50 MB
+  * Can run via CloudFront as CloudFront functions and λ@edge
+  * Can create λ layers (up to 5) to reuse code, making deployment smaller
+  
 ### AWS Fargate:
   * Severless backend harnessing ECS/EKS/ECR
   * VPCU
@@ -1551,6 +1568,8 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ### AWS Data Exchange: service in AWS for customers to find, subscribe to, and use third-party data in the AWS Cloud
 
+### AWS Serverless Application Repository: managed repository with AWS for serverless applications allowing for storage/sharing that doesn't need to be cloned, built, packaged, published to AWS
+
 ### AWS Elastic Transcoder: highly scalable/cost efficient service to convert (or 'transcode') media files (video/audio) to format(s) that will be playable on devices, tablets, desktops, etc. The transacation takes place between a source and destination S3 bucket.  
 
 ### Amazon Personalize:
@@ -1651,6 +1670,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
     * Confidence level of content flags/gates (threshold configuration based)
     * Flag sensitive content for manual review in A2I
     * Help comply with regulations
+    
+### Fully Managed => serverless
+
+### EC2 meta data => http://169.254.169.254/latest/meta-data
 
 ## Acronyms
 
