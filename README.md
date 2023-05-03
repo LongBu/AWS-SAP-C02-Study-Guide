@@ -775,6 +775,36 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * If you want to use AWS WAF across accounts, accelerate WAF configuration, automate the protection of new resources, use Firewall Manager with AWS WAF
   * Shield Advanced adds additional features on top of AWS WAF such as dedicated support from the Shield Response Team (SRT) and advanced reporting
   * If prone to frequent DDOS=>Shield Advanced
+  
+### Amazon Inspector:
+  * Automated security assessments (Only λ, EC2 instances and container infrastructure)
+  * For EC2 instances: 
+    * Leveraging AWS Sys Mgr (SSM) Agent
+    * Analyze against unintended network accessisiblity
+    * Analyze the running OS against known vulnerabilities
+  * For Containers push to Amazon ECR: 
+    * assessment of containers as they are pushed
+  * λ functions:
+    * Identifies software vulnerabilities in code/dependencies
+    * Assessment of functions as deployed
+  * Reporting and integration with AWS Security HUB
+  * Send Findings to Amazon Event Bridge
+  * Continuous scanning of the infrastructure only when needed
+  * Package vulnerabilities (ECR and EC2) via DB of CVE
+  * Network reachability (EC2)
+  * Risk score is associated with all vulnerabilities for prioritization
+  
+```mermaid
+flowchart TD
+    A{SSM Agent-EC2/Edge/On Prem/VM}
+    B{Inspector Service}
+    A --> B
+    B --> A
+    B --> D[Security Hub]
+    B --> C[Event Bridge]
+    D --> B
+    C --> B
+```
 
 ### Security Groups (SGs):
   * Stateful connection, allowing inbound traffic to the necessary ports, thus enabling the connection
@@ -1742,6 +1772,7 @@ sequenceDiagram
 | CLS | Column Level Security |
 | CMS | Content Management System |
 | CORS | Cross-Origin Resource Sharing |
+| CVE | Common Vulnerabilities and Exposures |
 | DAX | DynamoDB Accelerator |
 | DB | Database |
 | DDOS | Distributed Denial-of-Service |
