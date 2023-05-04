@@ -10,7 +10,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 4. <a href="#networking">Networking</a>
 5. <a href="#ec2">EC2</a>
 6. <a href="#containers">Containers</a>
-7. <a href="#logging-and-events">Logging and Events</a>
+7. <a href="#logging-and-events-and-aws-messaging">Logging, Events, and AWS Messaging</a>
 8. <a href="#configurations-and-security">Configurations and Security</a>
 9. <a href="#vpc">VPC</a>
 10. <a href="#storage">Storage</a>
@@ -632,7 +632,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ### Amazon Managed Service for Prometheus: serverless monitoring service harnessing PROMQL to monitor and alert on container environments upon ingestion/storage
 
-## Logging and Events
+## Logging, Events, and AWS Messaging
 
 ### AWS CloudTrail:
   * Service that monitors and records account activity across AWS infrastructure (history of events/API calls)
@@ -653,6 +653,76 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
    * Gaps in periodic maintenance
    * Analyzes normal manangement events to create a baseline to then continuosly analyze write events to detect unusual patterns (S3/CloudTrail console/EventBridge events)
    * Cloudtrail Events are stored for 90 days, though can be sent to S3 and analyzed by Athena
+
+### SQS
+  * if writing to it IAM Role permissions needed by the writer
+  * if receiving from sns, need access policy to allow
+  * guarantees processed at least once
+  * retention in queue from 1 min to 14 days (default retention is 4 days)
+  * messages are 256k or less
+  * receive up to 10 messages at a time
+  * data deleted after consumption
+  * can have as many consumers as needed
+  * ordering only guaranteed on FIFO Queues, not standard
+  * std queue:unlimited throughput
+  * FIFO queue can limit throughput (300 messages per second)
+  * FIFO queue name must have a *.FIFO extension
+  * batch mode available with up to 3000 message per second (batch of 10)
+  * to convert to/from standard or FIFO can't modify, must create a new queue
+  * For SQS FIFO, if no group id, messages consumed in order sent with only 1 consumer; if group id present, can have up to the same number of consumer(s)
+  * can delay message output to consumer
+  * useful for decoupling applications
+  * pull-based data
+  * dead letter queue used to capture messages that encountered exceptions or timed out
+  * fanout pattern one sns =>multiple sqs
+  * can work with Auto Scaling Group via CloudWatch Metric/Alarm - Queue Length to scale either/both producer(s)/consumer(s)
+  * encryption (in flight via https api [requres SSL certificate to enable]/at-rest using kms/client-side)
+  * access via IAM controls (regulates access to SQS API) and/or SQS Access Policies (useful for cross account to SQS queues and useful for allowing other user to write to SNS)
+  * short polling is sync polling of a queue and returns response immediately 
+  * long polling of a queue is async returns when either with a response or when the long poll times out (1-20 sec [receive message wait time]) reducing latency/increasing efficiency
+  * purging will remove all messages from queue
+  * Visibility timeout: Amt of time a message is invisible in the queue after a reader picks the message.  Provided the job processes before the visibility timeout expires, the message will be deleted from the queue.  If the job isn't processed within that time, the message could become visible again and another reader will process it.  The could result in the message being delivered more than once.  The max Visibility timeout is 12 hours.  ChangeMessageVisibility Api can be called to get more time
+    * too high=>longer time to process if consumer crashes
+    * too low=>duplicate processing
+  * ASG utilizes Cloudwatch Metric-Queue length=>Approximate Number of Messages
+	 * Cross-Region Delivery works with SQS queues in other regions
+
+### SNS
+  * can create filter policies (json) for only certain sqs consumers to receive certain messages from sns
+  * fifo:ordering by message group id and deduplication using deduplication id or Content based deduplication (can only have sqs subscribers)
+	 * if writing to sns, need access policy to allow the write
+	 * push-based data
+  * simple api for integration
+  * available over multiple transport protocols
+  * pay as you go, no up front costs
+  * data is not persisted (lost if not delivered)
+  * up to 12,500,000 subscribers
+  * pub/sub
+  * up to 100,000 topics
+	 * integrates with SQS for fanout (sns must be fifo)
+  * encryption (in flight via https api [requres SSL certificate to enable]/at-rest using kms/client-side)
+  * access via IAM controls (regulates access to SNS API) and/or SNS Access Policies (cross account access other and other services to write to SNS)
+  * what can subscribe to SNS?
+    * Platform application endpoint
+		  * SQS
+		  * HTTP(s) endpoints
+		  * Email/Email-JSON
+		  * AWS Lambda
+		  * Amazon Kinesis Data Firehose
+		  * SMS
+  * what can't subscribe to SNS?
+    * Amazon Kinesis Data Streams cannot subscribe to SNS
+  * Use Kinesis streams for realtime, concurrent processing of data
+    * SNS Publish:
+      * Topic Publish (using SDK)
+        * create Topic
+        * create Subscription(s)
+        * publish to Topic
+      * Direct Publish (for mobile app SDK)
+        * create a platform application
+        * create a platform endpoint
+        * publish to platform endpoint
+        * works with google GCM, Apple APNS, Amazon ADM
 
 ## Configurations and Security
 
