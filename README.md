@@ -704,12 +704,12 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * access via IAM controls (regulates access to SNS API) and/or SNS Access Policies (cross account access other and other services to write to SNS)
   * what can subscribe to SNS?
     * Platform application endpoint
-		  * SQS
-		  * HTTP(s) endpoints
-		  * Email/Email-JSON
-		  * AWS Lambda
-		  * Amazon Kinesis Data Firehose
-		  * SMS
+    * SQS
+    * HTTP(s) endpoints
+		* Email/Email-JSON
+		* AWS Lambda
+		* Amazon Kinesis Data Firehose
+		* SMS
   * what can't subscribe to SNS?
     * Amazon Kinesis Data Streams cannot subscribe to SNS
   * Use Kinesis streams for realtime, concurrent processing of data
