@@ -10,7 +10,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 4. <a href="#networking">Networking</a>
 5. <a href="#ec2">EC2</a>
 6. <a href="#containers">Containers</a>
-7. <a href="#logging-and-events-and-aws-messaging">Logging, Events, and AWS Messaging</a>
+7. <a href="#logging-events-and-aws-messaging">Logging, Events, and AWS Messaging</a>
 8. <a href="#configurations-and-security">Configurations and Security</a>
 9. <a href="#vpc">VPC</a>
 10. <a href="#storage">Storage</a>
@@ -706,10 +706,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
     * Platform application endpoint
     * SQS
     * HTTP(s) endpoints
-		* Email/Email-JSON
-		* AWS Lambda
-		* Amazon Kinesis Data Firehose
-		* SMS
+    * Email/Email-JSON
+    * AWS Lambda
+    * Amazon Kinesis Data Firehose
+    * SMS
   * what can't subscribe to SNS?
     * Amazon Kinesis Data Streams cannot subscribe to SNS
   * Use Kinesis streams for realtime, concurrent processing of data
