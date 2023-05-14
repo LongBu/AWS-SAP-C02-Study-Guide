@@ -1009,6 +1009,21 @@ flowchart TD
     * *Inbound*-HTTP(S) from private subnets, allow SSH from the home network
     * *Outbound*-HTTP(S) to the internet
 
+### NAT Gateway vs NAT Instance:
+
+|  | NAT Gateway | NAT Instance |
+| ------------- | ------------- | ------------- |
+| Availability | Highly available within AZ | Use a script to manage failover between instances |
+| Bandwidth | Up to 45 Gbps | Depends on EC2 instance type |
+| Maintenance | Managed by AWS | Managed by user |
+| Cost | Per hour usage and data transfered | Per hour usage, EC2 instance type/size and network costs|
+| Public ipv4 | Yes | Yes |
+| Private ipv4 | Yes | Yes |
+| Elastic IP | Yes | Yes |
+| Security Groups associated | No | Yes |
+| Bastion Host | No | Yes |
+| Port forwarding | No | Yes |
+
 ### VPC Endpoint:
   * Every AWS service is publicly exposed (public url)
   * VPC Endpoints (using AWS PrivateLink) allows connections to AWS service(s) using a private network instead of public internet
