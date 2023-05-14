@@ -1576,6 +1576,24 @@ flowchart TD
       * Multithreaded
       * Supports SASL auth
 
+### AWS Elastic Disaster Recovery:
+  * Service to transfer on-premises/cloud to AWS (natively) or recover AWS region=>to another region
+
+```mermaid
+timeline
+        title AWS Elastic Disaster Recovery
+        section Active/Passive (slower recovery)
+          Backup and Restore : RPO/RTO-hours : lower priority
+               : provision all resources after : restore backups after : $
+          Pilot Light : RPO/RTO-10s of minutes : data live
+               : services are idle : provision some resources and scale : $$
+          Warm Standby : RPO/RTO- minutes : Always running, but smaller
+               : business critical : scale aws resources after  : $$$
+        section Active/Active (faster recovery)
+          Multisite : RPO/RTO- real time : zero downtime
+               : near zero loss of data : mission critical services  : $$$$
+```
+
 ### AWS Compute Optimizer:
   * Recommends optimal AWS Compute resources (λ, EC2, EBS) for workloads to reduce costs and improve performance by using ML to analyze historical utilization metrics
   * Helps you choose optimal EC2 types, including those part of Autoscaling group based on utilization
@@ -1909,6 +1927,8 @@ sequenceDiagram
 | RA | Risk Assessment |
 | RAM | AWS Resource Access Manager |
 | RDS | Relational Database |
+| RPO | recovery point objective |
+| RTO | recovery time objective |
 | SAML | Security Assertion Markup Language |
 | SASL | Simple Authentication and Security Layer |
 | SCT | AWS Schema Conversion Tool  AWS Schema Conversion Tool |
