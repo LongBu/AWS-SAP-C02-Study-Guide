@@ -1184,6 +1184,63 @@ flowchart TD
   * Stored in S3 bucket belonging to the same AWS region where instance is located
   * You do not have direct access to the snapshots in S3, though you can share them
 
+
+### AWS Snowball to glacier:
+  * Snowball to S3 to S3 lifecycle policy AWS S3 Glacier
+
+### AWS Snow Family: 
+  * Offline devices to perform data migrations
+  * If it takes more than a week to transfer over the network, use Snowball devices!
+
+### Snowball Edge (for data transfers)
+  * Physical data transport solution:moveTBs or PBs of data in or out of AWS
+  * Alternative to moving data over the network (and paying network fees)
+  * Pay per data transfer job
+  * Provide block storage and Amazon S3-compatible object storage
+  * Snowball Edge Storage Optimized
+  * 80 TB of HDD capacity for block volume and S3 compatible object storage
+  * Snowball Edge Compute Optimized
+  * 42 TB of HDD capacity for block volume and S3 compatible object storage
+  * Usecases:large data cloud migrations, decommission, disaster recovery
+
+### AWS Snowcone
+  * Small, portable computing, anywhere, rugged & secure, withstands
+harsh environments
+  * Light (4.5 pounds, 2.1 kg)
+  * Device used for edge computing, storage, and data transfer
+  * 8 TBs of usable storage
+  * Use Snowcone where Snowball does not fit (space-constrained environment)
+  * Must provide your own battery / cables
+  * Can be sent back to AWS offline, or connect it to internet and use AWS DataSync to send data
+
+### AWS Snowmobile
+  * Transfer exabytes of data (1 EB = 1,000 PB = 1,000,000 TBs)
+  * Each Snowmobile has 100 PB of capacity (use multiple in parallel)
+  * High security: temperature controlled, GPS, 24/7 video surveillance
+  * Better than Snowball if you transfer more than 10 PB
+
+### Snow Family – Edge Computing
+  * Snowcone (smaller)
+  * 2 CPUs, 4 GB of memory, wired or wireless access:
+    * USB-C power using a cord or the optional battery
+  * Snowball Edge – Compute Optimized
+    * 52 vCPUs, 208 GiB of RAM
+    * Optional GPU (useful for video processing or machine learning)
+    * 42 TB usable storage
+  * Snowball Edge – Storage Optimized • Up to 40 vCPUs,80 GiB of RAM
+  * Object storage clustering available
+  * All: 
+    * Can run EC2 Instances & AWS Lambda functions (using AWS IoT Greengrass)
+    * Long-term deployment options: 1 and 3 years discounted pricing
+
+### AWS OpsHub
+  * Historically, to use Snow Family devices, you needed a CLI (Command Line Interface tool)
+  * Today, you can use AWS OpsHub (a software you install on your computer / laptop) to manage your Snow Family Device
+  * Unlocking and configuring single or clustered devices • Transferring files
+  * Launching and managing instances running on Snow Family Devices
+  * Monitor device metrics (storage capacity, active instances on your device)
+  * Launch compatible AWS services on your devices (ex: Amazon EC2 instances, AWS DataSync, Network File System (NFS))
+
 ### S3
 
 #### S3 Batch Replication:
