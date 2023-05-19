@@ -1452,7 +1452,7 @@ harsh environments
 
 ### Amazon Kinesis:
   * Platform to send stream data making it easy to load and analyze as well as provide the ability to build your own custom applications for your business needs
-  * If "real time" (big) data is of importance=>AWS Kinesis
+  * Any mention of "streaming (system[s])" and/or "real time" (big) data is of importance, kinesis is likely the best fit as it makes it easy to collect, process, and analyze real-time, streaming data to allow quick reactions from information taken in.  
   * Output can be classic or enhanced fan-out consumers
   * Accessed via VPC
   * IAM access => Identity-based (used by users and/or groups)
