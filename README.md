@@ -1452,6 +1452,7 @@ harsh environments
 
 ### Amazon Kinesis:
   * Platform to send stream data making it easy to load and analyze as well as provide the ability to build your own custom applications for your business needs
+  * If "real time" (big) data is of importance=>AWS Kinesis
   * Output can be classic or enhanced fan-out consumers
   * Accessed via VPC
   * IAM access => Identity-based (used by users and/or groups)
@@ -1464,7 +1465,7 @@ harsh environments
 ### Amazon Kinesis Data Streams:
   * On-demand capacity mode or Provisioned mode (if throughput exceeded exception => add shard[s])
   * Can have up to 5 parallel consumers
-  * Can store between 24 hours and 365 days in shard(s) to be consumed/processed/replayed by another service and stored elsewhere
+  * Synchronously replicate streaming data across 3 AZ in a single Region and store between 24 hours and 365 days in shard(s) to be consumed/processed/replayed by another service and stored elsewhere
   * Use fan-out if lag is encountered by stream consumers
   * Shards can be split or merged
   * 1 MB message size limit
