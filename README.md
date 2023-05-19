@@ -90,7 +90,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ### AWS Policy Simulator: used to test and troubleshoot IAM policies that are attached to users, user groups, or resources.  
 
-###  IAM Access Analyzer: TBD
+###  IAM Access Analyzer: service to identify unintended access  to resources in an organization and accounts, such as Amazon S3 buckets or IAM roles, shared with an external entity to avoid security risk(s)
 
 ### IAM Policy Evaulation Logic:
 ![IAM Policy Evaulation Logic](https://docs.aws.amazon.com/images/IAM/latest/UserGuide/images/PolicyEvaluationHorizontal111621.png)
