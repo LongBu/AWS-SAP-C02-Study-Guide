@@ -1698,6 +1698,14 @@ timeline
 
 ## Miscellaneous
 
+### Classic Ports to know:
+  * 22 = SSH (Secure Shell) - log into a Linux instance (tcp based)
+  * 21 = FTP (File Transfer Protocol) – upload files into a file share (tcp based)
+  * 22 = SFTP (Secure File Transfer Protocol) – upload files using SSH (tcp based)
+  * 80 = HTTP – access unsecured websites (tcp based)
+  * 443 = HTTPS – access secured websites (tcp based)
+  * 3389 = RDP (Remote Desktop Protocol) – log into a Windows instance  (tcp based)
+
 ### Amazon OpenSearch Service (Amazon ElasticSearch Service)
   * Service to search any field, even partial matches at petabyte scale
   * Common to use as a complement to another DB (conduct search in the service, but retrieve data based on indices from an actual DB)
