@@ -656,6 +656,22 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
    * Analyzes normal manangement events to create a baseline to then continuosly analyze write events to detect unusual patterns (S3/CloudTrail console/EventBridge events)
    * Cloudtrail Events are stored for 90 days, though can be sent to S3 and analyzed by Athena
 
+### Amazon EventBridge (aka Cloudwatch Events):
+  * Service to provide connectivity between certain events and resultant services such as
+    * CRON job triggering (via EventBridge) a λ 
+    * λ triggering (via EventBridge) SNS/SQS messages
+    * Event Pattern: rules specified in AWS rule configs react to certain service action(s) (eg: check for external generated certs being that are n days away from expiration)
+    * When an EventBridge rule runs, it needs permission on the target (eg: \[λ, SNS, SQS, Cloudwatch Logs, API GW, etc.] resource based policy or \[Kinesis Streams, Sys Mgr Run Command, ECS tasks etc.] IAM Role must allow EventBridge)
+    * Externally available to 3rd party SAAS partners
+    * Can analyze events and infer an associated schema (capable of versioning).  This registered schema allows code generation for applications to know the structure of the data in coming into the event bus
+    * EventBridge Event Buses Types:
+      * Default (receive events from AWS services)
+      * Partner (receive events from SAAS)
+      * Custom (recieve from Custom Applications)
+    * EventBridge Event Buses:
+      * Are accessible to other AWS accounts/Regions via Resource based policies
+      * Events can be archived/filtered sent to it (time based or forever) and even replayed
+
 ### SQS
   * if writing to it IAM Role permissions needed by the writer
   * if receiving from sns, need access policy to allow
@@ -1999,6 +2015,7 @@ sequenceDiagram
 | RPO | recovery point objective |
 | RTO | recovery time objective |
 | SAML | Security Assertion Markup Language |
+| SAAS | Software as a Service |
 | SASL | Simple Authentication and Security Layer |
 | SCT | AWS Schema Conversion Tool  AWS Schema Conversion Tool |
 | SES | Simple Email Service |
