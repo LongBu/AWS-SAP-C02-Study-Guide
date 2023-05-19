@@ -355,6 +355,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Hosted: 50 MBps, 500 MBps, up to 10 GBps
 
 ### CIDR:
+  * Used to provide an ip range
   * VPCs per region: 5
   * Subnets per VPC: 200
   * If EC2 can't launch in subnet examine IPV4 CIDR (even if IPV6 used)
