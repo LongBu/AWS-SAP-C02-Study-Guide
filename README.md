@@ -538,6 +538,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Predictive Scaling: continuously forecast load and schedule scaling ahead
   * Scaling Cool down: following in/out, no further in/out (default 300 seconds)
   * Good metrics: CPU utilization, Request Count Per Target, Average Network In/Out, any custom Cloudwatch metric
+  * ASG is a good match with keywords such as "dynamic", "change", "capacity"
 
 ### Amazon EC2 Auto Scaling:
   * Enables users to automatically launch/terminate strictly EC2 instances based on configuration parameters, such as when a specific metric exceeds a threshold (via CloudWatch) or during a certain scheduled period of time to scale appropriately
@@ -657,6 +658,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 ### SQS
   * if writing to it IAM Role permissions needed by the writer
   * if receiving from sns, need access policy to allow
+  * queues (eg: SQS) aren't meant for (real-time) streaming of data
   * guarantees processed at least once
   * retention in queue from 1 min to 14 days (default retention is 4 days)
   * messages are 256k or less
