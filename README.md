@@ -1128,6 +1128,7 @@ flowchart TD
   * Use SG control access
   * Connected via ENI
   * 10GB+ throughput
+  * Compression is good for cost savings concerning persistence
   * *Performance mode* (set at creation time): 
     * General purpose (default); latency-sensitive; use cases (web server, CMS); 
     * Max I/O-higher latency, throughput, highly parallel (big data, media processing)
@@ -1261,6 +1262,57 @@ harsh environments
   * Launch compatible AWS services on your devices (ex: Amazon EC2 instances, AWS DataSync, Network File System (NFS))
 
 ### S3
+
+#### Buckets:
+  * Service to allow objects/files within a virtual "directory"
+  * Bucker names must be *globally unique*
+  * Buckets exist within AWS regions
+  * Not a file system, and if a file system is needed, EBS/EFS/FSx should be considered
+  * Not mountable as is a NFS
+  * Name formalities:
+    * Must not start with the prefix 'xn--'
+    * Must not end with the the suffix '-s3alias'
+    * Not an IP address
+    * Must start with a lowercase letter or number
+    * Between 3-63 characters long
+    * No uppercase
+    * No underscores
+
+#### Objects/Files
+   * Each has a key, it's full path within the s3 bucket including the object/file separated by backslashes ("/")
+   * Each has a value, it's content
+   * Note there is no such thing as a true directory within S3, but the convention effectively serves as a namespace
+   * Compression is good for cost savings concerning persistence
+   * Max size is 5 TB
+   * If uploading > 5 GB, use "multi-part upload"
+   * Version ID if versioning enabled at the bucket level
+   * Metadata (list of key/val pairs)
+   * Tags (Unicode key/val pair >= 10) handy for lifecycle/security
+
+#### Versioning
+  * Configured at the bucket level
+  * Can't edit Object(s)/Metadata in place as they are immutable
+  * If enabled, object edits will manifest as an incremental version
+  * Good practice to allow rolling back of files and accidental deletions
+  * Objects that existed prior to turning on versioning will have a "null" version
+  * Disabling versioning doesn't remove earlier versions
+
+#### Encryption
+  * SSE-S3:
+    * Encryption (keys) managed by AWS (S3)
+    * Encryption type of AES-256
+    * Encrypted server side via HTTP/S and Header containing "x-amz-server-side-encryption":"AES256"
+  * SSE-KMS
+    * Encryption (KMS Customer Master Key [CMK]) managed by AWS KMS
+    * Encrypted server side via HTTP/S and Header containing "x-amz-server-side-encryption":"aws:kms"
+    * Offers further user control and audit trail
+  * SSE-C:
+    * Server side encryption via *HTTPS only*, using a fully managed external customer key external to AWS that must be provided in the HTTP headers for every HTTP request (key isn't saved by AWS)
+    * Objects encrypted with SSE-C are never replicated between S3 Buckets
+  * Client Side Encryption:
+    * Utilizes a client library such as Amazon S3 Encryption Client
+    * Encrypted prior to sending to S3 and must be decrypted by clients when retrieving from S3 conducted over HTTP/S
+    * Utilizes a fully managed external customer key external to AWS 
 
 #### S3 Batch Replication:
   * Provides a way to replicate objects that existed before a replication configuration was in place, objects that have previously been replicated, and those that failed replication
@@ -1958,6 +2010,7 @@ sequenceDiagram
 | CIDR | Classless Inter-Domain Routing |
 | CLB | Classic Load Balancer |
 | CLS | Column Level Security |
+| CMK | KMS Customer Master Key |
 | CMS | Content Management System |
 | CORS | Cross-Origin Resource Sharing |
 | CVE | Common Vulnerabilities and Exposures |
@@ -1998,6 +2051,7 @@ sequenceDiagram
 | MPI | Message Parsing Interface |
 | MSK | Managed Streaming Kafka |
 | NAT | Network Address Translation |
+| NFS | Network File System |
 | NLP | Natural Language Processing |
 | OAC | Origin Access Control |
 | OAI | Origin Access Identity |
