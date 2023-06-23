@@ -1285,9 +1285,11 @@ harsh environments
    * Compression is good for cost savings concerning persistence
    * Max size is 5 TB
    * If uploading > 5 GB, use "multi-part upload"
+   * Strong consistency model to reflect latest version/value upon write/delete to read actions
    * Version ID if versioning enabled at the bucket level
    * Metadata (list of key/val pairs)
    * Tags (Unicode key/val pair >= 10) handy for lifecycle/security
+   * Endpoint offers HTTP (non encrypted) and HTTPS (encryption in flight via SSL/TLS)
 
 #### Versioning
   * Configured at the bucket level
@@ -1297,6 +1299,22 @@ harsh environments
   * Objects that existed prior to turning on versioning will have a "null" version
   * Disabling versioning doesn't remove earlier versions
 
+#### Websites:
+  * Able to host static websites at:
+    * <bucketname>.s3-website-<AWSregion>.amazonaws.com or
+    * <bucketname>.s3-website.<AWSregion>.amazonaws.com
+  * If encountering 403, check the associated policies allow public reads
+
+#### CORS:
+  * Means to allow requests to different origins from another/all.  The said request(s) must be allowed and utilize CORS Headers (Access-Control-Allow-Origin)
+
+#### Signed URLs:
+  * Generated via SDK or CLI
+    * Downloads (SDK or CLI)
+    * Uploads (SDK only)
+  * Default valid time is 3600 seconds, though can be changed
+  * Users harnessing the url inherit the GET/PUT permissions of the user who generated the URL
+   
 #### Encryption
   * SSE-S3:
     * Encryption (keys) managed by AWS (S3)
@@ -1312,22 +1330,31 @@ harsh environments
   * Client Side Encryption:
     * Utilizes a client library such as Amazon S3 Encryption Client
     * Encrypted prior to sending to S3 and must be decrypted by clients when retrieving from S3 conducted over HTTP/S
-    * Utilizes a fully managed external customer key external to AWS 
+    * Utilizes a fully managed external customer key external to AWS
 
-#### S3 Batch Replication:
-  * Provides a way to replicate objects that existed before a replication configuration was in place, objects that have previously been replicated, and those that failed replication
-  * Differs from live replication
-  * Can't use AWS S3 console to configure cross-region replication for existing objects.
-  * By default, replication only supports copying new S3 objects after enabled by AWS S3 console
-  * To enable live replication of existing objects, an AWS support ticket is needed to ensure replication is configured correctly
-  * Can be used to copy large amounts of S3 data between regions or within regions
-
-#### S3 Sync Command:
-  * Uses copy object APIs to copy objects between S3 buckets
-  * Lists source and target buckets to identify objects found in the former and not the latter as well as last modified dates that are different.
-  * On a versioned bucket copies only the current version (previous copies are not copied)
-  * If operation fails, can run the command again without duplicating previously copied objects
-  * Can be used to copy large amounts of S3 data between regions
+#### Security (IAM principle can access if either of the policy types below allows it and there is no Deny present):
+  * Types
+    * User Based: governed by IAM policies (eg: which user via IAM should be allowed to access resources) 
+    * Resource Based:
+      * Bucket Policies (JSON based statements)
+        * Governing such things as:
+          * (Blocking) public access
+          * Forced encryption at upload (necessitates encryption headers).  Can be alternatively be done by "default encryption" via S3, though Bucket Policies are evaluated first
+          * Cross account access
+        * Bucket policy statement attributes 
+          * SID: statement id
+          * Resources: per S3, either buckets or objects
+          * Effect: Allow or Deny
+          * Actions: The set of api action to apply the effect to
+          * Principal: User/Account the policy applies to
+      * Object Access Control List (ACL) - finer control of individual objects (eg: block public access)
+      * Bucket Access Control List (ACL) - control at the bucket level (eg: block public access)
+  * S3 Object(s) are owned by the AWS account that uploaded it, not the bucket owner
+  * Settings to block public access to bucket(s)/object(s) can be set at the account level
+  * S3 is VPC endpoint accessible
+  * S3 Access Logs can be stored to another S3 bucket (not the same to prevent infinite looping)
+  * Api calls can be sent to AWS CloudTrail
+  * MFA Delete of object(s) within *only* versioned buckets to prevent accidental permanent deletions *[only enabled/disabled by bucket owner via CLI]*
 
 #### Origin Access Control (OAC):
   * Restricts access to S3 preventing public availablity, ensures access through intended Cloudfront distribution(s) [no direct access]
@@ -1341,6 +1368,54 @@ harsh environments
   * Restricts access to S3 preventing public availablity, ensures access through intended Cloudfront distribution(s) [no direct access]
   * Is being replaced by OAC
   * Can be used to only allow authenticated access (via Cloudfront configuration), not done via OAI directly
+
+#### Replication
+
+##### CRR/SRR:
+  * Must enable versioning in source and destination buckets
+  * Buckets may be in different accounts
+  * copy is asynchronous
+  * IAM permissions must be allowed to S3
+  * CRR: good for compliance, lower latency, replication between accounts
+  * SRR: good for log aggregation, live replication between production and test accounts
+  * Only new objects are replicated upon activation of CRR/SRR
+  * Replications can not happen between more than one source and destinations (no chains)
+  * Delete operations can replicate delete markers from source to target (optional setting), while those with a versioin ID are not replicated (avoids malicious deletes)
+
+##### S3 Batch Replication:
+  * Provides a way to replicate objects that existed before a replication configuration was in place, objects that have previously been replicated, and those that failed replication
+  * Differs from live replication
+  * Can't use AWS S3 console to configure cross-region replication for existing objects.
+  * By default, replication only supports copying new S3 objects after enabled by AWS S3 console
+  * To enable live replication of existing objects, an AWS support ticket is needed to ensure replication is configured correctly
+  * Can be used to copy large amounts of S3 data between regions or within regions
+
+##### S3 Sync Command:
+  * Uses copy object APIs to copy objects between S3 buckets
+  * Lists source and target buckets to identify objects found in the former and not the latter as well as last modified dates that are different.
+  * On a versioned bucket copies only the current version (previous copies are not copied)
+  * If operation fails, can run the command again without duplicating previously copied objects
+  * Can be used to copy large amounts of S3 data between regions
+
+#### Storage Classes
+
+| |Std|Intelligent Tiering|Std-IA|One Zone-IA|Glacier Instant Retrieval|Glacier Flexible Retrieval|Glacier Deep Archive|
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| *Durability | 99.99999999999% | 99.99999999999% | 99.99999999999% | 99.99999999999% | 99.99999999999% | 99.99999999999% | 99.99999999999% |
+| *Availability | 99.99% | 99.9% | 99.9% | 99.5% | 99.9% | 99.99% | 99.99% |
+| *Availability SLA | 99.99% | 99% | 99% | 99% | 99% | 99.99% | 99.99% |
+| *AZs | >= 3 | >= 3| >= 3 | 1 | >= 3 | >= 3 | >= 3 |
+| *Min Storage Duration Charge | None | None| 30 days | 30 days | 90 days | 90 days | 180 days |
+| *Min Billable Obj Size | None | None| 128 KB | 128 KB | 128 KB | 40 KB | 40 KB |
+| *Retieval Fee | None | None| Per GB | Per GB | Per GB | Per GB | Per GB |
+| *Storage Cost (GB per month) | .023 | .0025 - .023 | .0125 | .01 | .004 | .0036 | .00099 |
+| *Retieval Cost (per 1000 requests) | GET: .0004<br />POST: .005 | GET: .0004<br />POST: .005 | GET: .001<br />POST: .01 | GET: .001<br />POST: .01 | GET: .01<br />POST: .02 | GET: .0004<br />POST: .03<br />Expediated: $10<br />Std: .05<br />Bulk: free| GET: .0004<br />POST: .05<br />Std: .10<br />Bulk: .025 |
+| *Retieval Time | immediate | immediate | immediate | immediate | immediate | Expediated (1-5 mins)<br />Std (3-5 hrs)<br />Bulk (5-12 hrs) | Std (12 hrs)<br />Bulk (48 hrs) |
+| *Monitoring Cost (per 1000 requests) | 0 | .0025 | 0 | 0 | 0 | 0 | 0 |
+\*Note: US-East-1 for the sake of example, entire table subject to change by AWS
+
+  * Durability: How often a file is not to be lost
+  * Availability: How readily S3 bucket/files are available
 
 ## Database
 
@@ -2013,6 +2088,7 @@ sequenceDiagram
 | CMK | KMS Customer Master Key |
 | CMS | Content Management System |
 | CORS | Cross-Origin Resource Sharing |
+| CRR | Cross Region Replication |
 | CVE | Common Vulnerabilities and Exposures |
 | DAX | DynamoDB Accelerator |
 | DB | Database |
@@ -2047,6 +2123,7 @@ sequenceDiagram
 | LB | Load Balancer |
 | LDAP | Lightweight Directory Access Protocol |
 | KMS | Key Management Service |
+| MFA | Multi Factor Authentication |
 | ML | Machine Learning |
 | MPI | Message Parsing Interface |
 | MSK | Managed Streaming Kafka |
@@ -2078,6 +2155,7 @@ sequenceDiagram
 | SNI | Server Name Indication |
 | SNS | Simple Notification Service |
 | SQS | Simple Queue Service |
+| SRR | Same Region Replication |
 | SRT | Shield Response Team |
 | SSH | Secure Shell |
 | SSL | Secure Sockets Layer |
@@ -2091,4 +2169,4 @@ sequenceDiagram
 | VGW | Virtual Private Gateway |
 | VM | Virtual Machine |
 | VPC | Virtual Private Cloud |
-| VPN | Virutal Private Network |
+| VPN | Virtual Private Network |
