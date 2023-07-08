@@ -1397,7 +1397,7 @@ harsh environments
   * If operation fails, can run the command again without duplicating previously copied objects
   * Can be used to copy large amounts of S3 data between regions
 
-#### Storage Classes
+####S3 Storage Classes
 
 | |Std|Intelligent Tiering|Std-IA|One Zone-IA|Glacier Instant Retrieval|Glacier Flexible Retrieval|Glacier Deep Archive|
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
@@ -1410,12 +1410,42 @@ harsh environments
 | *Retieval Fee | None | None| Per GB | Per GB | Per GB | Per GB | Per GB |
 | *Storage Cost (GB per month) | .023 | .0025 - .023 | .0125 | .01 | .004 | .0036 | .00099 |
 | *Retieval Cost (per 1000 requests) | GET: .0004<br />POST: .005 | GET: .0004<br />POST: .005 | GET: .001<br />POST: .01 | GET: .001<br />POST: .01 | GET: .01<br />POST: .02 | GET: .0004<br />POST: .03<br />Expediated: $10<br />Std: .05<br />Bulk: free| GET: .0004<br />POST: .05<br />Std: .10<br />Bulk: .025 |
-| *Retieval Time | immediate | immediate | immediate | immediate | immediate | Expediated (1-5 mins)<br />Std (3-5 hrs)<br />Bulk (5-12 hrs) | Std (12 hrs)<br />Bulk (48 hrs) |
+| *Retieval Time | immediate | immediate | immediate | immediate | immediate (milliseconds) | Expediated (1-5 mins)<br />Std (3-5 hrs)<br />Bulk (5-12 hrs) | Std (12 hrs)<br />Bulk (48 hrs) |
 | *Monitoring Cost (per 1000 requests) | 0 | .0025 | 0 | 0 | 0 | 0 | 0 |
 \*Note: US-East-1 for the sake of example, entire table subject to change by AWS
 
   * Durability: How often a file is not to be lost
   * Availability: How readily S3 bucket/files are available
+
+#####S3 Standard:
+  * Used data frequently accessed
+  * Provides high throughput and low latency
+  * Good for mobile and gaming applications, pseudo cdn, big data/analytics
+
+#####S3 Infrequent Access
+  * Good for data less frequently acessed, but can be rapidly available
+  * Cheaper than Standard
+
+#####S3 Intelligent-Tiering
+  * Modest fee for monthly monitoring and auto-tiering
+  * Moves objects between tiers based on usage
+  * Access tiers include:
+    * Frequent (automatic) default
+    * Infrequent (automatic) not acessed for 30 days
+    * Archive Instant (automatic) not accessed for 90 days
+    * Archive (optional) configurable between 90 days to >= 700 days
+    * Deep Archive (optional) configurable between 180 days to >= 700 days
+
+#####S3 Standard-IA
+  * Good for Disaster Recovery and/or backups
+
+#####S3 One Zone-IA
+  * Data lost when AZ is lost/destroyed
+  * Good for recreateable data or on-prem data secondary backup copies
+
+#####S3 Glacier
+  * Never setup a transition to glacier classes if usage might need to be rapid
+  * Good for archiving/backup
 
 ## Database
 
