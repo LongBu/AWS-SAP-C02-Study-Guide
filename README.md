@@ -1397,7 +1397,7 @@ harsh environments
   * If operation fails, can run the command again without duplicating previously copied objects
   * Can be used to copy large amounts of S3 data between regions
 
-####S3 Storage Classes
+#### S3 Storage Classes
 
 | |Std|Intelligent Tiering|Std-IA|One Zone-IA|Glacier Instant Retrieval|Glacier Flexible Retrieval|Glacier Deep Archive|
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
@@ -1417,16 +1417,16 @@ harsh environments
   * Durability: How often a file is not to be lost
   * Availability: How readily S3 bucket/files are available
 
-#####S3 Standard:
+##### S3 Standard:
   * Used data frequently accessed
   * Provides high throughput and low latency
   * Good for mobile and gaming applications, pseudo cdn, big data/analytics
 
-#####S3 Infrequent Access
+##### S3 Infrequent Access
   * Good for data less frequently acessed, but can be rapidly available
   * Cheaper than Standard
 
-#####S3 Intelligent-Tiering
+##### S3 Intelligent-Tiering
   * Modest fee for monthly monitoring and auto-tiering
   * Moves objects between tiers based on usage
   * Access tiers include:
@@ -1436,16 +1436,41 @@ harsh environments
     * Archive (optional) configurable between 90 days to >= 700 days
     * Deep Archive (optional) configurable between 180 days to >= 700 days
 
-#####S3 Standard-IA
+##### S3 Standard-IA
   * Good for Disaster Recovery and/or backups
 
-#####S3 One Zone-IA
+##### S3 One Zone-IA
   * Data lost when AZ is lost/destroyed
   * Good for recreateable data or on-prem data secondary backup copies
 
-#####S3 Glacier
+##### S3 Glacier
   * Never setup a transition to glacier classes if usage might need to be rapid
   * Good for archiving/backup
+
+##### S3 Lifecycle Transitions
+```mermaid
+graph LR
+    A[Std] --> B[Std-IA]
+    A --> C[Intelligent-Tiering]
+    A --> D[One Zone-IA]
+    A --> E[Glacier]
+    A --> F[Glacier Deep Archive]
+    B --> C
+    B --> D
+    B --> E
+    B --> F
+    C --> D
+    C --> E
+    C --> F
+    D --> E
+    D --> F
+    E --> F
+```
+##### S3 Lifecycle Rules
+  * Transition Actions: rules for when to transtion objects between s3 classes (see S3 storage classed above)
+  * Expiration Actions: rules for when to delete an object after some period of time
+    * Good for deleting log files, deleting old versions of files (if versioning enabled), or incomplete multi-part uploads
+  * Rules can be created for object prefixes (addresses) or associated object tags
 
 ## Database
 
