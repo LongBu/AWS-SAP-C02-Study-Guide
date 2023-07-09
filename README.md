@@ -1284,7 +1284,8 @@ harsh environments
    * Note there is no such thing as a true directory within S3, but the convention effectively serves as a namespace
    * Compression is good for cost savings concerning persistence
    * Max size is 5 TB
-   * If uploading > 5 GB, use "multi-part upload"
+   * If uploading > 100MB and absolutely for > 5 GB, use Multi-Part upload
+   * S3 Transfer Acceleration also can be utilized to increase transfer rates by going through an AWS edge location that passes the object to the target S3 bucket (can work with Multi-Part upload)
    * Strong consistency model to reflect latest version/value upon write/delete to read actions
    * Version ID if versioning enabled at the bucket level
    * Metadata (list of key/val pairs)
@@ -1471,6 +1472,18 @@ graph LR
   * Expiration Actions: rules for when to delete an object after some period of time
     * Good for deleting log files, deleting old versions of files (if versioning enabled), or incomplete multi-part uploads
   * Rules can be created for object prefixes (addresses) or associated object tags
+
+##### S3 Analytics
+  * Used to aid when to move between storage classes in S3 via Lifecyle Rules, or perhaps revise
+  * One Zone-IA/Glacier classes aren't supported
+  * Daily report, though takes 24-48 hours to initially start
+
+##### S3 Performance
+  * PUT/COPY/POST/DELETE operations offer a rate of 3500 requests per second per prefix
+  * GET/HEAD operations offer a rate of 5500 requests per second per prefix
+  * Latency between 100 to 200 ms
+  * "Unlimited" prefixes within each bucket
+  * To increase efficiency, place objects in different prefixes, to avoid the upper limits and ideally incrase rates via parallelism
 
 ## Database
 
