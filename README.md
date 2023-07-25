@@ -660,7 +660,8 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Service to provide connectivity between certain events and resultant services such as
     * CRON job triggering (via EventBridge) a λ 
     * λ triggering (via EventBridge) SNS/SQS messages
-    * Event Pattern: rules specified in AWS rule configs react to certain service action(s) (eg: check for external generated certs being that are n days away from expiration)
+    * S3 Event Notifications (via EventBridge) to trigger whatever service is required
+    * Event Pattern: rules specified in AWS JSON rule configs react (eg: filter) to certain service action(s) (eg: check for external generated certs that are n days away from expiration, metadata, object sizes, names, etc.)
     * When an EventBridge rule runs, it needs permission on the target (eg: \[λ, SNS, SQS, Cloudwatch Logs, API GW, etc.] resource based policy or \[Kinesis Streams, Sys Mgr Run Command, ECS tasks etc.] IAM Role must allow EventBridge)
     * Externally available to 3rd party SAAS partners
     * Can analyze events and infer an associated schema (capable of versioning).  This registered schema allows code generation for applications to know the structure of the data in coming into the event bus
@@ -671,6 +672,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
     * EventBridge Event Buses:
       * Are accessible to other AWS accounts/Regions via Resource based policies
       * Events can be archived/filtered sent to it (time based or forever) and even replayed
+      * Multiple destinations at one time is possible
 
 ### SQS
   * if writing to it IAM Role permissions needed by the writer
@@ -1325,6 +1327,9 @@ harsh environments
     * Encryption (KMS Customer Master Key [CMK]) managed by AWS KMS
     * Encrypted server side via HTTP/S and Header containing "x-amz-server-side-encryption":"aws:kms"
     * Offers further user control and audit trail
+    * May be impacted by KMS limits, though you can increase them via Service Quotas Console
+      * Upload calls the GenerateDataKey KMS API (counts towards KMS quota 5500, 10000, or 30000 req/s based upon region)
+      * Download calls the Decrypt KMS API (also counts towards KMS quota)
   * SSE-C:
     * Server side encryption via *HTTPS only*, using a fully managed external customer key external to AWS that must be provided in the HTTP headers for every HTTP request (key isn't saved by AWS)
     * Objects encrypted with SSE-C are never replicated between S3 Buckets
@@ -1484,6 +1489,18 @@ graph LR
   * Latency between 100 to 200 ms
   * "Unlimited" prefixes within each bucket
   * To increase efficiency, place objects in different prefixes, to avoid the upper limits and ideally incrase rates via parallelism
+  * Alternatively, to speed up downloads, one can utilize S3 Byte-Range Fetches in parallel
+  * S3 Byte-Range Fetches can also be targeted to fetch the head of a file (eg headers)
+
+##### S3 Event Notifications
+  * Event Notifications involve all CRUD operations (as many as required) and can be consumed by various services (eg: SNS, SQS, λ functions, etc.)
+  * Typically deliver in seconds, but can sometimes take >= minutes
+  * Great use case to generate thumbnails of uploaded images to S3
+
+##### S3 Requester Payments
+  * As oppose to the owner of the bucket typically paying for the transfer costs, the requester of the objects pays for the transfer and the request
+  * Requester must be authenticated
+  * Good use case for sharing large files (eg: datasets)
 
 ## Database
 
@@ -1768,15 +1785,17 @@ graph LR
     
 ### Amazon Athena:
   * Serverless query service enabling analysis and querying of data in S3 using standard SQL, while allowing more advanced queries (joins permitted)
-  * Compress data for smaller retrieval
+  * Supports CSV, JSON, ORC, Avro, and Parquet
+  * Use Columnar data and/or compress data for smaller retrieval
   * Use target files (> 128 MB) to minimize overhead
   * $5.00 per TB scanned
   * Commonly used with Amazon Quicksight
+  * Use Cases: BI, analytics, reporting, analysis of VPC Flow Logs/ELB Logs, CloudTrail, etc.
   * Federated query allows SQL queries across relational, object, non-relational, custom (AWS or on-premisis) using Data Source Connectors that run on λ with results being returned and stored in S3
 
 ### S3/Glacier Select:
-  * Simple SQL queries (no joins)
-  * Glacier Select input is a csv file with an S3 Select Statement
+  * Simple SQL queries (no joins), though you may filter by rows and columns 
+  * Glacier Select input is a csv file with an S3 Select Statement (server side filtration) cutting down on network transfer to consumer
   
 ### Amazon Quicksight:
   * BI/analytics sereverless ML service used to build interactive visualizations, perform ad-hoc analysis without paying for integrations of data and leaving the data uncanned for exploration
@@ -2157,6 +2176,7 @@ sequenceDiagram
 | CMS | Content Management System |
 | CORS | Cross-Origin Resource Sharing |
 | CRR | Cross Region Replication |
+| CRUD | Create, Read, Update, Delete |
 | CVE | Common Vulnerabilities and Exposures |
 | DAX | DynamoDB Accelerator |
 | DB | Database |
