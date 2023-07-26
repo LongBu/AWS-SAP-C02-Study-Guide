@@ -1287,7 +1287,7 @@ harsh environments
    * Compression is good for cost savings concerning persistence
    * Max size is 5 TB
    * If uploading > 100MB and absolutely for > 5 GB, use Multi-Part upload
-   * S3 Transfer Acceleration also can be utilized to increase transfer rates by going through an AWS edge location that passes the object to the target S3 bucket (can work with Multi-Part upload)
+   * S3 Transfer Acceleration also can be utilized to increase transfer rates (upload and download) by going through an AWS edge location that passes the object to the target S3 bucket (can work with Multi-Part upload)
    * Strong consistency model to reflect latest version/value upon write/delete to read actions
    * Version ID if versioning enabled at the bucket level
    * Metadata (list of key/val pairs)
@@ -1337,6 +1337,7 @@ harsh environments
     * Utilizes a client library such as Amazon S3 Encryption Client
     * Encrypted prior to sending to S3 and must be decrypted by clients when retrieving from S3 conducted over HTTP/S
     * Utilizes a fully managed external customer key external to AWS
+    * S3 objects useing SSE-C not able to be replicated between buckets
 
 #### Security (IAM principle can access if either of the policy types below allows it and there is no Deny present):
   * Types
@@ -1387,6 +1388,13 @@ harsh environments
   * Only new objects are replicated upon activation of CRR/SRR
   * Replications can not happen between more than one source and destinations (no chains)
   * Delete operations can replicate delete markers from source to target (optional setting), while those with a versioin ID are not replicated (avoids malicious deletes)
+  * Unencrypted objects and objects encrypted with SSE-S3 are replicated by default
+  * Objects encrypted with SSE-C are never replicated
+  * Objects encrypted with SSE-KMS need an option enabled (might receive KMS throttling errors=>Service Quota increase)
+    * Specify KMS Key to encrypt within the target bucket
+    * Adapt the KMS Key Policy for the target key
+    * Create an IAM Role with kms:Decrypt for the source KMS Key and kms:Encrypt for the target KMS key
+  * Per CRR, can utilize multi-region AWS KMS Keys, but are currently treated as independent keys by S3 (eg: upon transfer the object will still be decrypted and encrypted)
 
 ##### S3 Batch Replication:
   * Provides a way to replicate objects that existed before a replication configuration was in place, objects that have previously been replicated, and those that failed replication
@@ -1395,6 +1403,18 @@ harsh environments
   * By default, replication only supports copying new S3 objects after enabled by AWS S3 console
   * To enable live replication of existing objects, an AWS support ticket is needed to ensure replication is configured correctly
   * Can be used to copy large amounts of S3 data between regions or within regions
+
+##### S3 Batch Operations:
+  * Perform bulk operation on existing S3 objects in bulk:
+    * Modify metadata and/or properties
+    * Copy objects between buckets
+    * Encrypt un-encrypted objects
+    * Modify ACL, tags
+    * Restore objects from S3 Glacier
+    * Trigger λ functions to perform custom actions upon each object
+  * S3 Batch Operation job consists of a list of objects, the action to perform and any optional parameters
+  * S3 Batch Operations manages retries, tracks progress, sends completion notifications, generates reports etc.
+  * Can harness S3 Inventory to get a list of objects and harness S3 Select to filter objects supplied to the S3 Batch Job
 
 ##### S3 Sync Command:
   * Uses copy object APIs to copy objects between S3 buckets
@@ -1452,6 +1472,7 @@ harsh environments
 ##### S3 Glacier
   * Never setup a transition to glacier classes if usage might need to be rapid
   * Good for archiving/backup
+  * Harness Glacier Vault Lock (WORM) to no longer allow future edits, which is great for compliance and data retention
 
 ##### S3 Lifecycle Transitions
 ```mermaid
@@ -1501,6 +1522,19 @@ graph LR
   * As oppose to the owner of the bucket typically paying for the transfer costs, the requester of the objects pays for the transfer and the request
   * Requester must be authenticated
   * Good use case for sharing large files (eg: datasets)
+
+##### S3 Object Lock 
+  * Versioning must be enabled
+  * WORM
+  * May block version deletion for a set period of time (or not)
+    * Retention Period: fixed period of time
+    * Legal Hold: WORM, no expiration/deletion
+  * Modes
+    * Retention Governance mode: users unable to overwrite/delete object version(s) or alter its lock settings unless possessing special permissions
+    * Retention Compliance mode: protected object version can't be overwritten or deleted by anyone including the root user of the AWS account.  When an object is locked in compliance mode, its retention mode can't be changed and its retention period can't be shortened
+
+##### S3 Data Transfer pricing (eg: current US terms)
+  * 50-500% faster
 
 ## Database
 
