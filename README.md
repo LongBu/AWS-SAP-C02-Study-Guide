@@ -1533,8 +1533,19 @@ graph LR
     * Retention Governance mode: users unable to overwrite/delete object version(s) or alter its lock settings unless possessing special permissions
     * Retention Compliance mode: protected object version can't be overwritten or deleted by anyone including the root user of the AWS account.  When an object is locked in compliance mode, its retention mode can't be changed and its retention period can't be shortened
 
-##### S3 Data Transfer pricing (eg: current US terms)
-  * 50-500% faster
+##### S3 Data Transfer Pricing (eg: current US terms)
+  * S3 Transfer Acceleration improves performance by routing traffic throuh CloudFront Edge and AWS backbone networks, as well as network protocol optimizations
+  * S3 ingress: free
+  * S3 to Internet: .09 per GB
+  * S3 Transfer Acceleration
+    * 50-500% faster
+    * additional cost ranging from .04 to .08 per GB on top of non-accelerated pricing
+  * S3 to CloudFront: .00 per GB
+  * CloudFront to internet: .085 per GB
+    * Cacheable offering lower latency
+    * Reduce costs attributed to S3 request pricing (currently 7x cheaper)
+  * S3 CRR: .02 per GB 
+
 
 ## Database
 
