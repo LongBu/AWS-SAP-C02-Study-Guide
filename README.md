@@ -1271,6 +1271,7 @@ harsh environments
   * Buckets exist within AWS regions
   * Not a file system, and if a file system is needed, EBS/EFS/FSx should be considered
   * Not mountable as is a NFS
+  * Supports any file format
   * Name formalities:
     * Must not start with the prefix 'xn--'
     * Must not end with the the suffix '-s3alias'
@@ -1472,9 +1473,10 @@ harsh environments
 ##### S3 Glacier
   * Never setup a transition to glacier classes if usage might need to be rapid
   * Good for archiving/backup
+  * Glacier Instant Retrieval is a good option for accessing data once a quarter
   * Harness Glacier Vault Lock (WORM) to no longer allow future edits, which is great for compliance and data retention
 
-##### S3 Lifecycle Transitions
+##### S3 Lifecycle Transitions (can also be conducted manually via AWS Console)
 ```mermaid
 graph LR
     A[Std] --> B[Std-IA]
