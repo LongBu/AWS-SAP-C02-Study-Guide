@@ -1465,6 +1465,7 @@ harsh environments
 
 ##### S3 Standard-IA
   * Good for Disaster Recovery and/or backups
+  * Good for infrequentyly accessed objects that need immediate access
 
 ##### S3 One Zone-IA
   * Data lost when AZ is lost/destroyed
@@ -1475,6 +1476,7 @@ harsh environments
   * Good for archiving/backup
   * Glacier Instant Retrieval is a good option for accessing data once a quarter
   * Harness Glacier Vault Lock (WORM) to no longer allow future edits, which is great for compliance and data retention
+  * Glacier or Deep Archive are good for infrequentyly accessed objects that don't need immediate access
 
 ##### S3 Lifecycle Transitions (can also be conducted manually via AWS Console)
 ```mermaid
