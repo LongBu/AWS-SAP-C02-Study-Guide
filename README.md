@@ -1449,9 +1449,10 @@ harsh environments
   * Provides high throughput and low latency
   * Good for mobile and gaming applications, pseudo cdn, big data/analytics
 
-##### S3 Infrequent Access
-  * Good for data less frequently acessed, but can be rapidly available
+##### S3 Standard Infrequent Access
+  * Good for data less frequently acessed that need immediate access
   * Cheaper than Standard
+  * Good for Disaster Recovery and/or backups
 
 ##### S3 Intelligent-Tiering
   * Modest fee for monthly monitoring and auto-tiering
@@ -1462,10 +1463,6 @@ harsh environments
     * Archive Instant (automatic) not accessed for 90 days
     * Archive (optional) configurable between 90 days to >= 700 days
     * Deep Archive (optional) configurable between 180 days to >= 700 days
-
-##### S3 Standard-IA
-  * Good for Disaster Recovery and/or backups
-  * Good for infrequentyly accessed objects that need immediate access
 
 ##### S3 One Zone-IA
   * Data lost when AZ is lost/destroyed
