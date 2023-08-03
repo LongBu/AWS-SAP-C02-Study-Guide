@@ -1346,7 +1346,7 @@ harsh environments
     * Resource Based:
       * Bucket Policies (JSON based statements)
         * Governing such things as:
-          * (Blocking) public access
+          * (Blocking) public access \[setting was created to prevent company data leaks]
           * Forced encryption at upload (necessitates encryption headers).  Can be alternatively be done by "default encryption" via S3, though Bucket Policies are evaluated first
           * Cross account access
         * Bucket policy statement attributes 
