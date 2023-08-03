@@ -1342,7 +1342,7 @@ harsh environments
 
 #### Security (IAM principle can access if either of the policy types below allows it and there is no Deny present):
   * Types
-    * User Based: governed by IAM policies (eg: which user,  within a given account, via IAM should be allowed to access resources) 
+    * User Based: governed by IAM policies (eg: which user,  within a given AWS account, via IAM should be allowed to access resources) 
     * Resource Based:
       * Bucket Policies (JSON based statements)
         * Governing such things as:
