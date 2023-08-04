@@ -1324,10 +1324,11 @@ harsh environments
     * Encryption (keys) managed by AWS (S3)
     * Encryption type of AES-256
     * Encrypted server side via HTTP/S and Header containing "x-amz-server-side-encryption":"AES256"
+    * Enabled by default for new buckets and objects
   * SSE-KMS
     * Encryption (KMS Customer Master Key [CMK]) managed by AWS KMS
     * Encrypted server side via HTTP/S and Header containing "x-amz-server-side-encryption":"aws:kms"
-    * Offers further user control and audit trail
+    * Offers further user control and audit trail via cloudtrail
     * May be impacted by KMS limits, though you can increase them via Service Quotas Console
       * Upload calls the GenerateDataKey KMS API (counts towards KMS quota 5500, 10000, or 30000 req/s based upon region)
       * Download calls the Decrypt KMS API (also counts towards KMS quota)
