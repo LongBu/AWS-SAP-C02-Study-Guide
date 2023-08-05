@@ -1267,7 +1267,7 @@ harsh environments
 
 #### Buckets:
   * Service to allow objects/files within a virtual "directory"
-  * Bucker names must be *globally unique*
+  * Bucket names must be *globally unique*
   * Buckets exist within AWS regions
   * Not a file system, and if a file system is needed, EBS/EFS/FSx should be considered
   * Not mountable as is a NFS
