@@ -1764,7 +1764,7 @@ graph LR
   * Minimum 1 MB of data at a time
   * Pay only for the data going through
   * Can subscribe to SNS
-  * No data persistence and must bre immediately consumed/processed
+  * No data persistence and must be immediately consumed/processed
   * Sent to (S3 as a backup or failed case[s]):
     * S3
     * Amazon Redshift (copy through S3)
