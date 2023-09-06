@@ -2283,7 +2283,7 @@ sequenceDiagram
 | SAML | Security Assertion Markup Language |
 | SAAS | Software as a Service |
 | SASL | Simple Authentication and Security Layer |
-| SCT | AWS Schema Conversion Tool  AWS Schema Conversion Tool |
+| SCT | AWS Schema Conversion Tool |
 | SES | Simple Email Service |
 | SFTP | Secure File Transfer Protocol |
 | SG | Security Group |
