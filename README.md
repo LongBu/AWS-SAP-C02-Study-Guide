@@ -964,7 +964,7 @@ flowchart TD
   * If ping needed (EC2) from on-premises, add ICMP protocol on the inbound SGs
 ### Transit VPC:
   * Uses customer managed EC2(s) VPN instances in a dedicated transit VPC resources with an IGW
-  * Data transfer charged for traffic traversing this VPC an again from the transit VPC to on-premises network or different AWS regions
+  * Data transfer charged for traffic traversing this VPC and again from the transit VPC to on-premises network or different AWS regions
   * Consider AWS Transit Gateway (shared services VPC) as a cheaper and less maintenance alternative
 
 ### VPC Peering: 
@@ -976,7 +976,7 @@ flowchart TD
 ### AWS Transit Gateway (Shared services VPC):
   * Allows transitive peering between thousands of VPCs and on-premises data centers
   * Works on a hub-and-spoke model
-  * Works primarily on a regional basis, though accessible acorss multiple regions
+  * Works primarily on a regional basis, though accessible across multiple regions
   * Can be used across multiple AWS accounts using AWS RAM
   * Can use route tables to limit VPCs communication between one another
   * Works with Direct Connect as well as VPN connections
