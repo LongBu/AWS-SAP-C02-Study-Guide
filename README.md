@@ -1971,7 +1971,7 @@ timeline
     * Operational excellence-run/monitor system/assets=>increase business value through RA/mitigation
     * Security-protect=>increase business value through RA/mitigation
     * Reliability-recover, dynamically allocate, mitigate despite misconfiguration/problem(s)
-    * Performance efficiency system requirements and maintenance through changes
+    * Performance-meet system requirements and maintenance through changes
     * Cost optimization-deliver at lowest price point
     * Sustainability-minimize environmental impact
   * Tool scans workloads for these criteria
