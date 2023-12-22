@@ -23,6 +23,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ## Introduction
 <a href="https://d1.awsstatic.com/training-and-certification/docs-sa-pro/AWS-Certified-Solutions-Architect-Professional_Exam-Guide.pdf">AWS Certified Solutions Architect - Professional (SAP-C02) Exam Guide</a>
+
+
+<a href="https://certmetrics.com/amazon/candidate/benefit_summary.aspx">Don't forget to utilize a benefit code if you've passed another AWS exam previously to save</a>
+
 ### Exam Content Breakdown:
 
 | Domain  | % of Exam |
