@@ -1900,7 +1900,7 @@ graph LR
   * Good for storing sessions of instances
   * Good for performance improvement of DB(s), though use of involves heavy application code changes
   * Must provision EC2 instance type(s)
-  * IAM auth no supported
+  * IAM auth not supported
   * Redis versus Mem Cached:
     * Redis:
       * backup and restore features
