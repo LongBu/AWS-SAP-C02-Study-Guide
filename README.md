@@ -2191,10 +2191,10 @@ sequenceDiagram
    * Celebrity recognition
    * Pathing (eg: for sports game analysis)
    * Content Moderation (inappropriate, unwanted, or offensive images/videos)
-    * Social media/broadcast media/advertising/e-commerce
-    * Confidence level of content flags/gates (threshold configuration-based)
-    * Flag sensitive content for manual review in A2I
-    * Help comply with regulations
+     * Social media/broadcast media/advertising/e-commerce
+     * Confidence level of content flags/gates (threshold configuration-based)
+     * Flag sensitive content for manual review in A2I
+     * Help comply with regulations
     
 ### Fully Managed => serverless
 
