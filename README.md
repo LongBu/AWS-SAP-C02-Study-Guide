@@ -1172,10 +1172,10 @@ flowchart TD
   * Supports SMB and Windows NTFS
   * Microsoft Active Directory integration, ACLs, user quotas
   * Can be mounted on Linux EC2 instances
-  * Scale up to 10s of GBps, millions IOPs, 100s of PB of data
+  * Scale up to 10s of GBps, millions of IOPs, 100s of PB of data
   * Storage Options:
-   * SSD - latency sensitive workloads (DB, data analytics)
-   * HDD - broad spectrum of workloads (home directories, CMS)
+    * SSD - latency sensitive workloads (DB, data analytics)
+    * HDD - broad spectrum of workloads (home directories, CMS)
   * On-premises accessible (VPN and/or Direct Connect)
   * Can be configured to be Multi-AZ
   * Data is backed up daily to S3
