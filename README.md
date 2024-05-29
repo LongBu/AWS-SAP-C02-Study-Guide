@@ -339,7 +339,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
     * Good for HTTP use cases requiring deterministic, fast regional failover 
 
 ### AWS PrivateLink:
-  * Service allowing you to open your service in VPC to another VPC (using private link)
+  * Service allowing you to open your service in VPC to another VPC (using PrivateLink)
   * Allows exposure of VPC service to tens, hundreds, or thousands of other VPCs
   * Doesn't require VPC peering; no route tables, NAT, IGWs, etc.
   * Requires a NLB on the service VPC and an ENI on the customer VPC
