@@ -170,7 +170,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * X-Forwarded-For header for client IP
   * Sticky sessions available, via cookie (AWSALB)
   * Custom Cookie name must be specified for each target group (all cookies < 4KB)
-  * Cross-zone LB is free and always on (can’t be disabled)
+  * Cross-zone LB is free and always on (can’t be disabled), though at the target group level, cross-zone load balancing can be disabled
   * Integrates with Cognito User Pools
 
 #### Elastic Load Balancer (ELB/CLB):
