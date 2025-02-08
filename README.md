@@ -130,7 +130,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Low cost
   * Scales
   * Can enable/disable CORS
-  * Handle security (Authentication [*Integrates with Cognito User Pools*]/Authorization[IAM-intnernal AWS]) 
+  * Handle security (Authentication [*Integrates with Cognito User Pools*]/Authorization[IAM-internal AWS]) 
   * Create API keys
   * Swagger/Open API import to define APIs
   * Custom Domain name HTTPS security integration with AWS ACM
