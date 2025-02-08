@@ -133,7 +133,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Handle security (Authentication [*Integrates with Cognito User Pools*]/Authorization[IAM-internal AWS]) 
   * Create API keys
   * Swagger/Open API import to define APIs
-  * Custom Domain name HTTPS security integration with AWS ACM
+  * Custom Domain name HTTPS security integration with ACM
     * If Edge-Optimized=>certificate in US-East-1
     * If Regional=>certificate in API Gateway region
     * Must setup CNAME or A-Alias record in Route 53
