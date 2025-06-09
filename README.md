@@ -1263,7 +1263,8 @@ harsh environments
 ### AWS OpsHub
   * Historically, to use Snow Family devices, you needed a CLI (Command Line Interface tool)
   * Today, you can use AWS OpsHub (a software you install on your computer/laptop) to manage your Snow Family Device
-  * Unlocking and configuring single or clustered devices • Transferring files
+  * Unlocking and configuring single or clustered devices
+  * Transferring files
   * Launching and managing instances running on Snow Family Devices
   * Monitor device metrics (storage capacity, active instances on your device)
   * Launch compatible AWS services on your devices (ex: Amazon EC2 instances, AWS DataSync, Network File System (NFS))
