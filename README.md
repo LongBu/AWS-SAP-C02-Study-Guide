@@ -1579,6 +1579,9 @@ graph LR
   * Multi-AZ: 
     * Can be set at creation or live
     * Synchronous replication, at least 2 AZs in the region, while Read replicas => asynchronous replication can be in an AZ, cross-AZ or cross-region
+    * Failover: Primary fails and Standby then becomes the Primary
+    * OS Updates/Maintenance: Standby is updated=>promoted to Primary=>Old Primary becomes Standby and thenceforth updated
+    * To modify/upgrade a database engine, all instances must be updated simultaneously and shutdown during this process
 
 #### RDS Autoscaling:
   * Supports all RDS
