@@ -1511,11 +1511,11 @@ graph LR
   * Used to aid when moving between storage classes in S3 via Lifecycle Rules, or perhaps revise
   * One Zone-IA/Glacier classes aren't supported
   * Daily report, though takes 24-48 hours to initially start
-  * Storage Class Analysis used mainly to understand when to transition less frequently access STANDARD storage to STANDARD_IA
-  * Can analyze all objects in a bucket or filter utilizing:
-    * Common prefixes
-    * Object tags
-    * Both
+  * Storage Class Analysis used mainly to understand when to transition less frequently accessed STANDARD storage to STANDARD_IA
+    * Can analyze all objects in a bucket or filter utilizing:
+      * Common prefixes
+      * Object tags
+      * Both
 
 ##### S3 Performance
   * PUT/COPY/POST/DELETE operations offer a rate of 3500 requests per second per prefix
