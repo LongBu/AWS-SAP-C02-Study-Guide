@@ -940,7 +940,7 @@ flowchart TD
 | dedicated | dedicated | dedicated |
 
 ### Amazon VPC console wizard configurations:
-  * VPC with public/private subnets (NA)
+  * VPC with public/private subnets (NAT)
   * VPC with public/private subnets and AWS Site-to-Site VPN access
   * VPC with a single public subnet
   * VPC with a private subnet only and AWS Site-to-Site VPN access
