@@ -514,7 +514,8 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 ### EC2 Hibernate:
   * In-memory state is preserved
   * Instance boot time is much faster (OS is not stopped/restarted)
-  * Memory state is written to a file in root EBS
+  * Memory state is written to a file in root EBS of the EC2 instance
+  * RAM must be less than 150GB
   * Root EBS must be encrypted
   * Can't use hibernate beyond 60 days
   * Available for the following EC2 Options: On-Demand, Reserved, and Spot Instances
