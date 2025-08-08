@@ -1630,6 +1630,7 @@ graph LR
   * Shareable snapshots with other accounts
   * Replicas: MySQL, Postgres, or Aurora
   * Replicas can autoscale
+  * Aurora Cloning available if you need it for non-live read/write testing/operation
   * Cross-region replication (< 1 second) support available 
     * Aurora Global: multi-region (up to 5)
     * Aurora Cloning: copy of production (faster than a snapshot)
