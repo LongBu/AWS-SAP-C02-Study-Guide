@@ -1116,6 +1116,9 @@ flowchart TD
   * Always in the same region as EC2
   * To move EC2 volume=>snapshot=>AMI=>copy to destination Region/AZ=>launch AMI
   * EBS snapshot archive (up to 75% cheaper to store, though 24-72 hours to restore)
+  * EC2 Instance Default EBS Volume Types vs termination
+    * Root EBS=>"Delete On Termination" is default on
+    * Other EBS Types=>"Delete On Termination" is default off
 
 ### AMI Type (EBS vs Instance Store):
   * Instance Store based volumes provide high random I/O performance
