@@ -1581,7 +1581,7 @@ graph LR
 
 #### AWS RDS:
   * Autoscaling when running out of storage
-  * Max read replicas: 5
+  * Max read replicas: 5 for Oracle, 15 for MySQL, PostgreSQL, MariaDB, and SQL Server
   * Read replicas are not equal to a DB
   * Read replicas cross region/AZ incur $
   * IAM Auth
