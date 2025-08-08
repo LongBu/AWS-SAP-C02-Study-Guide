@@ -362,7 +362,9 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Used to provide an IP range
   * VPCs per region: 5
   * Subnets per VPC: 200
+  * Max CIDR size in AWS is /16
   * If EC2 can't launch in subnet examine IPV4 CIDR (even if IPV6 used)
+  * If connecting networks, CIDR must not overlap each respective CIDR
   * Used in SG rules
   * IPV4 can't be disabled in VPC
   * Octets (1st 2nd 3rd 4th)
