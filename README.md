@@ -160,7 +160,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 #### Application Load Balancer (ALB):
   * Best suited for load balancing HTTP(s) traffic, operating @layer 7 (WebSockets)
   * HTTP traffic following the load balancer doesn't need encryption => port 80
-  * Has a static DNS name (not IP) => uses private IP of associated ENI for requests forwarded to web server
+  * Has a static DNS name (not IP, so no attaching Elastic IP Address) => uses private IP of associated ENI for requests forwarded to web server
   * Reserved ALB cookie names: AWSALBAPP, AWSALBTG, AWSALB
   * Can load multiple SSL certificates on one listener that specifies the hostname via SNI
   * Redirects HTTP=>HTTPS
@@ -177,7 +177,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Legacy load balancer that can load balance http(s) applications and use layer-7 specific features, such as X-Forwarded and sticky sessions
   * Can also use strict Layer 4 load balancing for applications that rely purely on TCP protocol
   * HTTP traffic following the load balancer doesn't need encryption => port 80
-  * Has a static DNS name (not IP) => uses private IP of associated ENI for requests forwarded to web server
+  * Has a static DNS name (not IP, so no attaching Elastic IP Address) => uses private IP of associated ENI for requests forwarded to web server
   * Health checks are TCP or HTTP
   * Sticky sessions available via cookie (AWS ELB) [all cookies < 4KB]
   * Cross-zone LB is free and disabled by default
