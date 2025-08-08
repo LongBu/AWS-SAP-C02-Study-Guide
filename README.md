@@ -738,7 +738,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * up to 100,000 topics
 	 * integrates with SQS for fanout (SNS must be fifo)
   * encryption (in flight via HTTP API [requires SSL certificate to enable]/at-rest using kms/client-side)
-  * access via IAM controls (regulates access to SNS API) and/or SNS Access Policies (cross-account access other and other services to write to SNS)
+  * access via IAM controls (regulates access to SNS API) and/or SNS Access Policies (cross-account access and other services to write to SNS)
   * what can subscribe to SNS?
     * Platform application endpoint
     * SQS
