@@ -501,6 +501,16 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
     * Maximal HA
     * Critical Application where each instance must be isolated from failure from each other
 
+### EC2 Instance Types:
+
+#### Compute Optimized
+
+#### Storage Optimized: Good for jobs requiring high, successive read and write access to datasets/databases locally
+
+#### Memory Optimized
+
+#### General Purpose
+
 ### EC2 Instance Recovery: same private IP, public IP, elastic IP, metadata, placement group, instance ID after failure
 
 ### EC2 User Data:
