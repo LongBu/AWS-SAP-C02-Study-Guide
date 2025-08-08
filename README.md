@@ -737,7 +737,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * pub/sub
   * up to 100,000 topics
 	 * integrates with SQS for fanout (SNS must be fifo)
-  * encryption (in flight via HTTP API [requres SSL certificate to enable]/at-rest using kms/client-side)
+  * encryption (in flight via HTTP API [requires SSL certificate to enable]/at-rest using kms/client-side)
   * access via IAM controls (regulates access to SNS API) and/or SNS Access Policies (cross-account access other and other services to write to SNS)
   * what can subscribe to SNS?
     * Platform application endpoint
@@ -747,19 +747,19 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
     * AWS Lambda
     * Amazon Kinesis Data Firehose
     * SMS
-  * what can't subscribe to SNS?
+  * What can't subscribe to SNS?
     * Amazon Kinesis Data Streams cannot subscribe to SNS
   * Use Kinesis streams for real-time, concurrent processing of data
-    * SNS Publish:
-      * Topic Publish (using SDK)
-        * create Topic
-        * create Subscription(s)
-        * publish to Topic
-      * Direct Publish (for mobile app SDK)
-        * create a platform application
-        * create a platform endpoint
-        * publish to platform endpoint
-        * works with Google GCM, Apple APNS, Amazon ADM
+  * SNS Publish:
+    * Topic Publish (using SDK)
+      * create Topic
+      * create Subscription(s)
+      * publish to Topic
+    * Direct Publish (for mobile app SDK)
+      * create a platform application
+      * create a platform endpoint
+      * publish to platform endpoint
+      * works with Google GCM, Apple APNS, Amazon ADM
 
 ## Configurations and Security
 
