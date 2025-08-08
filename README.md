@@ -822,6 +822,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
    * PII
    * Dashboards/reports/alerts
    * Can also analyze CloudTrail logs (for suspicious activity)
+   * Can notify via EventBridge for integrated services
 
 ### AWS WAF
   * *Can protect: Cloudfront, API Gateway, ALB, Appsync, and Cognito User Pool*
