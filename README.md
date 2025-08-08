@@ -871,7 +871,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
     * To/From traffic
     * Outbound to/Inbound from the internet
     * VPC to VPC traffic
-    * To, From Direct Connect and Site to Site VPN
+    * To, From Direct Connect and Site-to-Site VPN
   * Internally, AWS Network Firewall uses the AWS Gateway Load Balancer
   * Supports 1000s of rules
   * IP and port blocking
