@@ -301,10 +301,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Can't be associated with SGs
   * Objects can be cached for TTL
   * Can clear cached objects, but you will be charged
-  * Price classes: 
-   * All Regions - best performance - $$$
-   * 200 - $$
-   * 100 - $ only least expensive regions
+  * Price classes:
+    * All Regions - best performance - $$$
+    * 200 - $$
+    * 100 - $ only least expensive regions
   * Supports primary/secondary origins for HA/failover (specific HTTP responses)
   * Supports field-level encryption (not KMS) @edge to protect sensitive data
   * Serverless, cheaper to scale
@@ -1322,7 +1322,7 @@ harsh environments
 #### Versioning
   * Configured at the bucket level
   * Can't edit Object(s)/Metadata in place as they are immutable
-  * If enabled, object edits will manifest as an incremental version
+  * If enabled, object edits will manifest as incremental versions
   * Good practice to allow the rolling back of files and accidental deletions
   * Objects that existed before turning on versioning will have a "null" version
   * Disabling versioning doesn't remove earlier versions
