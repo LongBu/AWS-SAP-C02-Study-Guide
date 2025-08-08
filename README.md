@@ -770,7 +770,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Private Certificate use is charged a monthly fee
   * Automatically renews certificates issued by ACM
 
-### Systems Manager (SSM) Parameter Store:
+### Systems Manager (SSM) Session Manager
+  * Allows secure connectivity to EC2 instances without exposing SSH port 22
+
+### SSM Parameter Store:
   * Can be used to store secrets
   * Each time you edit the value of a parameter a new version is created via built-in version tracking and the previous version is committed historically
   * Optional seamless encryption with KMS
