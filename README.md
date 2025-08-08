@@ -1121,7 +1121,7 @@ flowchart TD
     * Other EBS Types=>"Delete On Termination" is default off
 
 ### AMI Type (EBS vs Instance Store):
-  * Instance Store based volumes provide high random I/O performance
+  * Instance Store based volumes provide high random I/O performance over higher level stores (eg: EBS, EFS, etc.)
   * Instance Store=>Ephemeral Storage
   * Instance Store can't be stopped.  If the host fails data is lost
   * EBS backed instances can be stopped and you won't lose data
