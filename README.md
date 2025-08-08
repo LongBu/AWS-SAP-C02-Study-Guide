@@ -1635,7 +1635,7 @@ graph LR
     * Aurora Cloning: copy of production (faster than a snapshot)
   * Aurora multi master (for write failover/high write availability)
   * Aurora serverless for cost-effective option (pay per second) for infrequent, intermittent or unpredictable workloads
-  * Automated backups
+  * Automated backups, though if you need to store long term backups for Disaster Recovery/Audit purposes, perform On Demand Backups
   * Automated failover with Aurora replicas 
     * Failover tiers: lowest ranking number first, then greatest size
   * Aurora ML: ML using SageMaker and Comprehend on Aurora
