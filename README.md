@@ -1872,7 +1872,7 @@ graph LR
   * Use target files (> 128 MB) to minimize overhead
   * $5.00 per TB scanned
   * Commonly used with Amazon Quicksight
-  * Use Cases: BI, analytics, reporting, analysis of VPC Flow Logs/ELB Logs, CloudTrail, etc.
+  * Use Cases: BI, analytics, reporting, analysis of VPC Flow Logs/ELB Logs, S3 Access Logs, CloudTrail, etc.
   * Federated query allows SQL queries across relational, object, non-relational, and custom (AWS or on-premises) using Data Source Connectors that run on λ with results being returned and stored in S3
 
 ### S3/Glacier Select:
