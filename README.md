@@ -1870,6 +1870,7 @@ graph LR
   * Supports CSV, JSON, ORC, Avro, and Parquet
   * Use Columnar data and/or compress data for smaller retrieval
   * Use target files (> 128 MB) to minimize overhead
+  * Compress data for smaller retrieval
   * $5.00 per TB scanned
   * Commonly used with Amazon Quicksight
   * Use Cases: BI, analytics, reporting, analysis of VPC Flow Logs/ELB Logs, S3 Access Logs, CloudTrail, etc.
@@ -1877,7 +1878,8 @@ graph LR
 
 ### S3/Glacier Select:
   * Simple SQL queries (no joins), though you may filter by rows and columns 
-  * Glacier Select input is a csv file with an S3 Select Statement (server-side filtration) cutting down on network transfer to consumer
+  * Glacier Select input is a csv file with an S3 Select Statement (server-side filtration) cutting down on network transfer to the consumer
+  * Anything more advanced=>Athena
   
 ### Amazon Quicksight:
   * BI/analytics serverless ML service used to build interactive visualizations, perform ad-hoc analysis without paying for integrations of data and leaving the data uncanned for exploration
