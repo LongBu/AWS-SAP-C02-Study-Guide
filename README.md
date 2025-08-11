@@ -693,38 +693,37 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
       * Multiple destinations at one time are possible
 
 ### SQS
-  * if writing to it IAM Role permissions are needed by the writer
-  * if receiving from SNS, need access policy to allow
-  * queues (eg: SQS) aren't meant for (real-time) streaming of data
-  * guarantees processed at least once
-  * retention in queue from 1 minute to 14 days (default retention is 4 days)
-  * messages are 256k or less
-  * receive up to 10 messages at a time
-  * data deleted after consumption
-  * can have as many consumers as needed
-  * ordering is only guaranteed on FIFO Queues, not standard
-  * std queue: unlimited throughput
+  * If writing to it IAM Role permissions are needed by the writer
+  * If receiving from SNS, need access policy to allow
+  * Queues (eg: SQS) aren't meant for (real-time) streaming of data
+  * Guarantees processed at least once
+  * Retention in queue from 1 minute to 14 days (default retention is 4 days)
+  * Messages are 256k or less
+  * Receive up to 10 messages at a time
+  * Data deleted after consumption
+  * Can have as many consumers as needed
+  * Ordering is only guaranteed on FIFO Queues, not standard
+  * Std queue: unlimited throughput
   * FIFO queue can limit throughput (300 messages per second)
   * FIFO queue name must have a *.FIFO extension
-  * batch mode available with up to 3000 messages per second (batch of 10)
-  * to convert to/from standard or FIFO can't modify, must create a new queue
+  * Batch mode available with up to 3000 messages per second (batch of 10)
+  * To convert to/from standard or FIFO can't modify, must create a new queue
   * For SQS FIFO, if no group id, messages consumed in the order sent with only 1 consumer; if group id is present, can have up to the same number of consumer(s)
-  * can delay message output to consumer
-  * useful for decoupling applications
-  * pull-based data
-  * dead letter queue used to capture messages that encountered exceptions or timed out
-  * fanout pattern one SNS =>multiple SQS
-  * can work with Auto Scaling Group via CloudWatch Metric/Alarm - Queue Length to scale either/both producer(s)/consumer(s)
-  * encryption (in flight via HTTP API [requres SSL certificate to enable]/at-rest using KMS/client-side)
-  * access via IAM controls (regulates access to SQS API) and/or SQS Access Policies (useful for cross-account to SQS queues and useful for allowing other users to write to SNS)
-  * short polling is sync polling of a queue and returns a response immediately 
-  * long polling of a queue is async returns when either with a response or when the long poll times out (1-20 sec [receive message wait time]) reducing latency/increasing efficiency
-  * purging will remove all messages from the queue
+  * Can delay message output to consumer
+  * Useful for decoupling applications
+  * Pull-based data
+  * Dead letter queue used to capture messages that encountered exceptions or timed out
+  * Fanout pattern one SNS =>multiple SQS
+  * Can work with ASG via CloudWatch Metric/Alarm - Queue Length (approximate # of messages) to scale either/both producer(s)/consumer(s)
+  * Encryption (in flight via HTTP API [requres SSL certificate to enable]/at-rest using KMS/client-side)
+  * Access via IAM controls (regulates access to SQS API) and/or SQS Access Policies (useful for cross-account to SQS queues and useful for allowing other users to write to SNS)
+  * Short polling is sync polling of a queue and returns a response immediately 
+  * Long polling of a queue is async returns when either with a response or when the long poll times out (1-20 sec [receive message wait time]) reducing latency/increasing efficiency
+  * Purging will remove all messages from the queue
   * Visibility timeout: Amt of time a message is invisible in the queue after a reader picks the message.  Provided the job processes before the visibility timeout expires, the message will be deleted from the queue.  If the job isn't processed within that time, the message could become visible again and another reader will process it. This could result in the message being delivered more than once.  The max Visibility timeout is 12 hours.  ChangeMessageVisibility Api can be called to get more time
-    * too high=>longer time to process if consumer crashes
-    * too low=>duplicate processing
-  * ASG utilizes Cloudwatch Metric-Queue length=>Approximate Number of Messages
-	 * Cross-Region Delivery works with SQS queues in other regions
+    * Too high=>longer time to process if consumer crashes
+    * Too low=>duplicate processing
+* Cross-Region Delivery works with SQS queues in other regions
 
 ### SNS
   * can create filter policies (JSON) for only certain SQS consumers to receive certain messages from SNS
