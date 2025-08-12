@@ -792,6 +792,36 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 | Cost | No | Charges Apply |
 | Storage Pricing | Free | .05 per advanced parameter per month |
 
+### AWS KMS
+
+#### KMS Key Types
+
+  * KMS Keys is the new name of the KMS CMK
+  * Symmetric (AES256)
+    * Single encryption key used for encryption/decryption
+    * AWS that harness KMS use this type
+    * No direct access to the unencrypted KMS Key (only through KMS API)
+  * Asymmetric (RSA/ECC)
+    * Public (Encrypt) and Private (Decrypt) pair
+    * Used for encryption/decryption or Sign/Verify operations
+    * Public key downloadable; no access to the unecrypted Private Key
+    * Use case: encryption outside of AWS that can't use KMS API
+
+#### KMS Key Rotation
+  * AWS-managed KMS Key: automatic every 1 year
+  * Customer-managed KMS Key:(must be enabled) automatic per a retention-period and on-demand
+  * Imported KMS Key: only manual rotation possible using an alias
+
+#### KMS Key Policies
+  * Controls access to KMS keys
+  * You can't control access without them
+  * Default Policy
+    * Created if you don't provide a specific KMS Key Policy
+    * Complete access to the key, to the root user equals access to the entire AWS account
+  * Custom Policy
+    * Defines users and roles that can access the key
+    * Defines who can administer the key
+    * Useful for cross-account access of your KMS key (similar to bucket policies
 
 ### AWS Secrets Manager:
   * Helps manage, retrieve, and rotate DB credentials, API keys, and other secrets throughout lifecycles
@@ -1433,7 +1463,7 @@ harsh environments
   * Can be used to copy large amounts of S3 data between regions or within regions
 
 ##### S3 Batch Operations:
-  * Perform bulk operation on existing S3 objects in bulk:
+  * Perform bulk operation on existing S3 objects:
     * Modify metadata and/or properties
     * Copy objects between buckets
     * Encrypt un-encrypted objects
