@@ -507,9 +507,9 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 #### Compute Optimized: good for high performance jobs such as batch processing, transcoding, high performance web servers, HPC, Modeling, ML, gaming servers
 
-#### Storage Optimized: good for jobs requiring high, successive read and write access to datasets/databases locally such as high frequency OLTP systems, relational/non-relational, cache for in-memory dbs, data warehousing applications, distributed file systems
+#### Storage Optimized: good for jobs requiring high, successive read and write access to datasets/DBs locally such as high frequency OLTP systems, relational/non-relational DBs, cache for in-memory DBs, data warehousing applications, distributed file systems
 
-#### Memory Optimized: good for fast performance jobs using large datasets in memory such as high peformance relational/non-relational dbs, distributed web scale cache stores, in-memory dbs optimized for BI, applications performing real-time processing of big unstructured data
+#### Memory Optimized: good for fast performance jobs using large datasets in memory such as high peformance relational/non-relational dbs, distributed web scale cache stores, in-memory DBs optimized for BI, applications performing real-time processing of big unstructured data
 
 #### General Purpose: good for jobs such as web servers or code repos balancing compute, memory, and networking
 
