@@ -505,13 +505,13 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ### EC2 Instance Types:
 
-#### Compute Optimized
+#### Compute Optimized: good for high performance jobs such as batch processing, transcoding, high performance web servers/Computing, HPC, Modeling, ML, gaming servers
 
-#### Storage Optimized: Good for jobs requiring high, successive read and write access to datasets/databases locally
+#### Storage Optimized: good for jobs requiring high, successive read and write access to datasets/databases locally such as high frequency OLTP systems, relational/non-relational, cache for in-memory dbs, data warehousing applications, distributed file systems
 
-#### Memory Optimized
+#### Memory Optimized: good for fast performance jobs using large datasets in memory such as high peformance relational/non-relational dbs, distributed web scale cache stores, in-memory dbs optimized for BI, applications performing real-time processing of big unstructured data
 
-#### General Purpose
+#### General Purpose: good for jobs such as web servers or code repos balancing compute, memory, and networking
 
 ### EC2 Instance Recovery: same private IP, public IP, elastic IP, metadata, placement group, instance ID after failure
 
@@ -2313,6 +2313,7 @@ sequenceDiagram
 | GLB | Gateway Load Balancer |
 | HA | High Availability |
 | HC | Health Check |
+| HPC | High Peformance Computing |
 | HSM | Hardware Security Module |
 | IA | Infrequently Accessed |
 | IAC | Infrastructure as Code |
