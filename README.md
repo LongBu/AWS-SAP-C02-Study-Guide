@@ -1352,7 +1352,6 @@ harsh environments
     * Encrypted server side via HTTP/S and Header containing "x-amz-server-side-encryption":"AES256"
     * Enabled by default for new buckets and objects
     * Unencrypted objects and objects encrypted with SSE-S3 are replicated by default
-
   * SSE-KMS
     * Encryption (KMS Customer Master Key [CMK]) managed by AWS KMS
     * Encrypted server side via HTTP/S and Header containing "x-amz-server-side-encryption":"aws:kms"
@@ -1362,7 +1361,6 @@ harsh environments
       * Download calls the Decrypt KMS API (also counts towards KMS quota)
   * SSE-C:
     * Server-side encryption via *HTTPS only*, using a fully managed external customer key external to AWS that must be provided in the HTTP headers for every HTTP request (key isn't saved by AWS)
-    * Objects encrypted with SSE-C are never replicated between S3 Buckets
   * Client Side Encryption:
     * Utilizes a client library such as Amazon S3 Encryption Client
     * Encrypted prior to sending to S3 and must be decrypted by clients when retrieving from S3 conducted over HTTP/S
