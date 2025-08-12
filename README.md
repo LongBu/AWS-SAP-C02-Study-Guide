@@ -799,7 +799,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * KMS Keys is the new name of the KMS CMK
   * Symmetric (AES256)
     * Single encryption key used for encryption/decryption
-    * AWS that harness KMS use this type
+    * AWS services that harness KMS use this type
     * No direct access to the unencrypted KMS Key (only through KMS API)
   * Asymmetric (RSA/ECC)
     * Public (Encrypt) and Private (Decrypt) pair
