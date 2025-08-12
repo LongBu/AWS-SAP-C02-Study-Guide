@@ -505,7 +505,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ### EC2 Instance Types:
 
-#### Compute Optimized: good for high performance jobs such as batch processing, transcoding, high performance web servers/Computing, HPC, Modeling, ML, gaming servers
+#### Compute Optimized: good for high performance jobs such as batch processing, transcoding, high performance web servers, HPC, Modeling, ML, gaming servers
 
 #### Storage Optimized: good for jobs requiring high, successive read and write access to datasets/databases locally such as high frequency OLTP systems, relational/non-relational, cache for in-memory dbs, data warehousing applications, distributed file systems
 
