@@ -357,6 +357,8 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * AWS Direct Connect + VPN => encrypted
   * Dedicated: 1 GBps to 10 GBps
   * Hosted: 50 MBps, 500 MBps, up to 10 GBps
+  * Public Virtual Interface (VIF): used to connect an on-premises network to public AWS resources (eg: S3, DynamoDB, etc.) over public IPs via prefixes routed through Direct Connect privately
+  * Private VIF: used to connect an on-premises network to VPC resources over private IP addresses 
 
 ### CIDR:
   * Used to provide an IP range
