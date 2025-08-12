@@ -713,6 +713,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Useful for decoupling applications
   * Pull-based data
   * Dead letter queue used to capture messages that encountered exceptions or timed out
+    * If an s3 event triggers a processing lambda, yet fails to process it and a DLQ is the requirement, the DLQ is setup within the Lambda function
   * Fanout pattern one SNS =>multiple SQS
   * Can work with ASG via CloudWatch Metric/Alarm - Queue Length (approximate # of messages) to scale either/both producer(s)/consumer(s)
   * Encryption (in flight via HTTP API [requres SSL certificate to enable]/at-rest using KMS/client-side)
