@@ -1350,6 +1350,8 @@ harsh environments
     * Encryption type of AES-256
     * Encrypted server side via HTTP/S and Header containing "x-amz-server-side-encryption":"AES256"
     * Enabled by default for new buckets and objects
+    * Unencrypted objects and objects encrypted with SSE-S3 are replicated by default
+
   * SSE-KMS
     * Encryption (KMS Customer Master Key [CMK]) managed by AWS KMS
     * Encrypted server side via HTTP/S and Header containing "x-amz-server-side-encryption":"aws:kms"
@@ -1364,7 +1366,7 @@ harsh environments
     * Utilizes a client library such as Amazon S3 Encryption Client
     * Encrypted prior to sending to S3 and must be decrypted by clients when retrieving from S3 conducted over HTTP/S
     * Utilizes a fully managed external customer key external to AWS
-    * S3 objects using SSE-C are not able to be replicated between buckets
+    * S3 objects that utilize Client Side Encryption can't be replicated
 
 #### Security (IAM principle can access if either of the policy types below allows it and there is no Deny present):
   * Types
