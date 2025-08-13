@@ -1247,7 +1247,7 @@ flowchart TD
    * Hybrid cloud storage service that provides on-premises access to virtual cloud storage
    * Most recently used date cached in gateway
    * Volume backed up by EBS snapshots
-   * Tape backed up by S3, S3 (Glacier), and other software
+   * Tape backed up by S3, S3 Glacier, and other software
    * S3 access supported: STD, STD IA, One Zone IA, Intelligent tiering
    * SMB/NTFS access able to integrate with Windows AD
    * Conducted and connected with AWS by VM or physical hardware device
