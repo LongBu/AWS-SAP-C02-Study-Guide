@@ -2103,7 +2103,7 @@ sequenceDiagram
     * Global service
   * AWS Config: 
     * Record configuration changes
-    * Evaluate resources against compliance rules
+    * Evaluate resources against compliance rules (eg: EC2 port n exposed?)
     * Get a timeline of changes and compliance
 
 ### Amazon MQ:
