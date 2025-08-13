@@ -823,7 +823,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Custom Policy
     * Defines users and roles that can access the key
     * Defines who can administer the key
-    * Useful for cross-account access of your KMS key (similar to bucket policies
+    * Useful for cross-account access of your KMS key (similar to bucket policies)
 
 ### AWS Secrets Manager:
   * Helps manage, retrieve, and rotate DB credentials, API keys, and other secrets throughout lifecycles
