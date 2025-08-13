@@ -295,7 +295,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
    * RTMP - used for media streaming
    * Edge Location (λ@edge) where content is cached.  Separate from an AWS Region/AZ.  Can be written to as well
    * Origin-origin of all files CDN distributes (S3 bucket, EC2, ELB, or Route 53)
-   * Distribution - name given to CDN consisting of a collection of Edge Locations
+   * Distribution:
+     * Name given to a global CDN consisting of a collection of Edge Locations
+     * Necessitates minimal refactoring to point at instead of EBS/EFS/etc. cutting down on network costs
+     * Can be used in front of an ALB
   * Can route to multiple origins based on content type (dynamic => ELB, static => S3)
   * Options for securing content: HTTPS, geo-restriction, signed URL/cookie, field level encryption, AWS WAF
   * Can't be associated with SGs
