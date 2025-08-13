@@ -202,7 +202,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Cross zone LB is $ per use and disabled by default
   * If targets specified via instance id => primary private ip specified in primary network interface
   * If targets specified via IP(s) => route traffic to instance via private IP from one or more network interfaces, allowing multiple applications to use the same point
-  * Doesn't support SG(s), based on target configurations, IP of the client, or the *private IP address(es) of the NLB must be allowed on the web server's SG*
+  * Now supports SG(s)
 
 #### Connection Draining (ELB)/Deregistration Delay (ALB and NLB):
   * Time to complete "inflight request(s)" while instance is unhealthy/de-registering
