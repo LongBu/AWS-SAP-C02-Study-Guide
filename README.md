@@ -221,7 +221,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
       * Can use use OR, AND, NOT
       * Can monitor up to 256 Child HC(s)
       * Specify how many must pass to make parent HC pass
-  * HC that monitors Cloudwatch Alarms from Cloudwatch metrics (helpful for VPC private resources as VPC inaccessible endpoint to HC)
+  * HC that monitors CloudWatch Alarms from CloudWatch metrics (helpful for VPC private resources as VPC inaccessible endpoint to HC)
   * HC can pass/fail based on the text of the first 5120 bytes of the response
   * Configure router/firewall to allow incoming Route 53 HC requests
 
@@ -551,13 +551,13 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Dynamic Scaling:
     * *Target-Tracking* scaling: most simple/easy to setup (eg: I want the average ASG CPU to stay around 40%)
     * *Simple/Step* scaling:
-      * When Cloudwatch is triggered (example CPU > 70%), then add 2 units
-     * When Cloudwatch is triggered (example CPU < 30%), then remove 1 unit
+      * When CloudWatch is triggered (example CPU > 70%), then add 2 units
+     * When CloudWatch is triggered (example CPU < 30%), then remove 1 unit
   * Scheduled Actions:
     * Anticipate a scaling based on known usage patterns (eg: increase the minimum capacity to 10 at 5 PM on Fridays)
   * Predictive Scaling: continuously forecast load and schedule scaling ahead
   * Scaling Cool down: following in/out, no further in/out (default 300 seconds)
-  * Good metrics: CPU utilization, Request Count Per Target, Average Network In/Out, any custom Cloudwatch metric
+  * Good metrics: CPU utilization, Request Count Per Target, Average Network In/Out, any custom CloudWatch metric
   * ASG is a good match with keywords such as "dynamic", "change", "capacity"
 
 ### Amazon EC2 Auto Scaling:
@@ -578,7 +578,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ### ASG not terminating EC2 instances
   * Doesn't terminate instance(s) that came into service based on EC2 status check and ELB health checks until grace period expires
-  * Doesn't immediately terminate instances with an impaired status or instances that fail to report data for status checks, which for the latter usually happens when there is insufficient data for the status check metric in Amazon Cloudwatch
+  * Doesn't immediately terminate instances with an impaired status or instances that fail to report data for status checks, which for the latter usually happens when there is insufficient data for the status check metric in Amazon CloudWatch
   * By default, EC2 Autoscaling doesn't use ELB health checks when the group's health check configuration is set to EC2.  This results in the EC2 Autoscaling not terminating instances that fail ELB health checks.  If an instance status is out of service on the ELB console but is healthy on the Amazon EC2 Autoscaling console, confirm that the health check type is set to ELB
 
 ### Amazon EC2 Autoscaling Termination: the following list is in decreasing precedence
@@ -674,15 +674,15 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
    * Bursts of AWS IAM actions
    * Gaps in periodic maintenance
    * Analyzes normal management events to create a baseline to then continuously analyze write events to detect unusual patterns (S3/CloudTrail console/EventBridge events)
-   * Cloudtrail Events are stored for 90 days, though can be sent to S3 and analyzed by Athena
+   * CloudTrail Events are stored for 90 days, though can be sent to S3 and analyzed by Athena
 
-### Amazon EventBridge (aka Cloudwatch Events):
+### Amazon EventBridge (aka CloudWatch Events):
   * Service to provide connectivity between certain events and resultant services such as
     * CRON job triggering (via EventBridge) a λ 
     * λ triggering (via EventBridge) SNS/SQS messages
     * S3 Event Notifications (via EventBridge) to trigger whatever service is required
     * Event Pattern: rules specified in AWS JSON rule configs react (eg: filter) to certain service action(s) (eg: check for external generated certs that are n days away from expiration, metadata, object sizes, names, etc.)
-    * When an EventBridge rule runs, it needs permission on the target (eg: \[λ, SNS, SQS, Cloudwatch Logs, API GW, etc.] resource-based policy or \[Kinesis Streams, Sys Mgr Run Command, ECS tasks etc.] IAM Role must allow EventBridge)
+    * When an EventBridge rule runs, it needs permission on the target (eg: \[λ, SNS, SQS, CloudWatch Logs, API GW, etc.] resource-based policy or \[Kinesis Streams, Sys Mgr Run Command, ECS tasks etc.] IAM Role must allow EventBridge)
     * Externally available to 3rd party SAAS partners
     * Can analyze events and infer an associated schema (capable of versioning).  This registered schema allows code generation for applications to know the structure of the data incoming into the event bus
     * EventBridge Event Buses Types:
@@ -830,7 +830,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Automatic generation of secrets on rotation (uses a λ)
   * Encrypted at rest possible (via KMS)
   * Integrates with RDS
-  * Auditable via CloudTrail, Cloudwatch, and SNS
+  * Auditable via CloudTrail, CloudWatch, and SNS
   * Multi-Region Secrets - read replicas in sync with Primary Secret
   * Able to promote read replica secret to standalone secret (eg: multi-region application DB disaster recovery)
   * SSM parameter store can be utilized if wanting to track versions/values of secrets
@@ -911,7 +911,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Stateful domain list rule groups (eg: allow outbound traffic to *.mysite.com or 3rd party software repository)
   * Regex pattern matching
   * Active flow inspection to protect against network threats with Intrusion prevention capabilities
-  * Sends logs of rule matches to S3, Cloudwatch logs, Kinesis Data Firehose
+  * Sends logs of rule matches to S3, CloudWatch logs, Kinesis Data Firehose
 
 ### WAF vs Firewall Manager vs Shield:
   * All used together for comprehensive protection
@@ -1116,9 +1116,9 @@ flowchart TD
 ### VPC Flow Logs:
   * Capture information about IP traffic going into your interfaces, such as Subnet Flow Logs or ENI Flow Logs
   * Helps to monitor/troubleshoot connectivity issues
-  * Can go to S3 or Cloudwatch Logs
+  * Can go to S3 or CloudWatch Logs
   * Capture network information from AWS managed interfaces, too: ELB, RDS, Elasticache, Redshift, Workspaces, NATGW, Transit Gateway
-  * Query via Athena on S3 or Cloudwatch Log Insights (good for troubleshooting SG and NACL issues)
+  * Query via Athena on S3 or CloudWatch Log Insights (good for troubleshooting SG and NACL issues)
 
 ### Bastion Host/Server
   * An EC2 used to SSH into private EC2 instances
@@ -1387,7 +1387,7 @@ harsh environments
   * SSE-KMS
     * Encryption (KMS Customer Master Key [CMK]) managed by AWS KMS
     * Encrypted server side via HTTP/S and Header containing "x-amz-server-side-encryption":"aws:kms"
-    * Offers further user control and audit trail via Cloudtrail
+    * Offers further user control and audit trail via CloudTrail
     * May be impacted by KMS limits, though you can increase them via the Service Quotas Console
       * Upload calls the GenerateDataKey KMS API (counts towards KMS quota 5500, 10000, or 30000 req/s based upon region)
       * Download calls the Decrypt KMS API (also counts towards KMS quota)
@@ -2022,7 +2022,7 @@ timeline
   * Core Checks and recommendations=>all customers
   * Can enable weekly email notifications from console
   * Full Trusted Advisor-available for Business and Enterprise plans: 
-    * Ability to set Cloudwatch Alarms when reaching limits
+    * Ability to set CloudWatch Alarms when reaching limits
     * Programmatic Access using AWS Support API
 
 ### AWS Cost Explorer:
@@ -2060,7 +2060,7 @@ timeline
   * Requires a cluster of instances (can also be Multi-AZ)
   * Doesn't support SQL (own query language)
   * Comes with OpenSearch dashboards (visualization)
-  * Built-in integrations: Kinesis Firehose, AWS IoT, λ, Cloudwatch logs for data ingest
+  * Built-in integrations: Kinesis Firehose, AWS IoT, λ, CloudWatch logs for data ingest
   * Security through Cognito and IAM, KMS encryption, SSL and VPC
   * Can help efficiently store and analyze logs (amongst clusters)
   * Patterns:
@@ -2089,13 +2089,14 @@ sequenceDiagram
   * A visual workflow service that helps developers use AWS services with λ to build distributed applications, automate processes, orchestrate microservices, or create data (ML) pipelines
   * JSON used to declare state machines under the hood
 
-### Cloudwatch vs Cloudtrail vs AWS Config:
-  * Cloudwatch:
-    * Cloudwatch Contributor Insight=>helps analyze (VPC) logs
+### CloudWatch vs CloudTrail vs AWS Config:
+  * CloudWatch:
+    * CloudWatch Contributor Insight=>helps analyze (VPC) logs
     * Performance monitoring and dashboards (metrics, CPU, network, etc.)
+    * EC2 instance memory can be monitored via installation/configuration of Unified CloudWatch Agent pushing memory usage as a custom metric to CloudWatch
     * Events and Alerting
     * Log aggregation and analysis
-    * Cloudwatch metric=>kinesis data firehose to S3 or 3rd parties in near real-time
+    * CloudWatch metric=>kinesis data firehose to S3 or 3rd parties in near real-time
   * CloudTrail: 
     * Record API calls made within the Account by everyone
     * Can define trails for specific resources
@@ -2241,7 +2242,7 @@ sequenceDiagram
   * Alternative to SNS or SES
   * In SNS and SES, you manage each message audience, content, and delivery schedule
   * In pinpoint, you create message templates, delivery schedules, highly targeted segments, and full campaigns
-  * Stream events (eg: text delivered) to SNS, Kinesis Firehose, Cloudwatch, etc.
+  * Stream events (eg: text delivered) to SNS, Kinesis Firehose, CloudWatch, etc.
 
 ### Amazon Rekognition:
   * Find objects, people, text, and scenes in images and videos using ML
