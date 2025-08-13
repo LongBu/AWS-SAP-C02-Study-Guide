@@ -1246,7 +1246,7 @@ flowchart TD
 ### AWS Storage Gateway:
    * Hybrid cloud storage service that provides on-premises access to virtual cloud storage
    * Most recently used date cached in gateway
-   * Volume backend up by EBS snapshots
+   * Volume backed up by EBS snapshots
    * Tape backed up by S3, S3 (Glacier), and other software
    * S3 access supported: STD, STD IA, One Zone IA, Intelligent tiering
    * SMB/NTFS access able to integrate with Windows AD
