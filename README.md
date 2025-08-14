@@ -1877,6 +1877,15 @@ graph LR
     * No custom code, Glue monitors for changes in the source data, serverless
     * Leverages a "virtual table" (materialized view)
 
+### AWS Lake Formation
+  * Data Lake: central place to have all your data (structured and unstructured) for analytics purpose stored in S3
+  * Fully managed service that makes it easy to setup a data lake in days
+  * Discover, clean, transform, and ingest data into your Data Lake
+  * Automates many complex manual steps (collecting, cleaning, moving, cataloging data, etc.) and de-duplicate (using ML Transforms)
+  * Out of the box source blueprints: S3, RDS, Relational and NoSQL DB
+  * Fine-grained Access Control for your applications (row and column-level)
+  * Built on top of AWS Glue
+
 ### EMR:
   * Service to create Hadoop clusters (Big Data) to analyze/process lots of data using (many) instances
   * Supports Apache Spark, HBase, Presto, Flink, etc.
