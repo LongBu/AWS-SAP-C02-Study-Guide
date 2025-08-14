@@ -1439,6 +1439,27 @@ harsh environments
   * Is being replaced by OAC
   * Can be used to only allow authenticated access (via CloudFront configuration), not done via OAI directly
 
+#### S3 - Access Points
+  * Access Points simplify security management for S3 Buckets
+  * Each Access Point has:
+    *It's own DNS name (Internet Origin or VPC Origin)
+    * An access point policy (similar to bucket policy) to enable scaling customized security access to many different users/apps
+  * Multi-Region for global access and disaster recovery
+  * Can define access to only be accessible via:
+    * VPC (requires a VPC endpoint [either Gateway or Interface Endpoint] to access the Access Point and the VPC Endpoint Policy must allow access to the target bucket and Access Point)
+    * Particular Users
+    * Object Tags present on S3 Objects
+    * Entire bucket
+    * Cross-Account access to users beyond the S3 bucket owner
+
+#### S3 - Object Lambda
+  * Use AWS Lambda Function to change the object before it is retrieved by the calling application
+  * The S3 Object Lambda accesses the data via Access Point(s) avoiding the need for more than one bucket
+  * Use Cases:
+    * Redacting PII
+    * Converting data formats (eg: XML=>JSON)
+    * Resizing and/or watermarking images
+
 #### Replication
 
 ##### CRR/SRR:
