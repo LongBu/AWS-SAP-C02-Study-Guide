@@ -1442,7 +1442,7 @@ harsh environments
 #### S3 - Access Points
   * Access Points simplify security management for S3 Buckets
   * Each Access Point has:
-    *It's own DNS name (Internet Origin or VPC Origin)
+    * It's own DNS name (Internet Origin or VPC Origin)
     * An access point policy (similar to bucket policy) to enable scaling customized security access to many different users/apps
   * Multi-Region for global access and disaster recovery
   * Can define access to only be accessible via:
@@ -1453,7 +1453,7 @@ harsh environments
     * Cross-Account access to users beyond the S3 bucket owner
 
 #### S3 - Object Lambda
-  * Use AWS Lambda Function to change the object before it is retrieved by the calling application
+  * Use AWS Lambda Function to change an object before it is retrieved by the calling application
   * The S3 Object Lambda accesses the data via Access Point(s) avoiding the need for more than one bucket
   * Use Cases:
     * Redacting PII
