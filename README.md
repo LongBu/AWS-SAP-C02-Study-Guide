@@ -2296,6 +2296,8 @@ sequenceDiagram
     
 ### Fully Managed => serverless
 
+### High Availability => > 1 AZ
+
 ### EC2 meta data => http://169.254.169.254/latest/meta-data
 
 ## Acronyms
