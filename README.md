@@ -39,6 +39,23 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ## Organizational Unit (OU)
 
+### AWS Organizations
+  * Global service   
+  * Allows to manage multiple AWS accounts (Dev/QA/Test/etc.
+  * The main account is the management account
+  * Other accounts are member accounts
+  * Member accounts can only be part of one organization
+  * Consolidated Billing across all accounts - single payment method
+  * Pricing benefits from aggregated usage (volume discount for EC2, S3...)
+  * Shared reserved instances and Savings Plans discounts across accounts   * API is available to automate AWS account creation 
+  * Advantages
+    * Multi Account vs One Account Multi VPC 
+    * Use tagging standards for billing purposes
+    * Enable CloudTrail on all accounts, send logs to central S3 account   
+    * Send CloudWatch Logs to central logging account
+    * Establish Cross Account Roles for Admin purposes 
+  * Lacks automation and governance features as seen in AWS Control Tower
+
 ### AWS Account Organizational Unit Migration:
   * Remove the member account from the former organization [need root or IAM access to said member account and master account(s)]
   * Send an invite to the member account from the prospective organization
@@ -51,6 +68,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * automates ongoing policy management using guard rails:
     * SCP: preventative
     * AWS Config: detective
+    * CloudTrail Logging: detective
   * detects policy violations and remediates them
   * monitor compliance through dashboards
 
