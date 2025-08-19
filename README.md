@@ -457,6 +457,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Enables the use of existing server-bound software licenses and addresses compliance/regulatory requirements
   * On-demand option: pay per second ($$$)
   * Reserved option: 1 or 3-year options with other reserved instances ($ - $$)
+  * Costlier than Dedicated Instances
 
 #### EC2 Capacity Reserved Instance:
   * Reserve On-Demand capacity in a specific AZ for any duration
