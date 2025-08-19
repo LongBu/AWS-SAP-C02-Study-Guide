@@ -41,13 +41,13 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ### AWS Organizations
   * Global service   
-  * Allows to manage multiple AWS accounts (Dev/QA/Test/etc.)
-  * The main account is the management account
-  * Other accounts are member accounts
+  * Allows management of multiple AWS accounts (Dev/QA/Test/etc.)
+  * The main account is the management account, while other accounts are member accounts
   * Member accounts can only be part of one organization
   * Consolidated Billing across all accounts - single payment method
   * Pricing benefits from aggregated usage (volume discount for EC2, S3...)
-  * Shared reserved instances and Savings Plans discounts across accounts   * API is available to automate AWS account creation 
+  * Shared reserved instances and Savings Plans discounts across accounts
+  * API is available to automate AWS account creation 
   * Advantages
     * Multi Account vs One Account Multi VPC 
     * Use tagging standards for billing purposes
