@@ -1554,6 +1554,7 @@ harsh environments
 ##### S3 Standard Infrequent Access
   * Good for data less frequently accessed that need immediate access
   * Cheaper than Standard
+  * Cheaper than Glacier Instant Retrieval if access is frequent (as GIR is more expensive to download from)
   * Good for Disaster Recovery and/or backups
 
 ##### S3 Intelligent-Tiering
@@ -1573,7 +1574,7 @@ harsh environments
 ##### S3 Glacier
   * Never setup a transition to glacier classes if usage might need to be rapid
   * Good for archiving/backup
-  * Glacier Instant Retrieval is a good option for accessing data once a quarter
+  * Glacier Instant Retrieval is a good option for accessing data once a quarter, though not for frequently accessed data as the access costs can add up (better off in this case w/ STD-IA)
   * Harness Glacier Vault Lock (WORM) to no longer allow future edits, which is great for compliance and data retention
   * Glacier or Deep Archive are good for infrequently accessed objects that don't need immediate access
 
