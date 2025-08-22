@@ -730,6 +730,12 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Std queue: unlimited throughput
   * FIFO queue can limit throughput (300 messages per second)
   * FIFO queue name must have a *.FIFO extension
+  * Temporary queues are great for high throughput request-response pattern
+    * Lightweight communication channels for threads or processes
+    * Created and deleted without additional costs
+    * API compatible with normal SQS queues
+    * SQS Temporary Queue Client used to create and delete
+    * Virtual Queues allow multiplexing many smaller queues onto a single SQS queue and buffered locally to hold messages for consumers without any further SQS API calls
   * Batch mode available with up to 3000 messages per second (batch of 10)
   * To convert to/from standard or FIFO can't modify, must create a new queue
   * For SQS FIFO, if no group id, messages consumed in the order sent with only 1 consumer; if group id is present, can have up to the same number of consumer(s)
