@@ -2086,7 +2086,12 @@ timeline
   * Or analyze monthly, hourly, resource level granularity
   * Choose an optimal Savings Plan (to lower your bill)
   * Forecast usage up to 12 months based on previous usage
-  
+
+### AWS Savings Plan Types:
+  * Compute Savings Plans: for Amazon EC2, AWS Lambda, and AWS Fargate. 
+  * EC2 Instance Savings Plans: for EC2 instances within a specific instance family and region. 
+  * SageMaker (AI) Savings Plans: for SageMaker instances (training, notebooks, inference). 
+
 ### AWS Well-Architected Framework/Tool:
   * Pillars:
     * Operational excellence-run/monitor system/assets=>increase business value through RA/mitigation
