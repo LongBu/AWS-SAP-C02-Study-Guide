@@ -1190,7 +1190,7 @@ flowchart TD
   * Instance Store based volumes provide high random I/O performance over higher level stores (eg: EBS, EFS, etc.)
   * Instance Store
     * Ephemeral Storage
-    * Volumne specified at launch only and can't be detached from instance to be attached to another
+    * Volume specified at launch only and can't be detached from instance to be attached to another
     * If the host instance fails, stops, terminates, or hibernate data is lost
     * Isn't presevered when an AMI is created from an instance
   * EBS backed instances can be stopped and you won't lose data
