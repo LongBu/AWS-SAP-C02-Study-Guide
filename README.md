@@ -2242,6 +2242,31 @@ sequenceDiagram
   * Directly within AWS =>S3/EFS/FSx for Windows File Server/FSx for Lustre/FSx open ZFS/FSx for NetApp ONTAP
   * File permissions and metadata are preserved
 
+### AWS Application Discovery Service
+  * Plan migration projects by gathering information about on-premises data centers 
+  * Server utilization data and dependency mapping are important for migrations
+  * Agentless Discovery (AWS Agentless Discovery Connector) 
+  * VMinventory,configuration,and performance history such as CPU, memory, and disk usage
+  * Agent-based Discovery (AWS Application Discovery Agent) 
+  * System configuration, system performance, running processes, and details of the network connections between systems 
+  * Resulting data can be viewed within AWS Migration Hub 
+
+### AWS Application Migration Service (MGN) 
+  * The “AWS evolution” of CloudEndure Migration, replacing AWS Server Migration Service (SMS) 
+  * Lift-and-shift (rehost) solution which simplify migrating applications to AWS
+  * Replication Agent installed in each source VM to handle the continuous data transfer
+  * Converts your physical, virtual, and cloud-based servers to run natively on AWS
+  * Supports wide range of platforms, Operating Systems, and databases
+  * Minimal downtime, reduced costs 
+
+### VMware Cloud on AWS 
+  * Some customers use VMware Cloud to manage their on-premises Data Center
+  * To extend the Data Center capacity to AWS, but keep using the VMware Cloud software=>VMwareCloud on AWS
+  * Use cases 
+    * Migrate your VMware vSphere-based workloads to AWS  
+    * Run your production workloads across VMware vSphere-based private, public, and hybrid cloud environments  
+    * Disaster recover strategy  
+
 ### AWS Transfer Family
   * Fully managed service for file transfers into/out of Amazon S3 or EFS using FTP
   * Supported Protocols: AWS Transfer for FTP, FTPS, SFTP
