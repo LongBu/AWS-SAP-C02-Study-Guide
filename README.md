@@ -1191,7 +1191,7 @@ flowchart TD
   * Instance Store
     * Ephemeral Storage
     * Volume specified at launch only and can't be detached from instance to be attached to another
-    * If the host instance fails, stops, terminates, or hibernate data is lost
+    * If the host instance fails, stops, terminates, or hibernates, data is lost
     * Isn't presevered when an AMI is created from an instance
   * EBS backed instances can be stopped and you won't lose data
   * Can reboot both
