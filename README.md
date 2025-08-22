@@ -305,6 +305,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
     * NS-Name servers for the *Hosted Zone*, which is a container for records that control route traffic to domain(s)/subdomain(s)
   * Public hosted zones=>traffic on the internet
   * Private hosted zones=>traffic to VPC(s)
+    * For each associated VPC with a Route 53 Hosted Zone, the following VPC settings need to be set to true: enableDnsHostnames and enableDnsSupport
   * Targets: ELB, CloudFront, API Gateway, Elastic Beanstalk environment, S3 Website(s), VPC interface endpoints, Global Accelerator, Route 53 record in the same hosted zone
 
 ### Amazon CloudFront
