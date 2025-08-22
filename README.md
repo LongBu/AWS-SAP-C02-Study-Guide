@@ -980,7 +980,7 @@ flowchart TD
   * Allow rules only
 
 ### NACL Groups:
-  * Stateless, thus a source port inbound will become the outbound port (or possibly take the defined port and respond via an ephemeral port)
+  * Stateless, thus a source port inbound will become the outbound port if enabled (or possibly take the defined port and respond via an ephemeral port \[1024-65535])
   * Great way of allowing/blocking IP addresses at the subnet level
   * Like a firewall controlling to/from subnet traffic
   * One NACL per subnet
