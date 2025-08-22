@@ -730,6 +730,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Std queue: unlimited throughput
   * FIFO queue can limit throughput (300 messages per second)
   * FIFO queue name must have a *.FIFO extension
+  * Use separate queues to provide prioritization of work
   * Temporary queues are great for high throughput request-response pattern
     * Lightweight communication channels for threads or processes
     * Created and deleted without additional costs
