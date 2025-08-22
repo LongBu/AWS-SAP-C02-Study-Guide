@@ -739,7 +739,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Batch mode available with up to 3000 messages per second (batch of 10)
   * To convert to/from standard or FIFO can't modify, must create a new queue
   * For SQS FIFO, if no group id, messages consumed in the order sent with only 1 consumer; if group id is present, can have up to the same number of consumer(s)
-  * Can delay message output to consumer
+  * Can delay message output to consumer (0 sec \[default] - 15 mins
   * Useful for decoupling applications
   * Pull-based data
   * Dead letter queue used to capture messages that encountered exceptions or timed out
