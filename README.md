@@ -175,6 +175,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Use X-Forwarded-For header to see IPv4 address (V2)
   * 504 Error means gateway timed out, application not responding within the idle timeout period (attributed to DB or Web Server)
 
+#### Elastic Ip
+  * Can be used to mask failure for an instance (EC2) by remapping the address of another instance providing HA, though cheaper than an ALB
+  * Proper role (eg: EC2 Instance Role) needs to be assigned to perform the necessary API calls to assign
+
 #### Application Load Balancer (ALB):
   * Best suited for load balancing HTTP(s) traffic, operating @layer 7 (WebSockets)
   * HTTP traffic following the load balancer doesn't need encryption => port 80
