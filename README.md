@@ -1434,6 +1434,7 @@ harsh environments
     * Utilizes a client library such as Amazon S3 Encryption Client
     * Encrypted prior to sending to S3 and must be decrypted by clients when retrieving from S3 conducted over HTTP/S
     * Utilizes a fully managed external customer key external to AWS
+    * Now supports replication
 
 #### Security (IAM principle can access if either of the policy types below allows it and there is no Deny present):
   * Types
