@@ -649,6 +649,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
     * Can use prebuilt AMI-Amazon EKS Optimized AMI
     * Supports On-Demand and Spot Instances
   * Need to specify storage class on EKS cluster, leveraging Container Storage Interface (CSI) compliant driver: EBS, EFS (Fargate), FSx for Lustre/for NetApp ON TAP
+  * EKS Anywhere allows creation/management of Kubernetes clusters on, on-prem servers, edge locations outside of AWS or Outpost resources
   * Doesn't support λ, does support Fargate, Managed Node Groups, and Self-Managed Nodes
   
 ### λ:
@@ -2319,16 +2320,18 @@ sequenceDiagram
   * Serverless NLP service harnessing ML to uncover valuable insights and connections in text
   * Medical version detects PHI via DetectPHI API
 
-### Amazon Outposts: Pool of AWS compute and storage resources deployed at a customer site and is essentially part of an AWS region including:
-  * VPC
-  * EC2
-  * ECS/EKS
-  * AWS App Mesh
-  * EBS
-  * S3
-  * Elasticache
-  * EMR
-  * RDS
+### Amazon Outposts: 
+  * Good for situations where regulations/policies force all data and/or workloads to be on-prem
+  * Pool of AWS compute and storage resources deployed at a customer site and is essentially part of an AWS region including:
+    * VPC
+    * EC2
+    * ECS/EKS (Anywhere)
+    * AWS App Mesh
+    * EBS
+    * S3
+    * Elasticache
+    * EMR
+    * RDS
 
 ### Amazon Polly:
   * Turn text into lifelike speech using deep learning (for talking applications)
