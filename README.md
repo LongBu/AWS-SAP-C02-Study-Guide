@@ -1203,7 +1203,7 @@ flowchart TD
   * EBS backed instances can be stopped and you won't lose data
   * Can reboot both
   * By default, both Root Volumes will be deleted on termination.  However, for EBS volumes, you can tell AWS to keep the root device volume
-  * *Throughput optimized HDD and Cold HDD* can't be used as boot volumes
+  * *Throughput optimized HDD (st1) and Cold HDD (sc1)* can't be used as boot volumes
   * Boot volumes: gp2, gp3, io1, io2, and magnetic (std)
   * EBS volumes are specific to AZ, though can be migrated to other AZ via snapshots
 
