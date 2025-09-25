@@ -151,6 +151,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Handle security (Authentication [*Integrates with Cognito User Pools*]/Authorization[IAM-internal AWS]) 
   * Create API keys
   * Swagger/Open API import to define APIs
+  * Can create/manage APIs that are
+     * HTTP-method based (eg: GET/POST/etc.)
+     * Enable stateless RESTful API client-server communication
+     * Enables stateful Websocket APIs, harnessing full-duplex communication between client and server, routed per message content 
   * Custom Domain name HTTPS security integration with ACM
     * If Edge-Optimized=>certificate in US-East-1
     * If Regional=>certificate in API Gateway region
