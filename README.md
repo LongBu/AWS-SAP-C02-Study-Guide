@@ -608,8 +608,8 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Do not pay to use the service, but do pay for the underlying resources and services used by it.
 
 ### AWS EC2 ASG maintenance
-  * Suspend *ReplaceUnhealthy* process type for the ASG and perform the said maintenance to targeted EC2 instance.  Following this, the instance health status can be set to healthy and the *ReplaceUnhealthy* process type can be set to active, again.
-  * Set the targeted EC2 instance to a Standby state and perform maintenance accordingly.  Following this, toggle off the Standby state.
+  * Suspend *ReplaceUnhealthy* process type for the ASG and perform maintenance on the targeted EC2 instance.  Following this, set the instance health status to healthy and the *ReplaceUnhealthy* process type can be set to active, again.
+  * Set the targeted EC2 instance to a Standby state, perform maintenance, and toggle off the Standby state.
 
 ### ASG not terminating EC2 instances
   * Doesn't terminate instance(s) that came into service based on EC2 status check and ELB health checks until grace period expires
