@@ -605,7 +605,11 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Centralized service to manage configuration from a wide range of scalable resources, such as EC2 instances/spot fleets/Auto Scaling groups, ECS, DynamoDB global secondary indexes or tables (RCU/WCU) or RDS (Aurora) read replicas based on utilization targets or metrics and thresholds for applications hosted on AWS
   * Introduced scaling plans that manage resource utilization to target utilization such as CPU at 50%, which could add/remove capacity to achieve
   * Can configure a unified scaling polity per application, via eg: Cloudformation stack or a set of resource tags.  From this means, scalable resources that support the application can be added to the scaling plan, and define the utilization targets based on which of the resources should scale.  Can prioritize availability, cost optimization or a combination of both.  
-  * Do not pay to use the service, but do pay for the underlying resources and services used by it.  
+  * Do not pay to use the service, but do pay for the underlying resources and services used by it.
+
+### AWS EC2 ASG maintenance
+  * Suspend *ReplaceUnhealthy* process type for the ASG and perform the said maintenance to targeted EC2 instance.  Following this, the instance health status can be set to healthy and the *ReplaceUnhealthy* process type can be set to active, again.
+  * Set the targeted EC2 instance to a Standby state and perform maintenance accordingly.  Following this, toggle off the Standby state.
 
 ### ASG not terminating EC2 instances
   * Doesn't terminate instance(s) that came into service based on EC2 status check and ELB health checks until grace period expires
