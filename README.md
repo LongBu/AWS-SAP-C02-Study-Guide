@@ -1654,18 +1654,28 @@ graph LR
     A[Std] --> B[Std-IA]
     A --> C[Intelligent-Tiering]
     A --> D[One Zone-IA]
-    A --> E[Glacier]
-    A --> F[Glacier Deep Archive]
+    A --> E[Glacier Instant Retrieval]
+    A --> F[Glacier Flexible Retrieval]
+    A --> X[Glacier]
+    A --> Y[Glacier Deep Archive]
     B --> C
     B --> D
     B --> E
     B --> F
+    B --> X
+    B --> Y
     C --> D
     C --> E
     C --> F
-    D --> E
+    C --> X
+    C --> Y
     D --> F
+    D --> X
+    D --> Y
     E --> F
+    E --> X
+    E --> Y
+    X --> Y
 ```
 ##### S3 Lifecycle Rules
   * Transition Actions: rules for when to transition objects between s3 classes (see S3 storage classes above)
