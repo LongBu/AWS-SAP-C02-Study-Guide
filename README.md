@@ -1388,7 +1388,7 @@ harsh environments
    * Compression is good for cost savings concerning persistence
    * Max size is 5 TB
    * If uploading > 100MB and absolutely for > 5 GB, use Multi-Part upload
-   * S3 Transfer Acceleration also can be utilized to increase transfer rates (upload and download) by going through an AWS edge location that passes the object to the target S3 bucket (can work with Multi-Part upload)
+   * S3 Transfer Acceleration (S3TA) also can be utilized to increase transfer rates (upload and download) by going through an AWS edge location that passes the object to the target S3 bucket (can work with Multi-Part upload)
    * Strong consistency model to reflect the latest version/value upon write/delete to read actions
    * Version ID if versioning enabled at the bucket level
    * Metadata (list of key/value pairs)
@@ -1509,8 +1509,8 @@ harsh environments
     * Provide insights for S3 Event Notifications
     * EventNotificationEnabledBucketCount (identify which buckets have S3 Event Notifications configured)  
   * Performance Metrics
-    * Provide insights for S3 Transfer Acceleration
-    * TransferAccelerationEnabledBucketCount (identify which buckets have S3 Transfer Acceleration enabled)
+    * Provide insights for S3TA
+    * TransferAccelerationEnabledBucketCount (identify which buckets have S3TA enabled)
   * Activity Metrics
     * Provide insights about how your storage is requested
     * AllRequests,GetRequests,PutRequests,ListRequests,BytesDownloaded...
@@ -1718,12 +1718,13 @@ graph LR
     * Retention Compliance mode: The protected object version can't be overwritten or deleted by anyone including the root user of the AWS account.  When an object is locked in compliance mode, its retention mode can't be changed and its retention period can't be shortened
 
 ##### S3 Data Transfer Pricing (eg: current US terms)
-  * S3 Transfer Acceleration improves performance by routing traffic through CloudFront Edge and AWS backbone networks, as well as network protocol optimizations
+  * S3TA improves performance by routing traffic through CloudFront Edge and AWS backbone networks, as well as network protocol optimizations
   * S3 ingress: free
   * S3 to Internet: .09 per GB
-  * S3 Transfer Acceleration
+  * S3TA
     * 50-500% faster
     * additional cost ranging from .04 to .08 per GB on top of non-accelerated pricing
+    * You only pay for transfers that are accelerated
   * S3 to CloudFront: .00 per GB
   * CloudFront to the internet: .085 per GB
     * Cacheable offering lower latency
@@ -2531,6 +2532,7 @@ sequenceDiagram
 | STS | Security Token Service |
 | SCP | Service Control Policies  |
 | S3 | Simple Storage Service |
+| S3TA | S3 Transfer Accleration |
 | TLS | Transport Layer Security |
 | TTL | Time to live |
 | VGW | Virtual Private Gateway |
