@@ -1670,6 +1670,7 @@ graph LR
     D --> G
     E --> F
     E --> G
+    F --> G
 ```
 ##### S3 Lifecycle Rules
   * Transition Actions: rules for when to transition objects between s3 classes (see S3 storage classes above)
