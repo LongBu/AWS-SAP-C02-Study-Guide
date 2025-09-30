@@ -1806,6 +1806,8 @@ graph LR
   * fully managed, scalable cloud data warehouse, columnar instead of row-based (no Multi-AZ, based on Postgres, No OLTP, but OLAP)
   * Can be serverless or use cluster(s)
   * Uses SQL to analyze structured and semi-structured data across data warehouses, operational DBs, and data lakes
+  * Massive Parallel Processing (MPP) available for fast data aggregation and scoring
+  * Redshift ML available to create/train/deploy models using only SQL integrating with SageMaker to abstract away the model methodology.  
   * Integrates with QuickSight or Tableau
   * Leader node for query planning, results aggregation
   * Compute node for performing queries to be sent back to the leader
