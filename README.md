@@ -1801,6 +1801,7 @@ graph LR
   * Automated failover with Aurora replicas 
     * Failover tiers: lowest ranking number first, then greatest size
   * Aurora ML: ML using SageMaker and Comprehend on Aurora
+  * Babelfish for Aurora PostGreSQL available to understand T-SQL (MS SQL Server query language) and SQL server wire protocol
 
 #### Amazon Redshift:
   * fully managed, scalable cloud data warehouse, columnar instead of row-based (no Multi-AZ, based on Postgres, No OLTP, but OLAP)
