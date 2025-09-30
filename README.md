@@ -337,6 +337,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
     * 100 - $ only least expensive regions
   * Supports primary/secondary origins for HA/failover (specific HTTP responses)
   * Supports field-level encryption (not KMS) @edge to protect sensitive data
+  * works from edge locations and external to any VPC
   * Serverless, cheaper to scale
 
 ### Unicast IP vs Anycast IP:
