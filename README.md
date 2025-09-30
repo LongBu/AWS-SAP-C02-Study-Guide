@@ -600,7 +600,11 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * *Launch templates* can mix instances
   * Can't modify launch configurations once created
   * Do not pay to use the service, but do pay for the underlying resources and services used by it.
-  * If AZ rebalancing needs to be considered...
+  * If AZ rebalancing (cross-zone LB) needs to be considered, instances are launched before terminating instances so as to not impact performance or activity, with such causes as:
+    * Changes to a group within an AZ
+    * Instances terminated or detached
+    * AZ in recovery that recoverd and has more capacity than necessary
+    * AZ spot price was previously above your max price, but is now fallen below that measure
   * If AZ rebalancing doesn't need to be considered, and an unhealthy instance is encountered, a scaling activity to terminate the instance must take place prior to the replacment instance scaling activity
 
 ### AWS Auto Scaling:
