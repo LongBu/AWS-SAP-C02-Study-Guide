@@ -88,6 +88,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ### LDAP: software protocol for enabling the location of data about organizations, individuals, and other resources in a network.  
 
+### IAM role
+  * Can be used to delegate access permissions to users or services that normally don't have access to your organization's AWS resources
+  * Able to allow access to cross-account resources
+
 ### Identity federation: a system of trust between two parties for the purpose of authenticating users and conveying information needed to authorize their access to resources.
 
 ### User groups can only contain users
