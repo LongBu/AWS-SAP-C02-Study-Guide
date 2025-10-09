@@ -2446,6 +2446,11 @@ sequenceDiagram
 
 ### EC2 meta data => http://169.254.169.254/latest/meta-data
 
+### In-memory data stores: 
+  * Elasticache for Redis
+  * DAX
+  * Amazon TimeStream
+
 ## Acronyms
 
 | Acronym  | Definition |
