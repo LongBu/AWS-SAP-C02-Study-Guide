@@ -2448,7 +2448,7 @@ sequenceDiagram
 
 ### In-memory data stores: 
   * Elasticache for Redis
-  * DAX
+  * DAX (not DynamoDB alone)
   * Amazon TimeStream
 
 ## Acronyms
