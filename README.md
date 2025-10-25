@@ -2276,6 +2276,8 @@ sequenceDiagram
   * Deployed VM AWS Datasync Agent used to convey data to the DataSync service over the internet or AWS Direct Connect.  The agent is unnecessary for AWS to AWS
   * Directly within AWS =>S3/EFS/FSx for Windows File Server/FSx for Lustre/FSx open ZFS/FSx for NetApp ONTAP
   * File permissions and metadata are preserved
+  * Utilizing this service to movement in the flow of harnessing the data likely adds operational complexity and delay, especially (near) real-time systems
+  * Does not support real-time or low latency file system operations
 
 ### AWS Application Discovery Service
   * Plan migration projects by gathering information about on-premises data centers 
