@@ -259,8 +259,8 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Network service that helps improve the availability and performance of the application(s) to global users
   * Provides (2) Anycast/static IP addresses providing a fixed entry point (no client cache issues=>static ip) at edge locations (from/to) to your application(s) and eliminates the complexity of managing specific IP addresses for different regions and AZs.
   * Always routes user traffic, leveraging the internal AWS network, to the optimal, lowest latency endpoint based on performance, reacting instantly to HC changes, user's location, and policies configured.
-  * Failover < 1 minute for unhealthy application(s)=>great for disaster recovery
-  * Good fit for non-HTTP use cases such as sports/gaming (UDP), IoT (MQTT), or VOIP
+  * (Regional) Failover < 1 minute for unhealthy application(s)=>great for disaster recovery
+  * Good fit for non-HTTP use cases such as sports/gaming (UDP), TCP, IoT (MQTT), or VOIP
   * Works with Elastic IP, EC2, ALB, NLB, public or private
   * Can control traffic using traffic dials within an endpoint group 
 
