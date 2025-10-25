@@ -1245,6 +1245,7 @@ flowchart TD
   * Connected via ENI
   * 10GB+ throughput
   * Compression is good for cost savings concerning persistence
+  * resource policies allow cross-account access and can be mounted to a shared or peered VPC (eg: lambda acccess via an EFS access point)
   * *Performance mode* (set at creation time): 
     * General purpose (default); latency-sensitive; use cases (web server, CMS); 
     * Max I/O-higher latency, throughput, highly parallel (big data, media processing)
