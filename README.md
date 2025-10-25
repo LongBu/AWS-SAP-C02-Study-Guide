@@ -2005,7 +2005,7 @@ graph LR
   * Can be event-driven (eg: λ triggered by S3 put object) to call Glue ETL
   * Glue Data catalog uses an AWS Glue Data Crawler scanning DBs/S3/data to write associated metadata utilized by Glue ETL, or data discovery on Athena, Redshift Spectrum or EMR
   * Glue Job bookmarks prevent reprocessing old data
-  * Glue Databrew-clean/normalize data visually using pre-built transformation (more apt for non-techical stakeholders)
+  * Glue Databrew-clean/normalize data visually using pre-built transformation (more apt for non-techical stakeholders) that offers lineage tracking (auditability/traceability), data profiling for column inspection statistics, null values, outliers, std dev, and data types across datasets
   * Glue Studio-new GUI to create, run, and monitor ETL jobs in Glue (more apt for technical stakeholders=>low-code, but code nevertheless)
   * Glue Streaming ETL (built on Apache Spark Structured Streaming)-compatible with Kinesis Data Streaming, Kafka, MSK
   * Glue Elastic Views:
