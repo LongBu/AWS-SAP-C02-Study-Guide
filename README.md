@@ -1240,12 +1240,18 @@ flowchart TD
 
 ### EFS: 
   * Linux based only
+  * Regionally based
+  * Available across AZs, and through VPC peering connection, accessible in other region(s) and VPCs (same or different region)
+  * resource policies allow cross-account access and can be mounted to a shared or peered VPC (eg: lambda acccess via an EFS access point)
+  * Can be accessed by on-prem resources via AWS Direct Connect or AWS VPN
   * Can mount on many EC2(s)
   * Use SG control access
   * Connected via ENI
   * 10GB+ throughput
   * Compression is good for cost savings concerning persistence
-  * resource policies allow cross-account access and can be mounted to a shared or peered VPC (eg: lambda acccess via an EFS access point)
+  * *Availability and durability*: 
+    * Standard: multi-AZ, great for production
+    * One Zone: great for development, backup enabled by default, compatible with IA (EFS One Zone-IA)
   * *Performance mode* (set at creation time): 
     * General purpose (default); latency-sensitive; use cases (web server, CMS); 
     * Max I/O-higher latency, throughput, highly parallel (big data, media processing)
@@ -1255,9 +1261,7 @@ flowchart TD
   * *Storage Classes*, Storage Tiers (lifecycle management=>move file after N days):
     * Standard: for frequently accessed files
     * Infrequent access (EFS-IA): cost to retrieve files, lower price to store
-  * *Availability and durability*: 
-    * Standard: multi-AZ, great for production
-    * One Zone: great for development, backup enabled by default, compatible with IA (EFS One Zone-IA)
+
 
 ### AWS FSx:
   * Launch 3rd party high performance file system(s) on AWS
