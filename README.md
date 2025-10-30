@@ -2253,6 +2253,7 @@ sequenceDiagram
     * EC2 instance memory can be monitored via installation/configuration of Unified CloudWatch Agent pushing memory usage as a custom metric to CloudWatch
     * Events and Alerting
     * Log aggregation and analysis
+    * Can ingest CloudTrail to monitor and identify your AWS Account activity
     * CloudWatch metric=>kinesis data firehose to S3 or 3rd parties in near real-time
   * CloudTrail: 
     * Record API calls made within the Account by everyone
