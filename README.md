@@ -2453,6 +2453,8 @@ sequenceDiagram
 
 ### EC2 meta data => http://169.254.169.254/latest/meta-data
 
+### High random I/O => start looking for a solution involving an instance store
+
 ### In-memory data stores: 
   * Elasticache for Redis
   * DAX (not DynamoDB alone)
