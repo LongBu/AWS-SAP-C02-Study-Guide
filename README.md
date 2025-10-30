@@ -705,6 +705,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ### AWS CloudTrail:
   * Service that monitors and records account activity across AWS infrastructure (history of events/API calls)
+  * Destinations possible: S3 bucket and/or CloudWatch logs
   * Provides governance, compliance, and audit for your AWS account:
    * Enabled by default
    * Trail can be applied to all regions (default) or a single region
