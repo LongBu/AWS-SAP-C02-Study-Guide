@@ -2174,6 +2174,7 @@ timeline
    * *Service Limits*: checks reserved instances 30 days before/after
   * Core Checks and recommendations=>all customers
   * Can enable weekly email notifications from console
+  * Not a good fit for anomaly detection (eg: high increase in API calls)
   * Full Trusted Advisor-available for Business and Enterprise plans: 
     * Ability to set CloudWatch Alarms when reaching limits
     * Programmatic Access using AWS Support API
