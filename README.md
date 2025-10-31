@@ -909,6 +909,12 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
     * EKS audit logs
   * Disabling will delete all data while suspending will stop analysis, but not delete
 
+### Amazon Security Lake 
+  * A fully managed (with minimal setup or custom coding), purpose-built service designed to automatically collect, normalize, and centralize security-related data (logs and events) from various AWS accounts, Regions, services (eg: CloudTrail, VPC Flow Logs, GuardDuty, and AWS Config), and even third-party sources to provide a single authoritative view of security data and proactive threat detection across an organization 
+  * Stores this data in Amazon S3 buckets and formats it using the Open Cybersecurity Schema Framework (OCSF), which enhances compatibility with multiple analytics tools. 
+  * Eliminates the need to build custom ETL pipelines or configure cross-service log ingestion manually, significantly reducing development effort. 
+  * Built-in support for log partitioning, retention, and access management, it delivers both centralization and scalability with minimal operational overhead. 
+
 ### Amazon Macie:
   * Security service using ML/NLP to discover, classify, and protect sensitive data stored in S3, such as:
    * PII
