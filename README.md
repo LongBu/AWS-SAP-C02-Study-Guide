@@ -1812,8 +1812,12 @@ graph LR
   * Cross-region replication (< 1 second) support available 
     * Aurora Global: multi-region (up to 5)
     * Aurora Cloning: copy of production (faster than a snapshot)
-  * Aurora multi master (for write failover/high write availability)
+  * Aurora multi master (for write failover/high write availability), this isn't available for Aurura Database cluster flavor
   * Aurora serverless for cost-effective option (pay per second) for infrequent, intermittent or unpredictable workloads
+  * Aurora cluster flavors
+    * Aurora serverless Database cluster (single region)
+    * Aurora provisioned Database cluster (single region)
+    * Aurora Global Database cluster (multi region) with RPO of seconds and RTO of less than a minute
   * Automated backups, though if you need to store long term backups for Disaster Recovery/Audit purposes, perform On Demand Backups
   * Automated failover with Aurora replicas 
     * Failover tiers: lowest ranking number first, then greatest size
