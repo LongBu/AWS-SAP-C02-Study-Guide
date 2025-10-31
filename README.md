@@ -2156,6 +2156,57 @@ timeline
 ### AWS Compute Optimizer:
   * Recommends optimal AWS Compute resources (λ, EC2, EBS) for workloads to reduce costs and improve performance by using ML to analyze historical utilization metrics
   * Helps you choose optimal EC2 types, including those part of the Autoscaling group based on utilization
+
+### Microsoft Active Directory (AD)
+  * Found on any Windows Server with AD Domain Services
+  * Database of objects: User Accounts, Computers, Printers, File Shares, Security Groups
+  * Centralized security management, create account, assign permissions
+  * Objects are organized in trees (a group of trees is a forest)
+
+#### AWS Directory Services
+  * AWS Managed Microsoft AD
+    * Create your own AD in AWS, manage users locally, supports MFA
+    * Establish centralized identity integration via “trust” connections with your on-premises AD providing
+    * Managing a self-hosted or AWS-managed AD in the cloud adds significant operational overhead.
+    * Must maintain the AWS Directory Service instance, monitor trust health, and manage role mappings manually adding extra cost.
+    * Less efficient than a fully managed identity federation service such as IAM Identity Center (formerly AWS SSO).
+  * AD Connector
+    * Provides a centralized, low-maintenance, and scalable identity management solution that integrates seamlessly with the company’s existing on-premises Active Directory
+    * Directory Gateway (proxy) to redirect to on-premises AD, eliminating the need to deploy or manage a separate directory in the cloud
+    * Supports MFA
+    * Integrating IAM Identity Center with AD Connector, the company can use existing on-premises Active Directory group memberships to manage permission sets that define what AWS accounts and resources each user can access allowing fine-grained, role-based access control across multiple accounts managed by AWS Organizations.
+    * Requires minimal operational overhead and scales well with growing teams and AWS accounts.
+  * Simple AD
+    * AD-compatible managed directory on AWS
+    * Cannot be joined with on-premises AD
+   
+#### IAM Identity Center – Active Directory Setup
+  * Connect to an AWS Managed Microsoft AD (Directory Service)
+    * Integration is out of the box
+    * IAM Identity Center <= connect => AWS Managed Microsoft AD
+  * Connect to a Self-Managed Directory
+    * Create Two-way Trust Relationship using AWS Managed Microsoft AD
+    * Create an AD Connector
+```mermaid
+flowchart TD
+    A{IAM Identity Center}
+    B{AWS Managed Microsoft AD}
+    C{AD Connector}
+    D{Active Directory}
+    E{Active Directory}
+    A --> |connect| B
+    B --> |connect| A
+    B --> |two-way trust relationship| D
+    B --> |two-way trust relationship| D
+    A --> |connect| C
+    C --> |connect| A
+    C --> |proxy| E
+    E --> |proxy| C
+```
+ 
+	              <= connect => AWS Managed Microsoft AD <=two-way trust relationship => Active Directory
+AM Identity Center
+                  <= connect => AD Connector <= proxy => Active Directory
   
 ### AWS Trusted Advisor:
   * High-level AWS account assessment analysis to provide recommendations utilizing the following metrics:
