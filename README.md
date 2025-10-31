@@ -1730,8 +1730,8 @@ graph LR
 
 ##### S3 Object Retention settings
   * You can place a retention period on an object version either explicitly or via a bucket default setting.
-  * If placing an object version in a bucket containing an explicit retention mode and period, those settings override any bucket default settings for that object version.
-  * When using bucket default settings,a *Retain Until Date* is not specified, but instead a duration in either days or years for which every object version placed in the bucket should be protected.
+  * If an object version is placed with an explicit retention mode and period, in a bucket with default settings, the default settings are overridden for that version.
+  * When using bucket default settings, a *Retain Until Date* is not specified, but instead a duration in either days or years for which every object version placed in the bucket should be protected.
   * When a retention period is applied to an object version explicitly, a *Retain Until Date* is specified for the object version
   * Different versions of a single object can have different retention modes and periods
 
