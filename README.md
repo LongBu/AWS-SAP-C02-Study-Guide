@@ -560,6 +560,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * If non-root users are to have file access, modify the permissions accordingly via shell scripting
   * *By default, user data runs only during the boot cycle when the EC2 is first launched*
   * Alternatively, configuration(s) can be updated to ensure user data scripts and cloud-init directives can run every time an EC2 instance is restarted
+  * Won't help execute list of commands any faster (consider EC2 for faster initialization time\[s])
 
 ### EC2 Hibernate:
   * In-memory state is preserved
@@ -570,6 +571,12 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Can't use hibernate beyond 60 days
   * Available for the following EC2 Options: On-Demand, Reserved, and Spot Instances
   * Use cases: long-running processing, saving memory state, services that take a long time to initialize
+  * When restarted:
+    * EBS restored to its previous state
+    * RAM contents reloaded
+    * Process(es) previously running on the instance resumed
+    * Previously attached data volumes are reattached
+    * Instance ID preserved
   
 ### Elastic Fabric Adapter:
   * Improve ENA *for HPC*, only works for Linux
@@ -1218,6 +1225,9 @@ flowchart TD
   * EC2 Instance Default EBS Volume Types vs termination
     * Root EBS=>"Delete On Termination" is default on
     * Other EBS Types=>"Delete On Termination" is default off
+   
+### AMI
+  * Helps mitigate system dependencies, though it won't speed up initialization
 
 ### AMI Type (EBS vs Instance Store):
   * Instance Store based volumes provide high random I/O performance over higher level stores (eg: EBS, EFS, etc.)
