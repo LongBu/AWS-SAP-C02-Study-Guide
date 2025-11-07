@@ -486,7 +486,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Not suitable for critical jobs or DBs
   * Useful for jobs such as batch jobs, data analysis, image processing, and distributed workloads, workloads with a flexible start/end time
   * Can only cancel Spot Requests that are open, active, or disabled. Canceling a Spot Request doesn't terminate the instances; you must first cancel the Spot Request and then terminate the Spot Instances
-  * A spot instance request is either *one-time* or *persistent*, with the latter automatically resubmitted after a Spot Instance associated with the request is terminated.  A spot  instance request can optionally specify a duration for the instance(s).  
+  * A spot instance request is either *one-time* or *persistent*, with the latter automatically resubmitted after a Spot Instance associated with the request is terminated.  A spot instance request can optionally specify a duration for the instance(s).  
   * Don't use if being up for a specific time frame is necessary
 
 #### EC2 Spot Fleets:
