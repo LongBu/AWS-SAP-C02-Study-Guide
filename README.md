@@ -481,17 +481,21 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 #### EC2 Spot Instance:
   * Most cost-efficient EC2 instance, up to 90% off On-Demand rate
-  * Can lose at any time if your max price < the current spot price
+  * Can lose at any time if your max price < the current spot price or capacity is no longer available
+  * Interruption can involve stopping, hibernation or termination and when issued, a two-minute warning is given prior to the interruption executing
   * Not suitable for critical jobs or DBs
   * Useful for jobs such as batch jobs, data analysis, image processing, and distributed workloads, workloads with a flexible start/end time
   * Can only cancel Spot Requests that are open, active, or disabled. Canceling a Spot Request doesn't terminate the instances; you must first cancel the Spot Request and then terminate the Spot Instances
+  * A spot instance request is either *one-time* or *persistent*, with the latter automatically resubmitted after a Spot Instance associated with the request is terminated.  A spot  instance request can optionally specify a duration for the instance(s).  
   * Don't use if being up for a specific time frame is necessary
 
 #### EC2 Spot Fleets:
-  * set of Spot Instances and optional On-Demand Instances
+  * Set of Spot Instances and optional On-Demand Instances
   * Will try to meet target capacity with price constraints defined via possible launch pools, instance type, OS, AZ
+  * By default, only spot fleets can maintain target capacity by launching replacement instances after Spot Instances in the fleet are terminated, while spot instances, by themselves can't acheive this
   * Can have multiple launch pools from which the fleet can choose
   * Stops launching instances when reaching capacity or max cost
+  * You can submit a Spot Fleet as a one-time request, which does not persist after the instances have been terminated.  
   * Allow automatically to request Spot Instances with the lowest price
   * Strategies to allocate Spot Instances:
     * *Lowest Price*: from the pool with lowest price (cost optimization, short workloads)
