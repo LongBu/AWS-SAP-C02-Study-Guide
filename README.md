@@ -287,7 +287,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
     * Geolocation (note this doesn't really help with latency)
     * Geoproximity (traffic flow only)
   * Can't mitigate DNS caching as this is meant to mitigate DNS traffic preventing name-server overloads.  
-  * Able to serve blue-green deployments though there may be issues with long caching \[IP address update(s)], routing prefence changes, application failure where Global Accelerator might be more responsive to change(s).  
+  * Able to serve blue-green deployments though there may be issues with long caching \[IP address update(s)], routing prefence changes, application failure where Global Accelerator is more responsive to change(s).  
   * External certificates are registered with 3rd party NS registrar
   * HC=> used for failover (ALB=>http(s) HCs)
   * Route 53 HC(s) only for public resources, VPC must make a CloudWatch metric/alarm for HC to monitor
