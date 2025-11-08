@@ -81,6 +81,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Doesn't affect service-linked roles, which enable other AWS services to integrate with AWS OUs.
   * If disabled at the root account, all SCPs are automatically detached from OU under that root account.  If re-enabled all accounts there under are reverted to full AWS Access (default)
   * Must have an explicit allow (nothing allowed by default like IAM) which is similar to IAM permissions boundary (if not in boundary => deny)
+  * IAM permissions boundary can only be applied to users and roles, not groups
 
 ## Identity and Access Management (IAM)
 
@@ -1797,7 +1798,7 @@ graph LR
   * Fully customized => MS SQL Server or RDS Custom for Oracle => can use SSH or SSM session manager; full admin access to OS/DB
   * At rest encryption via KMS
   * Use SSL for data in transit to ensure secure access
-  * Use permission boundary to control the maximum permissions employees can grant to the IAM principals (eg: to avoid dropped/deleted tables)
+  * Use permissions boundary to control the maximum permissions employees can grant to the IAM principals (eg: to avoid dropped/deleted tables)
   * Multi-AZ: 
     * Can be set at creation or live
     * Synchronous replication, at least 2 AZs in the region, while Read replicas => asynchronous replication can be in an AZ, cross-AZ or cross-region
