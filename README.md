@@ -1611,7 +1611,7 @@ harsh environments
     * Specify the KMS Key to encrypt within the target bucket
     * Adapt the KMS Key Policy for the target key
     * Create an IAM Role with kms:Decrypt for the source KMS Key and kms:Encrypt for the target KMS key
-  * Per CRR, can utilize multi-region AWS KMS Keys, but are currently treated as independent keys by S3 (eg: upon transfer, the object will still be decrypted and encrypted)
+  * Per CRR, can utilize multi-region AWS KMS Keys, but are currently treated as independent keys by S3 (eg: upon transfer, the object will still be decrypted and encrypted).  Note single region keys can't be converted to multi-region keys
 
 ##### S3 Batch Replication:
   * Provides a way to replicate objects that existed before a replication configuration was in place, objects that have previously been replicated, and those that failed replication
