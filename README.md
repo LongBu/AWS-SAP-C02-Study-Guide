@@ -99,7 +99,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ### S3 Bucket Policies vs Access permissions:
   * Used to add or deny permissions across some or all S3 objects in a bucket, enabling central management of permissions
-  * Can grant users within an AWS account or other AWS accounts to S3 resources
+  * Can grant users/roles within an AWS account or other AWS accounts to S3 resources
   * Can restrict based on request time (Date condition), request sent using SSL (Boolean condition), requester IP Address (Ip address condition) using policy keys
   * User access to S3 => IAM permissions
   * Instance (EC2) access => IAM role
