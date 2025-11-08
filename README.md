@@ -247,6 +247,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Route 53 health check => Automated DNS Failover:
     * Works with weighted routing, latency-based, geolocation, and multivalue routing policies
     * Doesn't work with simple routing policy
+    * Failover doesn't reduce latency
     * HC that monitors an endpoint (application, server, other AWS resource)
     * HC that monitors other health check(s) or combination of them (Calculated HC)
       * Can use use OR, AND, NOT
