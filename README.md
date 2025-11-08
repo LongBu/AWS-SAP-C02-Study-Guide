@@ -258,6 +258,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 ### AWS Global Accelerator:
   * Network service that helps improve the availability and performance of the application(s) to global users
   * Provides (2) Anycast/static IP addresses providing a fixed entry point (no client cache issues=>static ip) at edge locations (from/to) to your application(s) and eliminates the complexity of managing specific IP addresses for different regions and AZs.
+  * Able to serve blue-green deployments more speedily, either gradually or all at once within seconds without long caching issues over Route 53
   * Always routes user traffic, leveraging the internal AWS network, to the optimal, lowest latency endpoint based on performance, reacting instantly to HC changes, user's location, and policies configured.
   * (Regional) Failover < 1 minute for unhealthy application(s)=>great for disaster recovery
   * Good fit for non-HTTP use cases such as sports/gaming (UDP), TCP, IoT (MQTT), or VOIP
@@ -285,7 +286,8 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
     * Latency
     * Geolocation (note this doesn't really help with latency)
     * Geoproximity (traffic flow only)
-  * Can't mitigate DNS caching
+  * Can't mitigate DNS caching as this is meant to mitigate DNS traffic preventing name-server overloads.  
+  * Able to serve blue-green deployments though there may be issues with long caching \[IP address update(s)], routing prefence changes, application failure where Global Accelerator might be more responsive to change(s).  
   * External certificates are registered with 3rd party NS registrar
   * HC=> used for failover (ALB=>http(s) HCs)
   * Route 53 HC(s) only for public resources, VPC must make a CloudWatch metric/alarm for HC to monitor
