@@ -154,7 +154,8 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Low cost
   * Scales
   * Can enable/disable CORS
-  * Handle security (Authentication [*Integrates with Cognito User Pools*]/Authorization[IAM-internal AWS]) 
+  * Handle security (Authentication [*Integrates with Cognito User Pools*]/Authorization[IAM-internal AWS])
+  * Does not use security groups, due to it being a managed service not deployed into a VPC by default, however a resource policy is more apt for restricting access (eg: restricting IP addresses ranges)
   * Create API keys
   * Swagger/Open API import to define APIs
   * Can create/manage APIs that are
@@ -1032,7 +1033,7 @@ flowchart TD
 ### Security Groups (SGs):
   * Stateful connection, allowing inbound traffic to the necessary ports, thus enabling the connection
   * If adding an Internet Gateway, ensure the SG allows traffic in
-  * SG => EC2 instances level, LBs, EFS, DBs, Elasticache
+  * SG => EC2 instances level, LBs, EFS, DBs (RDS), Elasticache, λ
   * Allow rules only
 
 ### NACL Groups:
