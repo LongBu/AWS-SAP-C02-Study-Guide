@@ -127,6 +127,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Capable of synchronizing data from multiple devices using SNS to send notifications to all devices associated with a given user upon data deltas (IAM policy can be tethered to user IDs possibly).
   * User pool: user-based; handling user registration, authentication, and account recovery.
     * Compatible IDPs: Facebook, Amazon, Google, Apple, OpenID Connect providers, SAML
+    * Integrates with Api Gateway, ALB, λ@edge, Opensearch, AWS Transfer Family
   * Identity pool: receives authentication token to authorize access to resources directly or through the API GW.
     * Maps to IAM role(s)
     * default IAM role(s) for authenticated/guest users
