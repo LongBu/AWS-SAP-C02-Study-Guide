@@ -329,6 +329,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
    * Web distribution - websites (no architecture change)
    * RTMP - used for media streaming
    * Edge Location (λ@edge) where content is cached.  Separate from an AWS Region/AZ.  Can be written to as well
+   * Can't directly integrate Cognito User Pools, though a λ@edge to do this, which will require development
    * Origin-origin of all files CDN distributes (S3 bucket, EC2, ELB, or Route 53)
    * Distribution:
      * Name given to a global CDN consisting of a collection of Edge Locations
