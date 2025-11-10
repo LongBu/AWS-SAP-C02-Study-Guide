@@ -214,6 +214,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Health checks are TCP or HTTP
   * Sticky sessions available via cookie (AWS ELB) [all cookies < 4KB]
   * Cross-zone LB is free and disabled by default
+  * Does not work across regions
   * SNI not available, supports only one certificate
 
 #### Gateway Load Balancer:
