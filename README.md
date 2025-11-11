@@ -2353,7 +2353,7 @@ sequenceDiagram
     * Global service
   * AWS Config: 
     * Record configuration changes
-    * Evaluate resources against compliance rules (eg: EC2 port n exposed?)
+    * Evaluate resources against compliance rules (eg: EC2 port n exposed? Or is a 3rd party SSL/TSL cert imported into ACM to expire=>SNS notification)
     * Get a timeline of changes and compliance
 
 ### Amazon MQ:
