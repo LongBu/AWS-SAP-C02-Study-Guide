@@ -2357,10 +2357,11 @@ sequenceDiagram
     * Get a timeline of changes and compliance
 
 ### Amazon MQ:
-  * Managed message broker service harnessing Apache Active MQ and Rabbit MQ allowing messaging abstracted away from application as a service
+  * Fully Managed message broker service harnessing Apache Active MQ and Rabbit MQ allowing messaging abstracted away from application as a service
   * Doesn't scale as much as SQS/SNS
   * Runs on servers, can run in multi-AZ without failover
   * Has both features (~SQS) and topic features (~SNS)
+  * Supports AMQP, MQTT, STOMP, and JMS
 
 ### Amazon Appflow:
   * Service to securely transfer data between applications (eg: salesforce, slack, Service Now, etc.) and AWS services like S3, redshift, or even non-AWS such as Snowflake and Salesforce
@@ -2562,6 +2563,7 @@ sequenceDiagram
 | AD | Active Directory |
 | ADFS | Active Directory Federation Services |
 | ALB | Application Load Balancer | 
+| AMQP | Advanced Message Queuing Protocol |
 | AOF | Append Only File |
 | API | Application Programming Interface |
 | A2I | Amazon Augmented AI |
@@ -2620,6 +2622,7 @@ sequenceDiagram
 | ML | Machine Learning |
 | MPI | Message Parsing Interface |
 | MSK | Managed Streaming Kafka |
+| MQTT | Message Queuing Telemetry Transport |
 | NAT | Network Address Translation |
 | NFS | Network File System |
 | NLP | Natural Language Processing |
