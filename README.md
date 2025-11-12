@@ -2243,10 +2243,6 @@ flowchart TD
     C --> |proxy| E
     E --> |proxy| C
 ```
- 
-	              <= connect => AWS Managed Microsoft AD <=two-way trust relationship => Active Directory
-AM Identity Center
-                  <= connect => AD Connector <= proxy => Active Directory
   
 ### AWS Trusted Advisor:
   * High-level AWS account assessment analysis to provide recommendations utilizing the following metrics:
