@@ -2337,6 +2337,7 @@ sequenceDiagram
 
 ### AWS Step Functions:
   * A visual workflow service that helps developers use AWS services with λ to build distributed applications, automate processes, orchestrate microservices, or create data (ML) pipelines
+  * Not well suited for recurring lightweight jobs
   * JSON used to declare state machines under the hood
 
 ### CloudWatch vs CloudTrail vs AWS Config:
@@ -2432,6 +2433,9 @@ sequenceDiagram
   * Any run time packaged in a docker image
   * Rely on EBS/instance store for disk space
   * Advantage over λ=>time limit, limited runtimes, limited disk space
+  * Not for lightweight, cron-like jobs
+  * Longer setup and initialization time
+  * Typically requires more configuration and compute environment management (eg: increased operational overhead)
 
 ### AWS Wavelength: extend VPC and its resources via desired subnets to include a wavelength zone, embedding within 5G networks providing ultra-low latency
 
