@@ -1191,6 +1191,7 @@ flowchart TD
     * Interface Endpoints: provisions an ENI (private IP) as an entry point (must attach a SG); supports most AWS services; powered by Private Link
     * Gateway Endpoints: provisions a gateway and must be used as a target in the Route table; supports both *S3 and DynamoDB*
   * Gateway Endpoints are preferred most of the time over Interface Endpoints as the former is free and the latter costs $
+  * Gateway Endpoints are only accessible from within a VPC and are not compatible with on-premises connectivity methods like AWS Direct Connect or VPNs
   * Interface endpoint is preferred if access is required from on-premises (site-to-site VPN or Direct Connect), a different VPC, or a different region
 
 ### VPC Flow Logs:
