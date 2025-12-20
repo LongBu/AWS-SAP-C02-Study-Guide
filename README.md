@@ -668,8 +668,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Fargate has to use either EFS volume, FSx for Windows, docker volumes, or bind mount (file or dir)
   * EC2 has to harness an EFS volume amount instances, not EBS
   * ECS Autoscaling=>target tracking metrics:
-    * ECSSVCAVECPU
-    * AveCPU use
+    * ECSSVCAVECPU-AveCPU use
     * ECSSVCAVEMEM-average memory use
     * ALBRequestCountPerTarget-number of requests per target in ALB target group
   * Can be scaled in/out per EventBridge invoked rules/schedule
