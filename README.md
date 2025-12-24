@@ -1778,6 +1778,7 @@ graph LR
   * S3 ingress: free
   * S3 to Internet: .09 per GB
   * S3TA
+    * Better option than Cloudfront if size > 1GB, otherwise stick with Cloudfront
     * 50-500% faster
     * additional cost ranging from .04 to .08 per GB on top of non-accelerated pricing
     * You only pay for transfers that are accelerated
