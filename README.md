@@ -77,6 +77,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * No permissions are granted by SCP, still IAM, but the effective permissions are the intersection of IAM, SCP, and IAM permissions boundaries allowing access
   * OU must have all features enabled to utilize.
   * Affects member accounts and attached users and roles within including the root user of the member accounts.
+  * Doesn't affect management accounts
   * Doesn't affect resource-based policies directly.
   * Doesn't affect service-linked roles, which enable other AWS services to integrate with AWS OUs.
   * If disabled at the root account, all SCPs are automatically detached from OU under that root account.  If re-enabled all accounts there under are reverted to full AWS Access (default)
