@@ -1031,10 +1031,19 @@ flowchart TD
 ```
 
 ### Security Groups (SGs):
-  * Stateful connection, allowing inbound traffic to the necessary ports, thus enabling the connection
+  * Stateful connection, allowing inbound traffic to the necessary ports via rules, thus enabling the connection
+    * IPv4 (via CIDR/32 or a range utilizing CIDR/XX)
+    * IPv4 (via CIDR/128 or a range utilizing CIDR/XXX)
+    * Prefix List of IDs for a given AWS service
+    * Another SG (doesn't add rules from selected SG)
+      * Current SG
+      * Different SG in same VPC
+      * Different SG in a peered VPC
+  * Acts as a virtual firewall for traffic to instance(s)
   * If adding an Internet Gateway, ensure the SG allows traffic in
-  * SG => EC2 instances level, LBs, EFS, DBs (RDS), Elasticache, λ
+  * SG(s) (default or otherwise) => EC2 instances level, LBs, EFS, DBs (RDS), Elasticache, λ
   * Allow rules only
+  * Able to be modified at any time and automatically new rules are enacted to on asscociated entities
 
 ### NACL Groups:
   * Stateless, thus a source port inbound will become the outbound port if enabled (or possibly take the defined port and respond via an ephemeral port \[1024-65535])
