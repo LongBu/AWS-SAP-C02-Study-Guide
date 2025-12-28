@@ -1043,7 +1043,7 @@ flowchart TD
   * If adding an Internet Gateway, ensure the SG allows traffic in
   * SG(s) (default or otherwise) => EC2 instances level, LBs, EFS, DBs (RDS), Elasticache, λ
   * Allow rules only
-  * Able to be modified at any time and automatically new rules are enacted to on asscociated entities
+  * Able to be modified at any time and automatically new rules are enacted on to asscociated entities
 
 ### NACL Groups:
   * Stateless, thus a source port inbound will become the outbound port if enabled (or possibly take the defined port and respond via an ephemeral port \[1024-65535])
