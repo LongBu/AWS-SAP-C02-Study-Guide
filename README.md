@@ -1347,9 +1347,9 @@ flowchart TD
 ### AWS Storage Gateway:
    * Hybrid cloud storage service that provides on-premises access to virtual cloud storage
    * Most recently used date cached in gateway
-   * Volume backed up by EBS snapshots
-   * Stored volumes-stores entire dataset locally for low latency, S3 snapshots
-   * Cached volumes-store entire dataset on S3 and retain recent/frequently access data locally for low latency
+   * Volume Gateway backed up by EBS snapshots to S3
+     * Stored volumes-stores entire dataset locally for low latency
+     * Cached volumes-store entire dataset on S3 and retain recent/frequently access data locally for low latency
    * Tape backed up by S3, S3 Glacier, and other software
    * S3 access supported: STD, STD IA, One Zone IA, Intelligent tiering
    * SMB/NTFS access able to integrate with Windows AD
