@@ -2231,12 +2231,14 @@ timeline
     * Managing a self-hosted or AWS-managed AD in the cloud adds significant operational overhead.
     * Must maintain the AWS Directory Service instance, monitor trust health, and manage role mappings manually adding extra cost.
     * Less efficient than a fully managed identity federation service such as IAM Identity Center (formerly AWS SSO).
+    * Enables direcorry-aware workloads on AWS to be run
   * AD Connector
     * Provides a centralized, low-maintenance, and scalable identity management solution that integrates seamlessly with the company’s existing on-premises Active Directory
     * Directory Gateway (proxy) to redirect to on-premises AD, eliminating the need to deploy or manage a separate directory in the cloud
     * Supports MFA
-    * Integrating IAM Identity Center with AD Connector, the company can use existing on-premises Active Directory group memberships to manage permission sets that define what AWS accounts and resources each user can access allowing fine-grained, role-based access control across multiple accounts managed by AWS Organizations.
+    * Integrating IAM Identity Center with AD Connector, the company can use existing on-premises Active Directory group memberships to manage permission sets that define what AWS accounts and resources each user can access allowing fine-grained, role-based access control across multiple accounts managed by AWS Organizations (by proxy).
     * Requires minimal operational overhead and scales well with growing teams and AWS accounts.
+    * Not possible to run directory-aware workloads on AWS
   * Simple AD
     * AD-compatible managed directory on AWS
     * Cannot be joined with on-premises AD
