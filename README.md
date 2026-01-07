@@ -2232,7 +2232,7 @@ timeline
     * Must maintain the AWS Directory Service instance, monitor trust health, and manage role mappings manually adding extra cost.
     * Less efficient than a fully managed identity federation service such as IAM Identity Center (formerly AWS SSO).
     * Enables directory-aware workloads on AWS to be run
-    * 
+
   * AD Connector
     * Provides a centralized, low-maintenance, and scalable identity management solution that integrates seamlessly with the company’s existing on-premises Active Directory
     * Directory Gateway (proxy) to redirect to on-premises AD, eliminating the need to deploy or manage a separate directory in the cloud
