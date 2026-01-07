@@ -800,8 +800,11 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Can work with ASG via CloudWatch Metric/Alarm - Queue Length (approximate # of messages) to scale either/both producer(s)/consumer(s)
   * Encryption (in flight via HTTP API [requres SSL certificate to enable]/at-rest using KMS/client-side)
   * Access via IAM controls (regulates access to SQS API) and/or SQS Access Policies (useful for cross-account to SQS queues and useful for allowing other users to write to SNS)
-  * Short polling is sync polling of a queue and returns a response immediately 
-  * Long polling of a queue is async returns when either with a response or when the long poll times out (1-20 sec [receive message wait time]) reducing latency/increasing efficiency
+  * Short polling is sync polling of a queue and returns a response immediately, even if a request found no messages (default)
+  * Long polling of a queue is async returns when
+    * either with a single response, up to the max number of messages supplied per the request
+    * an empty reesponse when the long poll times out (1-20 sec [receive message wait time]) reducing latency/increasing efficiency
+  * Long polling is less expensive to retreive messages, as it reduces the number of empty responses vs short polling
   * Purging will remove all messages from the queue
   * Visibility timeout: Amt of time a message is invisible in the queue after a reader picks the message.  Provided the job processes before the visibility timeout expires, the message will be deleted from the queue.  If the job isn't processed within that time, the message could become visible again and another reader will process it. This could result in the message being delivered more than once.  The max Visibility timeout is 12 hours.  ChangeMessageVisibility Api can be called to get more time
     * Too high=>longer time to process if consumer crashes
