@@ -2227,11 +2227,12 @@ timeline
 #### AWS Directory Services
   * AWS Managed Microsoft AD
     * Create your own AD in AWS, manage users locally, supports MFA
-    * Establish centralized identity integration via “trust” connections with your on-premises AD provider
+    * Establishes a centralized identity integration via “trust” connections with your on-premises AD provider and best choice if dealing with more than 5000 users
     * Managing a self-hosted or AWS-managed AD in the cloud adds significant operational overhead.
     * Must maintain the AWS Directory Service instance, monitor trust health, and manage role mappings manually adding extra cost.
     * Less efficient than a fully managed identity federation service such as IAM Identity Center (formerly AWS SSO).
-    * Enables direcorry-aware workloads on AWS to be run
+    * Enables directory-aware workloads on AWS to be run
+    * 
   * AD Connector
     * Provides a centralized, low-maintenance, and scalable identity management solution that integrates seamlessly with the company’s existing on-premises Active Directory
     * Directory Gateway (proxy) to redirect to on-premises AD, eliminating the need to deploy or manage a separate directory in the cloud
@@ -2242,6 +2243,8 @@ timeline
   * Simple AD
     * AD-compatible managed directory on AWS
     * Cannot be joined with on-premises AD
+    * Least expensive
+    * Best choice if you have have less than 5000 users and no need for a trust relationship
    
 #### IAM Identity Center – Active Directory Setup
   * Connect to an AWS Managed Microsoft AD (Directory Service)
