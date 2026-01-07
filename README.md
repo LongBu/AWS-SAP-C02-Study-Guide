@@ -94,6 +94,12 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Can be used to delegate access permissions to users or services that normally don't have access to your organization's AWS resources
   * Able to allow access to cross-account resources
 
+### EC2 IAM role vs Instance profile
+  * When a IAM service role is defined, the trusted entity is defined within the definition, while a service role for EC2, the role automatically has EC2 identified as a trusted entity
+  * If using a IAM role with EC2 or another service that uses EC2, you must store the role in an instance profile (eg: EC2 Auto scaling, Elastic Beanstalk, Lightsail, EKS, ECS, Fargate, AWS Batch)
+  * An instance profile is a container for only a single role that can be attached to a launched EC2 instance
+  * If a role is created via the AWS Console, the instance profile will have the same name
+
 ### Identity federation: a system of trust between two parties for the purpose of authenticating users and conveying information needed to authorize their access to resources.
 
 ### User groups can only contain users
