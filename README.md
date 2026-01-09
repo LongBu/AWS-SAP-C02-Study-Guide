@@ -857,10 +857,13 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Private Certificate use is charged a monthly fee
   * Automatically renews certificates issued by ACM
 
-### Systems Manager (SSM) Session Manager
+### AWS Systems Manager (SSM)
+  * Default Host Management Configuration (potentially enabled as part of Quick Setup) applies necessary permissions, activates inventory collection, and enables patching (eg: EC2 OS) without disruption or a need to alter IAM roles simplifying onboarding and auto-configuring EC2 instances with proper settings so as to be managed by SSM
+
+#### Session Manager
   * Allows secure connectivity to EC2 instances without exposing SSH port 22
 
-### SSM Parameter Store:
+#### SSM Parameter Store:
   * Can be used to store secrets
   * Each time you edit the value of a parameter a new version is created via built-in version tracking and the previous version is committed historically
   * Optional seamless encryption with KMS
