@@ -279,11 +279,9 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 ### Amazon Route 53:
   * AWS service for DNS routing/Domain registration
-  * More Route 53 traffic, more $
+  * More Route 53 traffic, more $ (save alias queries)
   * ELB can't throttle
   * ELB doesn't have predefined ipv4 addresses (resolve using DNS name)
-  * Alias (hostname to the AWS resource)=> better choice mostly (not 3rd party websites)
-  * CNAME (hostname to hostname)=>can't use the root domain utilizing this
   * Common DNS types:
     * SOA records
     * NS records
@@ -303,6 +301,14 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * External certificates are registered with 3rd party NS registrar
   * HC=> used for failover (ALB=>http(s) HCs)
   * Route 53 HC(s) only for public resources, VPC must make a CloudWatch metric/alarm for HC to monitor
+
+
+### Route 53 Alias vs CNAME
+  * No charge for queries to AWS resources, but there is a charge for CNAME queries
+  * Alias records can only redirect queries to AWS resources such as S3 Buckets, Cloudfront distributions, and another record in the same Route 53 hosted zone
+  * CNAME can redirect queries to any DNS record (eg: whatever.blahblahblah.com => whatever.blahblahblah.net)
+  * Alias (hostname to the AWS resource)=> better choice mostly (not 3rd party websites)
+  * CNAME (hostname to hostname)=>can't use the root domain utilizing this
   * Alias can't reference EC2 DNS name
 
 ### Route 53 Resolver:
