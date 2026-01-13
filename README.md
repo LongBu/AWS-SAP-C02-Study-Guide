@@ -415,7 +415,8 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Dedicated: 1 GBps to 10 GBps
   * Hosted: 50 MBps, 500 MBps, up to 10 GBps
   * Public Virtual Interface (VIF): used to connect an on-premises network to public AWS resources (eg: S3, DynamoDB, etc.) over public IPs via prefixes routed through Direct Connect privately
-  * Private VIF: used to connect an on-premises network to VPC resources over private IP addresses 
+  * Private VIF: used to connect an on-premises network to VPC resources over private IP addresses
+  * Transit VIF: enables on-premises-to-VPC connectivity through a single path eliminating maintenance of multiple private VIFs and when combined with a Transit Gateway forms a highly efficient hub-and-spoke model 
 
 ### CIDR:
   * Used to provide an IP range
@@ -1141,6 +1142,7 @@ flowchart TD
   * Works primarily on a regional basis, though accessible across multiple regions
   * Can be used across multiple AWS accounts using AWS RAM
   * Can use route tables to limit VPCs communication between one another
+  * Can enable route propogation for each attached VPC to automatically manage inter-VPC routing allowing a mesh VPC network without having to update the route tables for every VPC
   * Works with Direct Connect as well as VPN connections
   * Supports IP multicast (not supported by any other AWS service)
   * Site-to-site VPN ECMP: creates multiple connections to increase the bandwidth of the connection to AWS
