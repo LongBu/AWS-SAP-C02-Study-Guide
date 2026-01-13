@@ -270,6 +270,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 ### AWS Global Accelerator:
   * Network service that helps improve the availability and performance of the application(s) to global users
   * Provides (2) Anycast/static IP addresses providing a fixed entry point (no client cache issues=>static ip) at edge locations (from/to) to your application(s) and eliminates the complexity of managing specific IP addresses for different regions and AZs.
+  * Endpoints are to be registered and tied to Regions
   * Able to serve blue-green deployments more speedily, either gradually or all at once within seconds without long caching issues over Route 53
   * Always routes user traffic, leveraging the internal AWS network, to the optimal, lowest latency endpoint based on performance, reacting instantly to HC changes, user's location, and policies configured.
   * (Regional) Failover < 1 minute for unhealthy application(s)=>great for disaster recovery
