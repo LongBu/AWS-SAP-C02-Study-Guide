@@ -1142,7 +1142,7 @@ flowchart TD
   * Works primarily on a regional basis, though accessible across multiple regions
   * Can be used across multiple AWS accounts using AWS RAM
   * Can use route tables to limit VPCs communication between one another
-  * Can enable route propogation for each attached VPC to automatically manage inter-VPC routing allowing a mesh VPC network without having to update the route tables for every VPC
+  * Can enable route propogation for each attached VPC to automatically manage inter-VPC routing allowing a mesh VPC network without having to update the route tables for every VPC, nor manage separate VGWs for each VPC (private VIF)
   * Works with Direct Connect as well as VPN connections
   * Supports IP multicast (not supported by any other AWS service)
   * Site-to-site VPN ECMP: creates multiple connections to increase the bandwidth of the connection to AWS
