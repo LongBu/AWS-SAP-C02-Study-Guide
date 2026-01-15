@@ -2596,6 +2596,23 @@ sequenceDiagram
   * Elasticache for Redis
   * DAX (not DynamoDB alone)
   * Amazon TimeStream
+ 
+### Storage Protocols to remember
+  * SMB
+    * FSx for Net App ONTAP
+    * Amazon FSx for Windows
+    * S3 (File) Storage Gateway
+    * FSx Storage Gateway
+  * NFS
+    * FSx for Net App ONTAP
+    * S3 (File) Storage Gateway
+  * NTFS
+    * FSx Storage Gateway
+    * Amazon FSx for Windows
+  * iSCSI
+    * Tape Storage Gateway
+    * Volume Storage Gateway
+    * FSx for Net App ONTAP
 
 ## Acronyms
 
