@@ -1,5 +1,5 @@
 # AWS SAP-CO2 Study Guide
-The following guide is my attempt at helping myself and possibly others to pass the AWS Certified Solutions Architect Professional Exam.  I'd recommend taking Stephane Maarek's course [Ultimate AWS Certified Solutions Architect Professional 2025](https://www.udemy.com/course/aws-solutions-architect-professional/) and taking a few practice exams from [AWS Certified Solutions Architect Professional Practice Exam](https://www.udemy.com/course/aws-certified-solutions-architect-professional-aws-practice-exams/) before moving onto the exam.  
+The following guide is my attempt at helping myself and possibly others to pass the AWS Certified Solutions Architect Professional Exam.  I'd recommend taking Stephane Maarek's course [Ultimate AWS Certified Solutions Architect Professional 2026](https://www.udemy.com/course/aws-solutions-architect-professional/) and taking a few practice exams from [AWS Certified Solutions Architect Professional Practice Exam](https://www.udemy.com/course/aws-certified-solutions-architect-professional-aws-practice-exams/) before moving onto the exam.  
 
 Note: The author makes no promises or guarantees on this guide as this is as stated, a guide used by myself, nothing more.  This is a work in progress and I haven't passed the test, yet.  
 
@@ -166,7 +166,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Does not use security groups, due to it being a managed service not deployed into a VPC by default, however a resource policy is more apt for restricting access (eg: restricting IP addresses ranges)
   * Create API keys
   * Swagger/Open API import to define APIs
-  * HTTP APIs  more cost-effective than REST APIs
+  * HTTP APIs are more cost-effective than REST APIs
   * Can create/manage APIs that are
      * HTTP-method based (eg: GET/POST/etc.)
      * Enable stateless RESTful API client-server communication
