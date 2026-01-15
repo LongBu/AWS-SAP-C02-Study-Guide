@@ -732,6 +732,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Storage resources (20 GB free)
   * No time limit like λ (15 minutes)
   * λ can hit max concurrency problems, or sometimes can't horizontally scale and might throttle, through with error code 429
+  * More operational overhead than λ
   * Harnessed EFS, doesn't support mounting EBS volumes
 
 ### Amazon Managed Service for Prometheus: serverless monitoring service harnessing PROMQL to monitor and alert on container environments upon ingestion/storage
