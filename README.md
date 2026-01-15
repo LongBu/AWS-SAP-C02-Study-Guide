@@ -1077,6 +1077,7 @@ flowchart TD
   * Do not modify default NACL, instead create custom NACL(s)
   * If accepting internet traffic routed via an internet gateway
   * If accepting VPN or AWS Direct Connect traffic routed via a Virtual Private Gateway
+  * Not applicable for ALB or CloudFront
   * NACL rules:
     * Range from 1-32766, with a higher precedence placed on lower numbers
     * Allow and Deny rules
