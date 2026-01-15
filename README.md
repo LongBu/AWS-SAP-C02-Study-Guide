@@ -162,9 +162,11 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Scales
   * Can enable/disable CORS
   * Handle security (Authentication [*Integrates with Cognito User Pools*]/Authorization[IAM-internal AWS])
+  * HTTP APIs support native JWT authorizers that validates OIDC-compliant idP (Auth0, Okta, Cognito)
   * Does not use security groups, due to it being a managed service not deployed into a VPC by default, however a resource policy is more apt for restricting access (eg: restricting IP addresses ranges)
   * Create API keys
   * Swagger/Open API import to define APIs
+  * HTTP APIs  more cost-effective than REST APIs
   * Can create/manage APIs that are
      * HTTP-method based (eg: GET/POST/etc.)
      * Enable stateless RESTful API client-server communication
