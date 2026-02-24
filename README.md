@@ -218,7 +218,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Can load multiple SSL certificates on one listener that specifies the hostname via SNI
   * Redirects HTTP=>HTTPS
   * Target groups => EC2 (autoscale), ECS, λ, private IP address
-  * Health checks are at the target group level
+  * Health checks are at the target group level, not EC2 based health checks
   * Routing based on URL, hostname, query string parameters, or headers
   * X-Forwarded-For header for client IP
   * Sticky sessions available, via cookie (AWSALB)
