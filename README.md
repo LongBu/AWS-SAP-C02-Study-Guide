@@ -208,6 +208,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
     * NAT Instance  (mandatory)
     * Transit Gateway
     * EC2 Instance
+    * AWS Transfer Family
 
 #### Application Load Balancer (ALB):
   * Best suited for load balancing HTTP(s) traffic, operating @layer 7 (WebSockets)
@@ -1410,14 +1411,15 @@ flowchart TD
   * If it takes more than a week to transfer over the network, use Snowball devices!
 
 ### Snowball Edge (for data transfers)
-  * Physical data transport solution:moveTBs or PBs of data in or out of AWS
+  * Physical data transport solution:move TBs or PBs of data in or out of AWS
   * Alternative to moving data over the network (and paying network fees)
   * Pay per data transfer job
   * Provide block storage and Amazon S3-compatible object storage
   * Snowball Edge Storage Optimized
-  * 80 TB of HDD capacity for block volume and S3 compatible object storage
+  * 80 TB of HDD capacity for block volume, 1 TB of SATA SSD and S3 compatible object storage
   * Snowball Edge Compute Optimized
   * 42 TB of HDD capacity for block volume and S3 compatible object storage
+  * Up to 40 GB of network bandwidth 
   * Usecases: large data cloud migrations, decommission, disaster recovery
 
 ### AWS Snowcone
