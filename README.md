@@ -674,6 +674,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Doesn't immediately terminate instances with an impaired status or instances that fail to report data for status checks, which for the latter usually happens when there is insufficient data for the status check metric in Amazon CloudWatch
   * By default, EC2 Autoscaling doesn't use ELB health checks when the group's health check configuration is set to EC2.  This results in the EC2 Autoscaling not terminating instances that fail ELB health checks.  If an instance status is out of service on the ELB console but is healthy on the Amazon EC2 Autoscaling console, confirm that the health check type is set to ELB
 
+### ASG not replacing instances
+  * Situation where ASG is using EC2 based health checks, while the ALB is using the built-in healthcheck.  The ALB health check fails due to the health check pings failing to receive a response from the instance.  At the same time, the ASG health check comes back successful as it as EC2 based health check.  This leads to the ALB removing instances, while ASG fails to replace instances.
+  * ALB cannot use EC2 based health checks
+
 ### Amazon EC2 Autoscaling Termination: the following list is in decreasing precedence
   * Determine which AZ has the most instances and at least one instance that isn't protected from scale in
   * Determine which instances to terminate to align the remaining instances to the allocation strategy for the on-demand/spot instances it is terminating (template)
