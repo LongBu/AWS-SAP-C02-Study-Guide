@@ -1318,7 +1318,7 @@ flowchart TD
     * Use the encrypted AMI to launch an encrypted instance
 
 ### EFS: 
-  * Linux based only
+  * Linux based only (posix compliant)
   * Regionally based
   * Available across AZs, and through VPC peering connection, accessible in other region(s) and VPCs (same or different region)
   * resource policies allow cross-account access and can be mounted to a shared or peered VPC (eg: lambda acccess via an EFS access point)
@@ -1327,7 +1327,9 @@ flowchart TD
   * Use SG control access
   * Connected via ENI
   * 10GB+ throughput
+  * low latency, scalable file system storage, ideal for high IOPS
   * Compression is good for cost savings concerning persistence
+  * Able to use IAM policies to restrict access per-user access control (eg: posix user ID mappings)
   * *Availability and durability*: 
     * Standard: multi-AZ, great for production
     * One Zone: great for development, backup enabled by default, compatible with IA (EFS One Zone-IA)
@@ -1376,7 +1378,7 @@ flowchart TD
   * Amazon FSx File Gateway allows native access to FSx for Windows from on-premises, local cache for frequently accessed data via Gateway
 
 ### Amazon FSx for Lustre ("Linux" "Cluster"):
-  * High performance, parallel, a distributed file system designed for Applications that require fast storage to keep up with your compute such as ML, high performance computing, video processing, Electronic Design Automation, or financial modeling
+  * High performance, parallel, posix compliant, distributed file system designed for Applications that require fast storage to keep up with your compute such as ML, high performance computing, video processing, Electronic Design Automation, or financial modeling
   * Integrates with linked S3 bucket(s), making it easy to process S3 objects as files and allows you to write changed data back to S3
   * Provides the ability to both process 'hot data' in parallel/distributed fashion as well as easily store 'cold data' to S3
   * Storage options include SSD or HDD
@@ -2467,6 +2469,8 @@ sequenceDiagram
   * Store and manage user's credentials within the service
   * Integrate with existing authentication systems (Microsoft AD, LDAP, Okta, Cognito)
   * Usage: sharing files, public datasets, CRM, ERP, etc.
+  * Can utilize Elastic Ips for endpoints
+  * Can utilize SGs to restrict access to certain IPs
 
 ### AWS Amplify:
   * Complete Solution allowing front-end/mobile developers to easily build, ship, and host full-stack applications on AWS harnessing various AWS services as use cases evolve
