@@ -2400,7 +2400,7 @@ sequenceDiagram
   * CloudWatch:
     * CloudWatch Contributor Insight=>helps analyze (VPC) logs
     * Performance monitoring and dashboards (metrics, CPU, network, etc.)
-    * EC2 instance memory can be monitored via installation/configuration of Unified CloudWatch Agent pushing memory usage as a custom metric to CloudWatch
+    * EC2 instance memory can be monitored via installation/configuration of Unified CloudWatch Agent pushing memory usage as a custom metric, or logs for debugging to CloudWatch
     * Events and Alerting
     * Log aggregation and analysis
     * Can ingest CloudTrail to monitor and identify your AWS Account activity
