@@ -1329,7 +1329,7 @@ flowchart TD
   * Use SG control access
   * Connected via ENI
   * 10GB+ throughput
-  * low latency, scalable file system storage, ideal for high IOPS
+  * low latency, scalable, (NFS compatible) file system storage, ideal for high IOPS
   * Compression is good for cost savings concerning persistence
   * Able to use IAM policies to restrict access per-user access control (eg: posix user ID mappings)
   * *Availability and durability*: 
@@ -1351,6 +1351,7 @@ flowchart TD
   * Can be accessed via FSx File Gateway for on-premises needs via VPN and/or Direct Connect
   * Fully managed
   * Accessible via ENI within Multi-AZ
+  * Note FSx for Lustre is single AZ based while all other types offer multi-AZ
   * Types include:
     * FSx for Windows FileServer
     * FSx for Lustre
@@ -1410,6 +1411,35 @@ flowchart TD
   * Stored in an S3 bucket belonging to the same AWS region where the instance is located
   * You do not have direct access to the snapshots in S3, though you can share them
 
+### AWS Backup
+  * Fully managed service to centrally manage and automate backups across AWS services 
+  * No need to create custom scripts and manual processes 
+  * Supported services:
+    * Amazon EC2 / Amazon EBS
+    * Amazon S3
+    * Amazon RDS (all DBs engines) / Amazon Aurora / Amazon DynamoDB
+    * Amazon DocumentDB / Amazon Neptune
+    * Amazon EFS / Amazon FSx (Lustre & Windows File Server)
+    * AWS Storage Gateway (Volume Gateway) 
+  * Supports cross-region backups 
+  * Supports cross-account backups 
+  * Supports PITR for supported services 
+  * On-Demand and Scheduled backups 
+  * Tag-based backup policies 
+  * You create backup policies known as Backup Plans
+    * Backup frequency (every 12 hours, daily, weekly, monthly, cron expression)
+    * Backup window
+    * Backed up to S3
+    * Transition to Cold Storage (Never, Days,Weeks, Months,Years)
+    * Retention Period (Always, Days,Weeks, Months,Years) 
+
+
+#### AWS Backup Vault Lock 
+  * Enforce a WORM (Write Once Read Many) state for all the backups that you store in your AWS Backup Vault  
+  * Additional layer of defense to protect your backups against:
+    * Inadvertent or malicious delete operations
+    * Updates that shorten or alter retention periods  
+  * Even the root user cannot delete backups when enabled 
 
 ### AWS Snowball to Glacier:
   * Snowball to S3 to S3 lifecycle policy AWS S3 Glacier
@@ -2628,6 +2658,7 @@ sequenceDiagram
   * NFS
     * FSx for Net App ONTAP
     * S3 (File) Storage Gateway
+    * EFS
   * NTFS
     * FSx Storage Gateway
     * Amazon FSx for Windows
