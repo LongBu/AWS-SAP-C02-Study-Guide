@@ -418,6 +418,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 ### AWS Direct Connect
   * Service that makes it easy to establish a dedicated network connection from on-premises to AWS VPC.  
   * Using Direct Connect, you can establish private connectivity between AWS VPC and your datacenter/co-location environment, which can reduce network costs, increase bandwidth throughput, and provide a more consistent network experience than internet-based connections
+  * If Direct Connect available for traffic, always use instead of over-the-internet (cheaper)
   * Can access private/public AWS resources
   * Useful for high throughput workloads (eg: lots of network traffic)
   * Good if you need a stable and reliable secure connection
