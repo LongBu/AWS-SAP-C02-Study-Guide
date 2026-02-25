@@ -648,6 +648,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Schedule action sets the min, max, or desired sizes to what is specified by the scheduled action. Min and max set a range of indeterminate instances, while desired specifies what is needed at a said time
   *  Relies on predictive scaling, which uses ML to determine the right amount of resource capacity necessary to maintain a target utilization for EC2 instances
   * Target tracking or simple tracking can't be used to effect scaling actions at a designated time
+  * If an application in ASG can run on N instances in 1 AZ, but needs to be HA/Fault tolerant/reliable, issue the minimum to be N per each issued AZ depending on how reliable you need it to be (eg: 2 AZ => min of 2N)
   * *Launch configuration* can't be used in combination of spot and on-demand instances
   * *Launch templates* can mix instances
   * Can't modify launch configurations once created
@@ -2606,7 +2607,7 @@ sequenceDiagram
     
 ### Fully Managed => serverless
 
-### High Availability/Fault Tolerance => > 1 AZ
+### High Availability/Fault Tolerance/Reliability => > 1 AZ
 
 ### EC2 meta data => http://169.254.169.254/latest/meta-data
 
