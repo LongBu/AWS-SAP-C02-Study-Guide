@@ -403,6 +403,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
     * Content served at the edge
   * Global Accelerator:
     * Improve performance of applications using TCP/UDP
+    * Good for real-time data, where caching isn't good per latency/consistency (caching isn't good for real-time)
     * Proxying packets at the edge to applications running in one or more AWS Regions
     * Good fit for non-HTTP cases (eg: Gaming [UDP], IOT (MQTT), VOIP)
     * Good for HTTP use cases requiring static IP addresses
