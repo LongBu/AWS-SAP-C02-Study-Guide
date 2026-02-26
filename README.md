@@ -1564,6 +1564,7 @@ harsh environments
     * Unencrypted objects and objects encrypted with SSE-S3 are replicated by default
   * SSE-KMS
     * Encryption (KMS Customer Master Key [CMK]) managed by AWS KMS
+    * Can use bucket-level keys rather than individual KMS keys for each object to lower KMS usage/cost
     * Encrypted server side via HTTP/S and Header containing "x-amz-server-side-encryption":"aws:kms"
     * Offers further user control and audit trail via CloudTrail
     * May be impacted by KMS limits, though you can increase them via the Service Quotas Console
