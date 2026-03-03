@@ -892,7 +892,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 #### Session Manager
   * Allows secure connectivity to EC2 instances without exposing SSH port 22
 
-#### EC2 Instance Connect Endpoint
+#### EC2 Instance Connect
   * Provides a secure and auditable way to establish temporary SSH sessions to EC2 instances by injecting a one-time-use public key into the instance at connection time for a short-lived session.
   * Logs are available via CloudTrail for auditing purposes.
   * When used without Session Manager, EC2 Instance Connect requires the instance to have a public IP address, and connections are made over the internet via the public IP.
