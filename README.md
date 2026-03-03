@@ -2250,7 +2250,7 @@ graph LR
 
 ### AWS Elasticache
   * Good for improving (sub-millisecond) latency and throughput for read-heavy applications or compute-intensive workloads
-  * Good for storing sessions of instances
+  * Good for storing sessions instead of instances
   * Good for performance improvement of DB(s), though use of involves heavy application code changes
   * Supports broad set of programming languages
   * Must provision EC2 instance type(s)
