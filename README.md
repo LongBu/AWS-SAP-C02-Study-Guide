@@ -367,6 +367,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
      * Can be used in front of an ALB
   * Can route to multiple origins based on content type (dynamic => ELB, static => S3)
   * Options for securing content: HTTPS, geo-restriction, signed URL/cookie, field level encryption, AWS WAF
+  * Only supports ACM public certificates created in US-East-1, even if content in another Region, to support secure content via HTTPS
   * Can't be associated with SGs
   * Objects can be cached for TTL
   * Can clear cached objects, but you will be charged
