@@ -2249,20 +2249,25 @@ graph LR
 ## Optimization
 
 ### AWS Elasticache
-  * Good for improving latency and throughput for read-heavy applications or compute-intensive workloads
+  * Good for improving (sub-millisecond) latency and throughput for read-heavy applications or compute-intensive workloads
   * Good for storing sessions of instances
   * Good for performance improvement of DB(s), though use of involves heavy application code changes
+  * Supports broad set of programming languages
   * Must provision EC2 instance type(s)
   * IAM auth not supported
   * Redis versus Mem Cached:
     * Redis:
-      * backup and restore features
+      * advanced data structures
+      * backup and restore features via snapshots
       * read replicas to scale reads/HA
       * data durability using AOF persistence
+      * pub/sub
       * multi-AZ with failover 
       * Redis sorted sets are good for leaderboards
       * Redis Auth tokens enable Redis to require a token (password) before allowing clients to execute commands, thus improving security (SSL/Inflight encryption)
-      * Fast in-memory data store providing sub-millisecond latency, Hippa compliant, replication, HA, and cluster sharding
+      * Fast in-memory data store providing sub-millisecond latency, Hippa compliant, replication, HA and cluster sharding
+      * Good for transactions
+      * geospatial support
     * Mem Cached:
       * Multinode partitioning of data (sharing)
       * No replication (HA)
