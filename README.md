@@ -2463,6 +2463,7 @@ sequenceDiagram
   * AWS Config: 
     * Record configuration changes
     * Evaluate resources against compliance rules (eg: EC2 port n exposed? Or is a 3rd party SSL/TSL cert imported into ACM to expire=>SNS notification)
+    * While automation via runbooks offers remediation, AWS Config does not prevent noncompliant resources from being created in the first place.
     * Get a timeline of changes and compliance
 
 ### Amazon MQ:
