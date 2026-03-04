@@ -270,7 +270,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Route 53 health check => Automated DNS Failover:
     * Works with weighted routing, latency-based, geolocation, multivalue routing policies, and active-passive routing policy
       * Active-passive policy allows for the primary resource or group of resources to support in the former case and a secondary resource or group of resources to be on standby in latter case.
-      * Route 53 only responds to helathy primary resources and if all primary resources are unhealthy=>secondary
+      * Route 53 only responds to healthy primary resources and if all primary resources are unhealthy=>secondary
       * There is no such thing as an active-active routing policy in Route 53
     * Doesn't work with simple routing policy
     * Failover doesn't reduce latency
