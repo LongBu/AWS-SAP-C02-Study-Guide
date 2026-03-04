@@ -1304,7 +1304,7 @@ flowchart TD
   * Snapshots exist on S3 (point-in-time copy of disk)
   * Snapshots are incremental-only the blocks that have changed since the last snapshot are moved to S3
   * The first snapshot might take more time
-  * Best to stop the root EBS device from taking snapshots, though you don't have to
+  * Best to stop the root EBS device to take a snapshot, though you don't have to
   * EBS snapshot archive (up to 75% cheaper to store, though 24-72 hours to restore)
   * EBS Snapshot Recycle Bin allows organizations to retain deleted snapshots for a fixed/configured duration before they are permanently deleted.
     * Allows snapshots that are deleted mistakenly to still be recovered within the period.
