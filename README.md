@@ -1292,20 +1292,25 @@ flowchart TD
 
 ### EBS:
   * Volumes exist on EBS => virtual hard disk
-  * Snapshots exist on S3 (point-in-time copy of disk)
-  * Snapshots are incremental-only the blocks that have changed since the last snapshot are moved to S3
-  * The first snapshot might take more time
-  * Best to stop the root EBS device from taking snapshots, though you don't have to
+
   * Provisioned IOPS (PIOPS [io1/io2])=> DB workloads/multi-attach
   * Multi-attach (EC2 =>rd/wr)=>attach the same EBS to multiple EC2 in the same AZ; up to 16 (all in the same AZ)
   * Can change volume size and storage type on the fly
   * Always in the same region as EC2
   * To move EC2 volume=>snapshot=>AMI=>copy to destination Region/AZ=>launch AMI
-  * EBS snapshot archive (up to 75% cheaper to store, though 24-72 hours to restore)
   * EC2 Instance Default EBS Volume Types vs termination
     * Root EBS=>"Delete On Termination" is default on
     * Other EBS Types=>"Delete On Termination" is default off
-   
+  * Snapshots exist on S3 (point-in-time copy of disk)
+  * Snapshots are incremental-only the blocks that have changed since the last snapshot are moved to S3
+  * The first snapshot might take more time
+  * Best to stop the root EBS device from taking snapshots, though you don't have to
+  * EBS snapshot archive (up to 75% cheaper to store, though 24-72 hours to restore)
+  * EBS Snapshot Recycle Bin allows organizations to retain deleted snapshots for a fixed/configured duration before they are permanently deleted.
+    * Allows snapshots that are deleted mistakenly to still be recovered within the period.
+    * Requires minimal setup and no significant development effort.
+  * EBS snapshots are not directly stored in AWS Backup vaults unless they are created through AWS Backup, and the original setup is using manual or script-driven EBS snapshot creation. Additionally, Vault Lock applies only to backups managed by AWS Backup, not independently created snapshots through Amazon EC2 or custom scripts.
+
 ### AMI
   * Helps mitigate system dependencies, though it won't speed up initialization
 
@@ -1429,7 +1434,9 @@ flowchart TD
 
 ### AWS Backup
   * Fully managed service to centrally manage and automate backups across AWS services 
-  * No need to create custom scripts and manual processes 
+  * No need to create custom scripts and manual processes
+  * Snapshots are not directly stored in AWS Backup vaults unless they are created through AWS Backup
+  * Additionally, Vault Lock applies only to backups managed by AWS Backup
   * Supported services:
     * Amazon EC2 / Amazon EBS
     * Amazon S3
