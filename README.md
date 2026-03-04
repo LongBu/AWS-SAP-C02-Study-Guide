@@ -47,7 +47,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Consolidated Billing across all accounts - single payment method
   * Pricing benefits from aggregated usage (volume discount for EC2, S3...)
   * Shared reserved instances and Savings Plans discounts across accounts
-  * API is available to automate AWS account creation 
+  * API is available to automate AWS account creation
+  * AWS Tag Policies, managed through AWS Organizations, allows administrators to define rules for tag keys and values.
+    * Able to then attach tag policies to the applicable OU to enforce uniform tagging behavior across accounts, automatically apply to all member accounts. 
+    * These policies do not directly prevent resource creation, running, etc., but they play a governance and auditing role, helping organizations monitor and enforce consistent tagging and visibility by flagging noncompliant resources.
   * Advantages
     * Multi Account vs One Account Multi VPC 
     * Use tagging standards for billing purposes
