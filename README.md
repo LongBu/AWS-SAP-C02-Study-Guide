@@ -1297,6 +1297,7 @@ flowchart TD
   * Multi-attach (EC2 =>rd/wr)=>attach the same EBS to multiple EC2 in the same AZ; up to 16 (all in the same AZ)
   * Can change volume size and storage type on the fly
   * Always in the same region as EC2
+  * Can create AMIs from snapshots
   * To move EC2 volume=>snapshot=>AMI=>copy to destination Region/AZ=>launch AMI
   * EC2 Instance Default EBS Volume Types vs termination
     * Root EBS=>"Delete On Termination" is default on
