@@ -903,6 +903,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 #### Session Manager
   * Allows secure connectivity to EC2 instances without exposing SSH port 22
+  * Is less maintenace and cost effective over a bastion instance, unless th latter requires specific tools, apps, etc. not supported by SSM
 
 #### EC2 Instance Connect
   * Provides a secure and auditable way to establish temporary SSH sessions to EC2 instances by injecting a one-time-use public key into the instance at connection time for a short-lived session.
