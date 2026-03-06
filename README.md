@@ -189,6 +189,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
     * ALB=> tied to Target Group Level
   * Can check HC of instances
   * Cross Zone Load Balancing enables a balance of traffic to be routed externally to another AZ, equally distributing across all instances
+  * All load balancers are confined to a single region, though can be multi-AZ.  If multi-region support is needed, consider Route 53, GA, or CloudFront
   * Fixed hostname
   * Can have path route patterns that dictate where traffic goes (AZ-inst[s])
     * CLB: HTTP(S), TCP, SSL (secure TCP)
