@@ -2087,6 +2087,11 @@ graph LR
   * Heterogeneous: Oracle => Aurora
   * EC2 server runs replication software, as well as continuous data replication using Change Data Capture (CDC) [for new deltas] and DMS 
   * Can pre-create target tables manually or use AWS Schema Conversion Tool (SCT) [runs on the same server] to create some/all of the target tables, indices, views, etc. (only necessary for heterogeneous case)
+  * AWS DMS Serverless 
+    * best for scenarios where data replication workloads vary and automation is required. 
+    * automatically provisions and scales HA compute resources based on workload demand. 
+    * supports ongoing replication, including change data capture (CDC), and is fully managed, reducing operational complexity (eg: capacity, instance size, etc.)
+    * EC2 Auto Scaling is not natively integrated with regular DMS replication tasks and cannot scale based on replication task load.
 
 
 ## Analytics
