@@ -1413,7 +1413,7 @@ flowchart TD
   * Persistent File System can be used for storage / replicated with AZ
 
 ### AWS Storage Gateway:
-   * Hybrid cloud storage service that provides on-premises access to virtual cloud storage
+   * Hybrid cloud storage service that provides on-premises access (CRUD) to virtual cloud storage
    * Most recently used date cached in gateway
    * Volume Gateway backed up by EBS snapshots to S3
      * Stored volumes-stores entire dataset locally for low latency
@@ -2506,6 +2506,7 @@ sequenceDiagram
   * File permissions and metadata are preserved
   * Utilizing this service to movement in the flow of harnessing the data likely adds operational complexity and delay, especially (near) real-time systems
   * Does not support real-time or low latency file system operations
+  * Does not facilitate ongoing updates to migrated files from on-prem apps, this is better suited for AWS Storage Gateway
 
 ### AWS Application Discovery Service
   * Plan migration projects by gathering information about on-premises data centers 
