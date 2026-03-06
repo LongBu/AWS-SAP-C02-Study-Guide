@@ -1791,6 +1791,7 @@ harsh environments
 ##### S3 Intelligent-Tiering
   * Modest fee for monthly monitoring and auto-tiering
   * Moves objects between tiers based on usage
+  * Ideal cost-optimized choice for data with unpredictable access behavior, while not compromising latency or availability
   * Access tiers include:
     * Frequent (automatic) default
     * Infrequent (automatic) not accessed for 30 days
