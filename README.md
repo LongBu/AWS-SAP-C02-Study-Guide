@@ -2477,7 +2477,7 @@ sequenceDiagram
     * Events and Alerting
     * Log aggregation and analysis
     * Can ingest CloudTrail to monitor and identify your AWS Account activity
-    * CloudWatch metric=>kinesis data firehose to S3 or 3rd parties in near real-time
+    * CloudWatch metric=>kinesis data firehose to S3, opensearch or 3rd parties in near real-time
     * Cloudwatch Dashboard can be shared with a non-account holder with said user's email
   * CloudTrail: 
     * Record API calls made within the Account by everyone
