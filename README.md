@@ -485,6 +485,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 #### EC2 On-Demand Instance:
   * Pay by the second for the instances launched after the first minute
   * Can't be used for existing server-bound software licenses
+  * Suits dev/test environments
 
 #### EC2 Savings Plan Instance:
   * 1 or 3-year terms available
@@ -499,6 +500,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Great for cost optimization
   * Can be shared across AWS Organization accounts
   * Can't be used for existing server-bound software licenses
+  * Suits production environments
 
 #### EC2 Convertible Reserved Instance:
   * One of the reserved instance purchasing options (1 or 3 years)
