@@ -2482,9 +2482,8 @@ sequenceDiagram
     * Global service
   * AWS Config: 
     * Record configuration changes
-    * Evaluate resources against compliance rules (eg: EC2 port n exposed? Or is a 3rd party SSL/TSL cert imported into ACM to expire=>SNS notification)
+    * Evaluate resources against compliance managed rules (eg: EC2 port n exposed? S3 Bucket config changes unauthorized? Or is a 3rd party SSL/TSL cert imported into ACM to expire=>SNS notification)
     * While automation via runbooks offers remediation, AWS Config does not prevent noncompliant resources from being created in the first place.
-    * AWS Config managed rules good for checking 3rd party SSL/TLS certificates imported into ACM => can trigger SNS notifications
     * Get a timeline of changes and compliance
 
 ### Amazon MQ:
