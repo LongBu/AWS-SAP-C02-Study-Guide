@@ -2090,7 +2090,8 @@ graph LR
     * DocumentDB
   * Homogenous migration: Oracle => Oracle
   * Heterogeneous: Oracle => Aurora
-  * EC2 server runs replication software, as well as continuous data replication using Change Data Capture (CDC) [for new deltas] and DMS 
+  * EC2 server runs replication software, as well as continuous data replication using Change Data Capture (CDC) [for new deltas] and DMS
+  * When migrating an online/accessible db, an online replication task must be created in addition to the DMS replication server
   * Can pre-create target tables manually or use AWS Schema Conversion Tool (SCT) [runs on the same server] to create some/all of the target tables, indices, views, etc. (only necessary for heterogeneous case)
   * AWS DMS Serverless 
     * best for scenarios where data replication workloads vary and automation is required. 
