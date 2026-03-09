@@ -446,6 +446,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * VPCs per region: 5
   * Subnets per VPC: 200
   * Max CIDR size in AWS is /16
+  * Subnets can't sapan AZs in a VPC and are subject to each AZ
   * If EC2 can't launch in subnet examine IPV4 CIDR (even if IPV6 used)
   * If connecting networks, CIDR must not overlap each respective CIDR
   * Used in SG rules
