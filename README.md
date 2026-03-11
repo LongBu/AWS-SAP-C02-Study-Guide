@@ -2405,7 +2405,7 @@ flowchart TD
 
 ### AWS Cost Explorer:
   * Service to help identify under-utilized EC2 instances that may be downsized on an instance basis within the same instance family, and also understand the potential impact on your AWS bill by taking into account your Reserved instances and Savings Plan
-  * Visualize, understand, and manage your AWS costs and usage over time
+  * Visualize (via graphs), understand, and manage your AWS costs and usage over time
   * Create custom reports that analyze cost and usage data
   * Analyze your data at a high level: total costs and usage across all accounts
   * Or analyze monthly, hourly, resource level granularity
