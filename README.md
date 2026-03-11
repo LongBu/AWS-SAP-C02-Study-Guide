@@ -40,7 +40,8 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 ## Organizational Unit (OU)
 
 ### AWS Organizations
-  * Global service   
+  * Global service
+  * Tied to a root email address, though alternate email address contacts can be configured via console or programmatically (eg: ensure someone doesn't miss a notification)
   * Allows management of multiple AWS accounts (Dev/QA/Test/etc.)
   * The main account is the management account, while other accounts are member accounts
   * Member accounts can only be part of one organization
