@@ -1313,6 +1313,7 @@ flowchart TD
   * Snapshots are incremental-only the blocks that have changed since the last snapshot are moved to S3
   * The first snapshot might take more time
   * Best to stop the root EBS device to take a snapshot, though you don't have to
+  * EBS fast snapshot restore (FSR) enables the creation of a volume that is fully initialized, eliminating i/o latency operations upon first access and delivering performance from the start
   * EBS snapshot archive (up to 75% cheaper to store, though 24-72 hours to restore)
   * EBS Snapshot Recycle Bin allows organizations to retain deleted snapshots for a fixed/configured duration before they are permanently deleted.
     * Allows snapshots that are deleted mistakenly to still be recovered within the period.
@@ -2762,6 +2763,7 @@ sequenceDiagram
 | ENA | Elastic Network Adapter |
 | ENI | Elastic Network Interface |
 | ETL | Extract, Translate, Load |
+| FSR | Fast Snapshot Restore |
 | FTPS | File Transfer Protocol over SSL |
 | GW | Gateway |
 | GLB | Gateway Load Balancer |
