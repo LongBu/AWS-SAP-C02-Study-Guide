@@ -1324,7 +1324,7 @@ flowchart TD
   * Helps mitigate system dependencies, though it won't speed up initialization
 
 ### AMI Type (EBS vs Instance Store):
-  * Instance Store based volumes provide high random I/O performance at lower cost overover higher level stores (eg: EBS, EFS, etc.)
+  * Instance Store based volumes provide high random I/O performance at lower cost over higher level stores (eg: EBS, EFS, etc.)
   * Instance Store
     * Ephemeral Storage
     * Volume specified at launch only and can't be detached from instance to be attached to another
