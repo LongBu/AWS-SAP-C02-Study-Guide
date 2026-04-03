@@ -2592,6 +2592,13 @@ sequenceDiagram
 ### Amazon Comprehend (Medical):
   * Serverless NLP service harnessing ML to uncover valuable insights and connections in text
   * Medical version detects PHI via DetectPHI API
+  * Results of the model are the following:
+    * Events detection
+    * Key phrases-noun phrases
+    * Language
+    * Sentiment
+    * Syntax-boils down each word into a part of speech
+    * Entities-nouns
 
 ### Amazon Outposts: 
   * Good for situations where regulations/policies force all data and/or workloads to be on-prem
