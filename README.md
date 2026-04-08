@@ -1172,7 +1172,7 @@ flowchart TD
 ### Transit VPC:
   * Uses customer-managed EC2(s) VPN instances in dedicated transit VPC resources with an IGW
   * Data transfer charged for traffic traversing this VPC and again from the transit VPC to the on-premises network or different AWS regions
-  * Consider AWS Transit Gateway (shared services VPC) as a cheaper and less maintenance alternative
+  * Consider AWS Transit Gateway as a cheaper and less maintenance alternative
 
 ### VPC Peering: 
   * Privately connects 2 VPCs on AWS's network, behaving as if the same network (works in different AWS accounts/regions)
@@ -1180,7 +1180,7 @@ flowchart TD
   * Not transitive (must be established for each VPC to communicate)
   * Must update route tables in each VPCs subnets to ensure communication between each EC2 instance
 
-### AWS Transit Gateway (Shared services VPC):
+### AWS Transit Gateway:
   * Allows transitive peering between thousands of VPCs and on-premises data centers
   * Works on a hub-and-spoke model
   * Works primarily on a regional basis, though accessible across multiple regions
@@ -1190,6 +1190,13 @@ flowchart TD
   * Works with Direct Connect as well as VPN connections
   * Supports IP multicast (not supported by any other AWS service)
   * Site-to-site VPN ECMP: creates multiple connections to increase the bandwidth of the connection to AWS
+
+#### Shared services VPC
+  * A specialized, central spoke of an AWS Transit Gateway
+  * Hosts common resources that are consumed by other VPCs (eg: directory services or VPC endpoints)
+  * VPC endpoint(s) allows you to
+    * Privately connect your VPC to supported AWS services without requiring an Internet gateway, NAT device, VPN connection, or AWS Direct Connect connection. Endpoints are virtual devices that are horizontally scaled, redundant, and highly available VPC components.
+    * Reduce data transfer charges resulting from network communication between private VPC resources and AWS Services avoiding outbound data transfer charges by not leaving the AWS network
 
 ### AWS VPN CloudHub: 
   * If you have multiple sites, each site with its own VPN connection, can use AWS VPN CloudHub to connect sites over public internet, though all traffic between the customer gateway and the AWS VPN CloudHub is encrypted
