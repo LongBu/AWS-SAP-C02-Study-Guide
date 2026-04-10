@@ -1973,7 +1973,8 @@ graph LR
   * Shareable snapshots with other accounts
   * Replicas: MySQL, Postgres, or Aurora
   * Replicas can autoscale
-  * Aurora Cloning available if you need it for non-live read/write testing/operation
+  * Aurora Cloning available if you need it for non-live read/write testing/operation (dev/qa)
+  * Automated backups, though if you need to store long term backups for Disaster Recovery/Audit purposes, perform On Demand Backups.  No performance impact or interruption of database when backup written.  Note this is also an option for non-live read/write testing/operation (dev/qa)
   * Cross-region replication (< 1 second) support available 
     * Aurora Global: multi-region (up to 5)
     * Aurora Cloning: copy of production (faster than a snapshot)
@@ -1983,7 +1984,6 @@ graph LR
     * Aurora serverless Database cluster (single region)
     * Aurora provisioned Database cluster (single region)
     * Aurora Global Database cluster (multi region) with RPO of seconds and RTO of less than a minute
-  * Automated backups, though if you need to store long term backups for Disaster Recovery/Audit purposes, perform On Demand Backups
   * Automated failover with Aurora replicas 
     * Failover tiers: lowest ranking number first, then greatest size
   * Aurora ML: ML using SageMaker and Comprehend on Aurora
