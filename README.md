@@ -1978,7 +1978,7 @@ graph LR
     * Aurora Global: multi-region (up to 5)
     * Aurora Cloning: copy of production (faster than a snapshot)
   * Aurora multi master (for write failover/high write availability), this isn't available for Aurura Database cluster flavor
-  * Aurora serverless for cost-effective option (pay per second) for infrequent, intermittent or unpredictable workloads
+  * Aurora serverless for cost-effective option (pay per second) for infrequent, intermittent or unpredictable workloads that can automatically adjust capacity, offers multi-AZ, backups and failover and without having to manage the servers
   * Aurora cluster flavors
     * Aurora serverless Database cluster (single region)
     * Aurora provisioned Database cluster (single region)
