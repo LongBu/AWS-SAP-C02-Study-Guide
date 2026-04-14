@@ -2559,6 +2559,7 @@ sequenceDiagram
   * Usage: sharing files, public datasets, CRM, ERP, etc.
   * Can utilize Elastic Ips for endpoints
   * Can utilize SGs to restrict access to certain IPs
+  * Transfer Family managed workflows can trigger lamdbda(s) upon upload to either S3 or EFS
 
 ### AWS Amplify:
   * Complete Solution allowing front-end/mobile developers to easily build, ship, and host full-stack applications on AWS harnessing various AWS services as use cases evolve
