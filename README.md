@@ -202,6 +202,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 
 #### Elastic Ip
   * Can be used to mask failure for an instance (EC2) by remapping the address of another instance providing HA, though cheaper than an ALB
+  * Publicly available (not for private network usage)
   * Proper role (eg: EC2 Instance Role) needs to be assigned to perform the necessary API calls to assign
   * Can't use:
     * ALB
@@ -1169,6 +1170,7 @@ flowchart TD
   * Need to configure VGW and Customer Gateway
   * Ensure Route Propagation is enabled for VGW in the route table associated with your subnets
   * If ping is needed (EC2) from on-premises, add ICMP protocol on the inbound SGs
+
 ### Transit VPC:
   * Uses customer-managed EC2(s) VPN instances in dedicated transit VPC resources with an IGW
   * Data transfer charged for traffic traversing this VPC and again from the transit VPC to the on-premises network or different AWS regions
@@ -1274,6 +1276,7 @@ flowchart TD
   * Gateway Endpoints are preferred most of the time over Interface Endpoints as the former is free and the latter costs $
   * Gateway Endpoints are only accessible from within a VPC and are not compatible with on-premises connectivity methods like AWS Direct Connect or VPNs
   * Interface endpoint is preferred if access is required from on-premises (site-to-site VPN or Direct Connect), a different VPC, or a different region
+  * Private network traffic is lower cost that public network traffic (eg: over the internet)
 
 ### VPC Flow Logs:
   * Capture information about IP traffic going into your interfaces, such as Subnet Flow Logs or ENI Flow Logs
