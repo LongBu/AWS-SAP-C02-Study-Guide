@@ -2337,6 +2337,12 @@ timeline
   * Recommends optimal AWS Compute resources (λ, EC2, EBS) for workloads to reduce costs and improve performance by using ML to analyze historical utilization metrics
   * Helps you choose optimal EC2 types, including those part of the Autoscaling group based on utilization
 
+### AWS IAM Identity Center (formerly AWS SSO)
+  * Provides a scalable and centralized way to manage user access
+  * Can integrate with an organization’s directory (Active Directory).
+  * Define permission sets with least-privilege policies (eg: for Amazon RDS and Amazon S3).
+  * Assign users to groups based on their team roles and map those groups to the appropriate permission sets.  Group memberships in the identity source can be mapped directly to those permission sets, allowing seamless onboarding, offboarding, and role changes without managing individual IAM users or credentials
+
 ### Microsoft Active Directory (AD)
   * Found on any Windows Server with AD Domain Services
   * Database of objects: User Accounts, Computers, Printers, File Shares, Security Groups
@@ -2349,7 +2355,7 @@ timeline
     * Establishes a centralized identity integration via “trust” connections with your on-premises AD provider and best choice if dealing with more than 5000 users
     * Managing a self-hosted or AWS-managed AD in the cloud adds significant operational overhead.
     * Must maintain the AWS Directory Service instance, monitor trust health, and manage role mappings manually adding extra cost.
-    * Less efficient than a fully managed identity federation service such as IAM Identity Center (formerly AWS SSO).
+    * Less efficient than a fully managed identity federation service such as IAM Identity Center.
     * Enables directory-aware workloads on AWS to be run
 
   * AD Connector
@@ -2835,6 +2841,7 @@ sequenceDiagram
 | SSL | Secure Sockets Layer |
 | SSM | Systems Manager |
 | SSML | Speech Synthesis Markup Language |
+| SSO | Single-Sign On |
 | STS | Security Token Service |
 | SCP | Service Control Policies  |
 | S3 | Simple Storage Service |
