@@ -1242,6 +1242,7 @@ flowchart TD
   * Tied to AZ/subnet(s), eg: can't span multiple AZ
   * Must disable EC2 setting: Source/Destination check
   * Must have an Elastic IP
+  * Requires IGW (Private subnet => NAT Inst => IGW)
   * Route tables need configuration to route traffic from private subnets to the NAT instance
   * Must manage SG and rules: 
     * *Inbound*-HTTP(S) from private subnets, allow SSH from the home network
@@ -1257,10 +1258,12 @@ flowchart TD
 | Cost | Per hour usage and data transfered | Per hour usage, EC2 instance type/size and network costs|
 | Public ipv4 | Yes | Yes |
 | Private ipv4 | Yes | Yes |
-| Elastic IP | Yes | Yes |
+| Elastic IP needed | Yes | Yes |
+| IGW needed | Yes | Yes |
 | Security Groups associated | No | Yes |
 | Bastion Host | No | Yes |
 | Port forwarding | No | Yes |
+|
 
 ### VPC Endpoint:
   * Every AWS service is publicly exposed (public URL)
