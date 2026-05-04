@@ -821,8 +821,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Can have as many consumers as needed
   * Ordering is only guaranteed on FIFO Queues, not standard
   * Std queue: unlimited throughput
+  * Std queue can have multiple producers and consumers
   * FIFO queue can limit throughput (300 messages per second)
   * FIFO queue name must have a *.FIFO extension
+  * FIFO processed only once though can have multiple consumers
   * Use separate queues to provide prioritization of work
   * Temporary queues are great for high throughput request-response pattern
     * Lightweight communication channels for threads or processes
@@ -1354,7 +1356,8 @@ flowchart TD
   * When AMI is copied to another region, automatically creates a snapshot in the destination region
   * Snapshots of encrypted volumes are encrypted
   * Volumes from encrypted snapshots are encrypted
-  * Can only share unencrypted snapshots (shared with other AWS accounts or made public)
+  * Can share unencrypted snapshots (shared with other AWS accounts or made public) without bothering to modify at large policies
+  * AMI/Volume Share launch permission property policy to share encrypted volume (via KMS Key), modify key policy to have other accounts use said key
   * Can encrypt root device volumes upon creation of EC2 instance
   * To create an encrypted volume that wasn't encrypted:
     * Create an unencrypted snapshot of the root device volume
@@ -1933,6 +1936,7 @@ graph LR
   * Max read replicas: 5 for Oracle, 15 for MySQL, PostgreSQL, MariaDB, and SQL Server
   * Read replicas are not equal to a DB
   * Read replicas cross region/AZ incur $
+  * Lambda can be triggered when RDS updated
   * IAM Auth
   * Integrates with Secrets Manager
   * Supports MySQL, MariaDB, Postgres, Oracle, Aurora, MySQL
