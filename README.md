@@ -159,7 +159,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 ## Networking
 
 ### API Gateway:
-  * Essentially a front door to AWS resources (λ/EC2/Dynamodb/etc.)
+  * Essentially a front door to AWS resources (λ/EC2/Dynamodb/Kinesis/etc.)
   * Can cache for increased performance
   * Able to throttle
   * Low cost
@@ -2153,6 +2153,7 @@ graph LR
   * Fully Managed (serverless) service, no administration, automatic scaling
   * Can use λ to filter/transform data before output (Better to use if filter/transform with a λ to S3 over Kinesis Data Streams)
   * Near real-time: 60 seconds latency minimum for non-full batches
+  * Batch processing offers significantly better performance over "one-by-one" processing as it reduces network overhead, lowers costs, and optimizes downstream resource utilization. While processing individual records can reduce per-record latency, batching is the recommended best practice for high-throughput applications
   * Minimum 1 MB of data at a time
   * Pay only for the data going through
   * Can subscribe to SNS
@@ -2171,6 +2172,7 @@ graph LR
   * For Apache Flink (on a cluster): 
     * Input: Kinesis Data Stream or Amazon MSK
     * Output: Sink (S3/Kinesis Data Firehose)
+  * The HOTSPOTS function (now primarily part of Amazon Managed Service for Apache Flink) is a ML feature, primarily used within Kinesis Data Analytics for SQL Applications, designed to identify relatively dense regions (clusters) in streaming data without requiring explicit, manual model training. 
 
 ### Amazon Managed Streaming for Apache Kafka (MSK):
   * Alternative to Amazon Kinesis
@@ -2498,6 +2500,7 @@ sequenceDiagram
     * CloudWatch Contributor Insight=>helps analyze (VPC) logs
     * Performance monitoring and dashboards (metrics, CPU, network, etc.)
     * EC2 instance memory can be monitored via installation/configuration of Unified CloudWatch Agent pushing memory usage as a custom metric, or logs for debugging to CloudWatch
+    * EC2 detailed monitoring (pivotting from 5-minute to 1-minute intervals) sends data exclusively to Amazon CloudWatch, though incurs more costs
     * Events and Alerting
     * Log aggregation and analysis
     * Can ingest CloudTrail to monitor and identify your AWS Account activity
