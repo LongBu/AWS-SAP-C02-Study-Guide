@@ -1478,7 +1478,7 @@ flowchart TD
   * You do not have direct access to the snapshots in S3, though you can share them
 
 ### AWS Backup
-  * Fully managed service to centrally manage and automate backups across AWS services 
+  * Fully managed service to centrally manage and automate backups across AWS services (can be done via AWS Organization over multiple accounts)
   * No need to create custom scripts and manual processes
   * Snapshots are not directly stored in AWS Backup vaults unless they are created through AWS Backup
   * Additionally, Vault Lock applies only to backups managed by AWS Backup
