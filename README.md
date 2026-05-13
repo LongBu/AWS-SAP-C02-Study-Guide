@@ -2132,6 +2132,7 @@ graph LR
     * DocumentDB
   * Homogenous migration: Oracle => Oracle
   * Heterogeneous: Oracle => Aurora
+  * Not really suitable for use with Direct Connect or efficient for migrating large amounts of data (should consider DataSync)
   * EC2 server runs replication software, as well as continuous data replication using Change Data Capture (CDC) [for new deltas] and DMS
   * When migrating an online/accessible db, an online replication task must be created in addition to the DMS replication server
   * Can pre-create target tables manually or use AWS Schema Conversion Tool (SCT) [runs on the same server] to create some/all of the target tables, indices, views, etc. (only necessary for heterogeneous case)
@@ -2554,9 +2555,9 @@ sequenceDiagram
   * Can go over private internet with applications that integrate with PrivateLink
   * Can integrate filtration and validations
 
-### AWS Datasync:
+### AWS DataSync:
   * A schedulable online data movement and discovery service that simplifies and accelerates *data migration* to AWS or *moving data* between on-premises storage, edge locations, other clouds, and AWS storage (AWS to AWS, too)
-  * Deployed VM AWS Datasync Agent used to convey data to the DataSync service over the internet or AWS Direct Connect.  The agent is unnecessary for AWS to AWS
+  * Deployed VM AWS DataSync Agent used to convey data to the DataSync service over the internet or AWS Direct Connect.  The agent is unnecessary for AWS to AWS
   * Directly within AWS =>S3/EFS/FSx for Windows File Server/FSx for Lustre/FSx open ZFS/FSx for NetApp ONTAP
   * File permissions and metadata are preserved
   * Utilizing this service to movement in the flow of harnessing the data likely adds operational complexity and delay, especially (near) real-time systems
