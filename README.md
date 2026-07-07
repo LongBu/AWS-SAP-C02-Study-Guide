@@ -1,5 +1,5 @@
 # AWS SAP-CO2 Study Guide
-The following guide is my attempt at helping myself and possibly others to pass the AWS Certified Solutions Architect Professional Exam.  I'd recommend taking Stephane Maarek's course [Ultimate AWS Certified Solutions Architect Professional 2026](https://www.udemy.com/course/aws-solutions-architect-professional/) and taking a few practice exams from [AWS Certified Solutions Architect Professional Practice Exam](https://www.udemy.com/course/aws-certified-solutions-architect-professional-aws-practice-exams/) before moving onto the exam.  
+The following guide is my attempt at helping mysestlf and possibly others to pass the AWS Certified Solutions Architect Professional Exam.  I'd recommend taking Stephane Maarek's course [Ultimate AWS Certified Solutions Architect Professional 2026](https://www.udemy.com/course/aws-solutions-architect-professional/) and taking a few practice exams from [AWS Certified Solutions Architect Professional Practice Exam](https://www.udemy.com/course/aws-certified-solutions-architect-professional-aws-practice-exams/) before moving onto the exam.  
 
 Note: The author makes no promises or guarantees on this guide as this is as stated, a guide used by myself, nothing more.  This is a work in progress and I haven't passed the test, yet.  
 
@@ -353,6 +353,7 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
   * Alias (hostname to the AWS resource)=> better choice mostly (not 3rd party websites)
   * CNAME (hostname to hostname)=>can't use the root domain utilizing this
   * Alias can't reference EC2 DNS name
+  * You can create an alias record at the top node of a DNS namespace, also known as the zone apex.  So, if you register the DNS name whatever.com, the zone apex is whatever.com, though you can create an alias record for whatever.com that routes traffic to www.whatever.com.
 
 ### Route 53 Resolver:
   * Able to connect to AWS infrastructure and/or infrastructure outside of AWS
@@ -1684,7 +1685,7 @@ harsh environments
   * Can be used to only allow authenticated access (via CloudFront configuration), not done via OAI directly
 
 #### Amazon Storage Lens
-  * Understand, analyze, and optimize storage across entire AWS Organization
+  * Understand, analyze, and optimize storage usage and activity metrics (including versioning status) centrally across an entire AWS Organization
   * Discover anomalies, identify cost efficiencies, and apply data protection best practices across entire AWS Organization (30 days usage & activity metrics)
   * Aggregate data for Organization, specific accounts, regions, buckets, or prefixes
   * Default dashboard or create your own dashboards
@@ -1729,6 +1730,9 @@ harsh environments
   * Advanced Metrics and Recommendations
     * Additional paid metrics and features
     * Advanced Metrics – Activity, Advanced Cost Optimization, Advanced Data Protection, Status Code, Versioning Active
+      * When advanced metrics are enabled, the dashboard offers per-bucket insights that allow users to filter and identify buckets where versioning is not turned on.
+      * Spans all Regions and accounts within an organization, making it highly scalable and efficient.
+      * Bisual dashboard and downloadable CSV reports simplify compliance and operational reviews, helping teams detect misconfigured buckets quickly without needing to manually inspect each one. 
     * CloudWatch Publishing – Access metrics in CloudWatch without additional charges
     * Prefix Aggregation – Collect metrics at the prefix level
     * Data is available for queries for 15 months  
