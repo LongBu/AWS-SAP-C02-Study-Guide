@@ -24,6 +24,10 @@ Note: The author makes no promises or guarantees on this guide as this is as sta
 ## Introduction
 <a href="https://d1.awsstatic.com/training-and-certification/docs-sa-pro/AWS-Certified-Solutions-Architect-Professional_Exam-Guide.pdf">AWS Certified Solutions Architect - Professional (SAP-C02) Exam Guide</a>
 
+**Exam version note:** AWS says the last day to take SAP-C02 is 16 November 2026, and SAP-C03 general availability begins 17 November 2026. (<a href="https://aws.amazon.com/blogs/training-and-certification/september-2026-new-offerings/">AWS announcement</a>)
+
+<a href="https://examcrest.com/exam/aws-sap-c03/free-questions?utm_source=github&utm_campaign=longbu-sap">Free SAP-C03 sample questions</a> (ExamCrest; no signup, full mock tests are paid)
+
 
 <a href="https://certmetrics.com/amazon/candidate/benefit_summary.aspx">Don't forget to utilize a benefit code if you've passed another AWS exam previously to save</a>
 
